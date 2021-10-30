@@ -10,11 +10,11 @@ public class Programmer {
     ProgrammerColor cor;
     int posicao;
 
-        public Programmer(String nome, ArrayList<String> linguagens, int id, ProgrammerColor cor) {
+    public Programmer(String nome, ArrayList<String> linguagens, int id, ProgrammerColor cor) {
         this.nome = nome;
         this.linguagens = linguagens;
         this.id = id;
-        this.cor=cor;
+        this.cor = cor;
         this.posicao = 1;
     }
 
@@ -36,6 +36,14 @@ public class Programmer {
     }
 
     public String toString() {
-        return this.id + " | " + this.nome + " | " + this.posicao + " | " + this.linguagens + " | Em jogo";
+        StringBuilder txtLinguagens = new StringBuilder();
+        for (int i = 0; i < this.linguagens.size(); i++) {
+            if (i == this.linguagens.size() - 1) {
+                txtLinguagens.append(linguagens);
+            } else {
+                txtLinguagens.append(linguagens).append(";");
+            }
+        }
+        return this.id + " | " + this.nome + " | " + this.posicao + " | " + txtLinguagens + " | Em Jogo";
     }
 }

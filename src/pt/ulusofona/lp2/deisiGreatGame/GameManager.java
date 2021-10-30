@@ -22,33 +22,36 @@ public class GameManager {
         this.tamanhoTab=boardSize;
         int i=0;
         for (String[] strings : playerInfo) {
+            if(strings[1]==null || strings[1].equals("") || !temCor(strings[3]) || !temNovoId(strings[0]) || !((playerInfo.length*2)<=boardSize)){
+                return false;
+            }
             players.put(i,new Programmer(strings[1],linguagens(String.valueOf(strings[2])),Integer.parseInt(String.valueOf(strings[0])),ProgrammerColor.getColor(strings[3])));
             i++;
         }
-        return true;
-    }
-    public boolean temCor(String cor){
-        return switch (cor) {
-            case "PURPLE", "GREEN", "BROWN", "BLUE" -> true;
-            default -> false;
-        };
-
-    }
-    public boolean temLinguagens(String linguagem,Programmer programmer){
-        boolean temLinguagem=false;
-        String[] linguagens = linguagem.split(";");
-        if(linguagens.length!=programmer.linguagens.size()){
+        if(players.size()<=1 || players.size()>=5){
             return false;
         }
-        for (String linguagen : linguagens) {
-            for (int j = 0; j < programmer.linguagens.size(); j++) {
-                temLinguagem = programmer.linguagens.get(j).equals(linguagen);
-            }
-            if (!temLinguagem) {
+        return true;
+    }
+
+    public boolean temCor(String cor){
+         switch (cor) {
+            case "Purple", "Green", "Brown", "Blue" -> {for(int i=0;i<players.size();i++){
+                if(cor.equals(players.get(i).cor.nome)){
+                    return false;
+                }
+            } return true;}
+             default -> {
+                 return false;
+             }
+         }
+    }
+    public boolean temNovoId(String id){
+        for(int i=0;i<players.size();i++){
+            if(Integer.parseInt(id)==players.get(i).id){
                 return false;
             }
-        }
-        return true;
+        } return true;
     }
 
     public ArrayList<String> linguagens(String linguagens){
