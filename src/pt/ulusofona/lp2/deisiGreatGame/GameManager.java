@@ -2,7 +2,6 @@ package pt.ulusofona.lp2.deisiGreatGame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.security.KeyStore;
 import java.util.*;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class GameManager {
         this.tamanhoTab=boardSize;
         int i=0;
         for (String[] strings : playerInfo) {
-            players.put(i,new Programmer(strings[1],linguagens(strings[2]),Integer.parseInt(strings[0]), ProgrammerColor.valueOf(strings[3])));
+            players.put(i,new Programmer(strings[1],linguagens(String.valueOf(strings[2])),Integer.parseInt(String.valueOf(strings[0])),ProgrammerColor.getColor(strings[3])));
             i++;
         }
         return true;
