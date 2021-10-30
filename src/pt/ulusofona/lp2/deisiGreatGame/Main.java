@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         HashMap<Integer, Programmer> players1 = new HashMap<>();
         players1.put(1,new Programmer("aaa",linguagens("aaa;bbb;ccc"),1,ProgrammerColor.getColor("Blue")));
         players1.put(2,new Programmer("bbb",linguagens("aaa"),3,ProgrammerColor.getColor("Green")));
@@ -19,7 +19,7 @@ public class Main {
 public static ArrayList<String> linguagens(String linguagens){
         String[] linguagem = linguagens.split(";");
         return new ArrayList<String>(List.of(linguagem));
-    }
+    }*/
 
 
 }
