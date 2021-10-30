@@ -42,7 +42,7 @@ public class Programmer {
         Collections.sort(this.linguagens);
         for (int i = 0; i < this.linguagens.size(); i++) {
             if (i == this.linguagens.size() - 1) {
-                txtLinguagens.append(linguagens.get(i));
+                txtLinguagens.append(" ").append(linguagens.get(i));
             } else {
                 txtLinguagens.append(" ").append(linguagens.get(i)).append(";");
             }
