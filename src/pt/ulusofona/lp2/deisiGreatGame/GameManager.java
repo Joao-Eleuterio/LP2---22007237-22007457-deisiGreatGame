@@ -107,13 +107,7 @@ public class GameManager {
     }
 
     public int getCurrentPlayerID() {
-        return switch (turno) {
-            case 0 -> players.get(0).getId();
-            case 1 -> players.get(1).getId();
-            case 2 -> players.get(2).getId();
-            case 3 -> players.get(3).getId();
-            default -> 0;
-        };
+       return players.get(turno).getId();
     }
 
     public boolean moveCurrentPlayer(int nrPositions) {
