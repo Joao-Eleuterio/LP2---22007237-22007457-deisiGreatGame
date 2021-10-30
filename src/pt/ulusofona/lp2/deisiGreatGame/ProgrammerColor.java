@@ -1,10 +1,18 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-import java.util.ArrayList;
+enum ProgrammerColor {
+    Purple("Purple"),
+    Blue("Blue"),
+    Green("Green"),
+    Brown("Brown");
 
-public enum ProgrammerColor {
-    Purple,
-    Blue,
-    Green,
-    Brown;
+    String nome;
+    ProgrammerColor(String nome) {
+        this.nome=nome;
+    }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
 }
