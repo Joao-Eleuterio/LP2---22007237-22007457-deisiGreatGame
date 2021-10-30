@@ -9,7 +9,7 @@ public class GameManager {
     int turno;
     HashMap<Integer, Programmer> players = new HashMap<>();
     int tamanhoTab;
-    int nrTurnos = 1;
+    int nrTurnos = 0;
     Programmer vencedor;
 
     public GameManager() {
@@ -120,6 +120,7 @@ public class GameManager {
         if (nrPositions < 1 || nrPositions > 6) {
             return false;
         }
+
         switch (turno) {
             case 0 -> {
                 if (players.get(0).posicao + nrPositions <= tamanhoTab) {
@@ -127,7 +128,6 @@ public class GameManager {
                 } else {
                     players.get(0).posicao = tamanhoTab + (tamanhoTab - players.get(0).posicao - nrPositions);
                 }
-                nextTurn();
             }
             case 1 -> {
                 if (players.get(1).posicao + nrPositions <= tamanhoTab) {
@@ -135,7 +135,6 @@ public class GameManager {
                 } else {
                     players.get(1).posicao = tamanhoTab + (tamanhoTab - players.get(1).posicao - nrPositions);
                 }
-                nextTurn();
             }
             case 2 -> {
                 if (players.get(2).posicao + nrPositions <= tamanhoTab) {
@@ -143,7 +142,6 @@ public class GameManager {
                 } else {
                     players.get(2).posicao = tamanhoTab + (tamanhoTab - players.get(2).posicao - nrPositions);
                 }
-                nextTurn();
             }
             case 3 -> {
                 if (players.get(3).posicao + nrPositions <= tamanhoTab) {
@@ -151,9 +149,9 @@ public class GameManager {
                 } else {
                     players.get(3).posicao = tamanhoTab + (tamanhoTab - players.get(3).posicao - nrPositions);
                 }
-                nextTurn();
             }
         }
+        nextTurn();
         return true;
     }
 
@@ -176,6 +174,7 @@ public class GameManager {
                 return true;
             }
         }
+        nextTurn();
         return false;
     }
 
