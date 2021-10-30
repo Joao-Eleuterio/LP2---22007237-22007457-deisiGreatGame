@@ -9,7 +9,7 @@ public class GameManager {
     int turno;
     HashMap<Integer, Programmer> players = new HashMap<>();
     int tamanhoTab;
-    int nrTurnos = 0;
+    int nrTurnos = 1;
     Programmer vencedor;
 
     public GameManager() {
