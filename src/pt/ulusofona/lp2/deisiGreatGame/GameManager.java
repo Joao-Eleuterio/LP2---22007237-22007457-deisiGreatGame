@@ -16,6 +16,10 @@ public class GameManager {
     }
 
     public boolean createInitialBoard(String[][] playerInfo, int boardSize) {
+        players.clear();
+        nrTurnos=0;
+        turno=0;
+        vencedor=null;
         if (playerInfo == null) {
             return false;
         }
@@ -180,14 +184,12 @@ public class GameManager {
         strings.add("O GRANDE JOGO DO DEISI");
         strings.add("");
         strings.add("NR. DE TURNOS");
-        strings.add("");
         strings.add("" + nrTurnos);
         strings.add("");
         strings.add("VENCEDOR");
         strings.add("" + vencedor.nome);
         strings.add("");
         strings.add("RESTANTES");
-        strings.add("");
         if (players == null) {
             return null;
         }
