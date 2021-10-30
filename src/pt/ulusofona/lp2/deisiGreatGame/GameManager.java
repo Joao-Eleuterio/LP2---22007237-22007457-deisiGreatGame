@@ -7,7 +7,7 @@ import java.util.List;
 
 public class GameManager {
     int turno;
-    HashMap<Integer,Programmer> players = new HashMap<>();
+    HashMap<Integer, Programmer> players = new HashMap<>();
     int tamanhoTab;
     int nrTurnos = 0;
     Programmer vencedor;
@@ -16,50 +16,63 @@ public class GameManager {
     }
 
     public boolean createInitialBoard(String[][] playerInfo, int boardSize) {
-        if(playerInfo==null){
+        players.clear();
+        nrTurnos=0;
+        turno=0;
+        vencedor=null;
+        if (playerInfo == null) {
             return false;
         }
-        this.tamanhoTab=boardSize;
-        int i=0;
+        ArrayList<Programmer> a = new ArrayList<>();
+        this.tamanhoTab = boardSize;
+
         for (String[] strings : playerInfo) {
-            if(strings[1]==null || strings[1].equals("") || !temCor(strings[3]) || !temNovoId(strings[0]) || !((playerInfo.length*2)<=boardSize)){
+            if (strings[1] == null || strings[1].equals("") || !temCor(strings[3]) || !temNovoId(strings[0]) || !((playerInfo.length * 2) <= boardSize)) {
                 return false;
             }
-            players.put(i,new Programmer(strings[1],linguagens(String.valueOf(strings[2])),Integer.parseInt(String.valueOf(strings[0])),ProgrammerColor.getColor(strings[3])));
-            i++;
+            a.add(new Programmer(strings[1], linguagens(String.valueOf(strings[2])), Integer.parseInt(String.valueOf(strings[0])), ProgrammerColor.getColor(strings[3])));
         }
-
+        a.sort(Comparator.comparingInt(Programmer::getId));
+        for (int i = 0; i < a.size(); i++) {
+            players.put(i, a.get(i));
+        }
+//se tiver os players certos
         return players.size() > 1 && players.size() < 5;
     }
 
-    public boolean temCor(String cor){
-         switch (cor) {
-            case "Purple", "Green", "Brown", "Blue" -> {for(int i=0;i<players.size();i++){
-                if(cor.equals(players.get(i).cor.nome)){
-                    return false;
+    public boolean temCor(String cor) {
+        switch (cor) {
+            case "Purple", "Green", "Brown", "Blue" -> {
+                for (int i = 0; i < players.size(); i++) {
+                    if (cor.equals(players.get(i).cor.nome)) {
+                        return false;
+                    }
                 }
-            } return true;}
-             default -> {
-                 return false;
-             }
-         }
-    }
-    public boolean temNovoId(String id){
-        for(int i=0;i<players.size();i++){
-            if(Integer.parseInt(id)==players.get(i).id){
+                return true;
+            }
+            default -> {
                 return false;
             }
-        } return true;
+        }
     }
 
-    public ArrayList<String> linguagens(String linguagens){
+    public boolean temNovoId(String id) {
+        for (int i = 0; i < players.size(); i++) {
+            if (Integer.parseInt(id) == players.get(i).id) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public ArrayList<String> linguagens(String linguagens) {
         String[] linguagem = linguagens.split(";");
         return new ArrayList<String>(List.of(linguagem));
     }
 
     public String getImagePng(int position) {
         //position seja invalido retorna null
-        if(position>tamanhoTab){
+        if (position > tamanhoTab) {
             return null;
             //retorna imagem 50x50 glory.png
         } else if( position == tamanhoTab){
@@ -71,7 +84,7 @@ public class GameManager {
 
     public ArrayList<Programmer> getProgrammers() {
         ArrayList<Programmer> a = new ArrayList<>();
-        for(int i=0;i<players.size();i++){
+        for (int i = 0; i < players.size(); i++) {
             a.add(players.get(i));
         }
         return a;
@@ -79,18 +92,18 @@ public class GameManager {
 
     public ArrayList<Programmer> getProgrammers(int position) {
         ArrayList<Programmer> programmers = new ArrayList<>();
-        boolean ocupado=false;
+        boolean ocupado = false;
         if (position > tamanhoTab) {
             return null;
         } else {
-            for (int i=0;i<players.size();i++) {
+            for (int i = 0; i < players.size(); i++) {
                 if (players.get(i).posicao == position) {
                     programmers.add(players.get(i));
-                    ocupado=true;
+                    ocupado = true;
                 }
             }
         }
-        if(!ocupado){
+        if (!ocupado) {
             return null;
         }
         return programmers;
@@ -110,47 +123,61 @@ public class GameManager {
         if (nrPositions < 1 || nrPositions > 6) {
             return false;
         }
+
         switch (turno) {
             case 0 -> {
-                if(players.get(0).posicao + nrPositions<=tamanhoTab){
-                    players.get(0).posicao += nrPositions;}else{players.get(0).posicao=tamanhoTab+(tamanhoTab-players.get(0).posicao-nrPositions);}
-                nextTurn();
+                if (players.get(0).posicao + nrPositions <= tamanhoTab) {
+                    players.get(0).posicao += nrPositions;
+                } else {
+                    players.get(0).posicao = tamanhoTab + (tamanhoTab - players.get(0).posicao - nrPositions);
+                }
             }
-            case 1 ->{ if(players.get(1).posicao + nrPositions<=tamanhoTab){
-                players.get(1).posicao += nrPositions;}else{players.get(1).posicao=tamanhoTab+(tamanhoTab-players.get(1).posicao-nrPositions);}
-                nextTurn();
+            case 1 -> {
+                if (players.get(1).posicao + nrPositions <= tamanhoTab) {
+                    players.get(1).posicao += nrPositions;
+                } else {
+                    players.get(1).posicao = tamanhoTab + (tamanhoTab - players.get(1).posicao - nrPositions);
+                }
             }
-            case 2 ->{ if(players.get(2).posicao + nrPositions<=tamanhoTab){
-                players.get(2).posicao += nrPositions;}else{players.get(2).posicao=tamanhoTab+(tamanhoTab-players.get(2).posicao-nrPositions);}
-                nextTurn();
+            case 2 -> {
+                if (players.get(2).posicao + nrPositions <= tamanhoTab) {
+                    players.get(2).posicao += nrPositions;
+                } else {
+                    players.get(2).posicao = tamanhoTab + (tamanhoTab - players.get(2).posicao - nrPositions);
+                }
             }
-            case 3 ->{ if(players.get(3).posicao + nrPositions<=tamanhoTab){
-                players.get(3).posicao += nrPositions;}else{players.get(3).posicao=tamanhoTab+(tamanhoTab-players.get(3).posicao-nrPositions);}
-                nextTurn();
+            case 3 -> {
+                if (players.get(3).posicao + nrPositions <= tamanhoTab) {
+                    players.get(3).posicao += nrPositions;
+                } else {
+                    players.get(3).posicao = tamanhoTab + (tamanhoTab - players.get(3).posicao - nrPositions);
+                }
             }
         }
+        nextTurn();
         return true;
     }
 
-    public  void nextTurn(){
+    public void nextTurn() {
         nrTurnos++;
-        if(turno==players.size()-1){
-            turno=0;
-        }else{
+        if (turno == players.size() - 1) {
+            turno = 0;
+        } else {
             turno++;
         }
     }
 
     public boolean gameIsOver() {
-        if(players==null){
+        if (players == null) {
             return false;
         }
-        for (int i=0;i<players.size();i++) {
+        for (int i = 0; i < players.size(); i++) {
             if (players.get(i).posicao == tamanhoTab) {
-                vencedor=players.get(i);
+                vencedor = players.get(i);
                 return true;
             }
         }
+        nextTurn();
         return false;
     }
 
@@ -159,20 +186,18 @@ public class GameManager {
         strings.add("O GRANDE JOGO DO DEISI");
         strings.add("");
         strings.add("NR. DE TURNOS");
-        strings.add("");
-        strings.add(""+nrTurnos);
+        strings.add("" + nrTurnos);
         strings.add("");
         strings.add("VENCEDOR");
-        strings.add(""+vencedor.nome);
+        strings.add("" + vencedor.nome);
         strings.add("");
         strings.add("RESTANTES");
-        strings.add("");
-        if(players==null){
+        if (players == null) {
             return null;
         }
         Collection<Programmer> values = players.values();
         ArrayList<Programmer> organizado = new ArrayList<>(values);
-        organizado.sort(Comparator.comparingInt((Programmer b)->b.posicao).reversed());
+        organizado.sort(Comparator.comparingInt((Programmer b) -> b.posicao).reversed());
 
         for (Programmer programmer : organizado) {
             if (programmer.posicao != tamanhoTab) {

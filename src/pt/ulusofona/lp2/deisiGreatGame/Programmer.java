@@ -41,8 +41,10 @@ public class Programmer {
         StringBuilder txtLinguagens = new StringBuilder();
         Collections.sort(this.linguagens);
         for (int i = 0; i < this.linguagens.size(); i++) {
-            if(i==0){ txtLinguagens.append(linguagens.get(i));}else{
-                txtLinguagens.append("; ").append(linguagens.get(i));
+            if (i == 0) {
+                txtLinguagens.append(this.linguagens.get(i));
+            } else {
+                txtLinguagens.append("; ").append(this.linguagens.get(i));
             }
         }
         return this.id + " | " + this.nome + " | " + this.posicao + " | " + txtLinguagens + " | Em Jogo";
