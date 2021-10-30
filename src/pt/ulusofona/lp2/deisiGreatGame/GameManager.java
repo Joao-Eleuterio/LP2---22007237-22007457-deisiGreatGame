@@ -61,9 +61,12 @@ public class GameManager {
         //position seja invalido retorna null
         if(position>tamanhoTab){
             return null;
+            //retorna imagem 50x50 glory.png
+        } else if( position == tamanhoTab){
+            return "glory.png";
         }
-        //retorna imagem 50x50 glory.png
-        return "";
+        //position seja invalido retorna null
+        return null;
     }
 
     public ArrayList<Programmer> getProgrammers() {
