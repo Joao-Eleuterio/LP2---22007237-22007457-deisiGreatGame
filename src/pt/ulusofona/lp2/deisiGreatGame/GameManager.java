@@ -36,7 +36,7 @@ public class GameManager {
         for (int i = 0; i < a.size(); i++) {
             players.put(i, a.get(i));
         }
-
+//se tiver os players certos
         return players.size() > 1 && players.size() < 5;
     }
 
