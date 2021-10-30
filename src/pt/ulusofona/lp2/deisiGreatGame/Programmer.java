@@ -37,11 +37,12 @@ public class Programmer {
 
     public String toString() {
         StringBuilder txtLinguagens = new StringBuilder();
+
         for (int i = 0; i < this.linguagens.size(); i++) {
             if (i == this.linguagens.size() - 1) {
-                txtLinguagens.append(linguagens);
+                txtLinguagens.append(linguagens.get(i));
             } else {
-                txtLinguagens.append(linguagens).append(";");
+                txtLinguagens.append(linguagens.get(i)).append(";");
             }
         }
         return this.id + " | " + this.nome + " | " + this.posicao + " | " + txtLinguagens + " | Em Jogo";

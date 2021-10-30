@@ -28,10 +28,8 @@ public class GameManager {
             players.put(i,new Programmer(strings[1],linguagens(String.valueOf(strings[2])),Integer.parseInt(String.valueOf(strings[0])),ProgrammerColor.getColor(strings[3])));
             i++;
         }
-        if(players.size()<=1 || players.size()>=5){
-            return false;
-        }
-        return true;
+
+        return players.size() > 1 && players.size() < 5;
     }
 
     public boolean temCor(String cor){
