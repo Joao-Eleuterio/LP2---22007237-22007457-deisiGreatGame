@@ -2,6 +2,8 @@ package pt.ulusofona.lp2.deisiGreatGame;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Programmer {
     String nome = "";
@@ -37,12 +39,12 @@ public class Programmer {
 
     public String toString() {
         StringBuilder txtLinguagens = new StringBuilder();
-
+        Collections.sort(this.linguagens);
         for (int i = 0; i < this.linguagens.size(); i++) {
             if (i == this.linguagens.size() - 1) {
                 txtLinguagens.append(linguagens.get(i));
             } else {
-                txtLinguagens.append(linguagens.get(i)).append(";");
+                txtLinguagens.append(" ").append(linguagens.get(i)).append(";");
             }
         }
         return this.id + " | " + this.nome + " | " + this.posicao + " | " + txtLinguagens + " | Em Jogo";
