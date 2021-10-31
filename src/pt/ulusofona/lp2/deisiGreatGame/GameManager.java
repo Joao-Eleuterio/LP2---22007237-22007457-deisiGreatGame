@@ -17,20 +17,22 @@ public class GameManager {
 
     public boolean createInitialBoard(String[][] playerInfo, int boardSize) {
         players.clear();
-        nrTurnos=0;
-        turno=0;
-        vencedor=null;
+        nrTurnos = 0;
+        turno = 0;
+        vencedor = null;
         if (playerInfo == null) {
             return false;
         }
         ArrayList<Programmer> a = new ArrayList<>();
-        this.tamanhoTab = boardSize;
+        if (boardSize >= playerInfo.length * 2) {
+            this.tamanhoTab = boardSize;
+        }
 
         for (String[] strings : playerInfo) {
-            if (strings[1] == null || strings[1].equals("") || !temCor(strings[3]) || !temNovoId(strings[0]) || !((playerInfo.length * 2) <= boardSize)) {
+            if (strings[1] == null || strings[1].equals("") || !temCor(strings[3],a) || !temNovoId(strings[0],a) || !((playerInfo.length * 2) <= boardSize)) {
                 return false;
             }
-             a.add(new Programmer(strings[1], linguagens(String.valueOf(strings[2])), Integer.parseInt(String.valueOf(strings[0])), ProgrammerColor.getColor(strings[3])));
+            a.add(new Programmer(strings[1], linguagens(String.valueOf(strings[2])), Integer.parseInt(String.valueOf(strings[0])), ProgrammerColor.getColor(strings[3])));
         }
         a.sort(Comparator.comparingInt(Programmer::getId));
         for (int i = 0; i < a.size(); i++) {
@@ -41,11 +43,11 @@ public class GameManager {
         return players.size() > 1 && players.size() < 5;
     }
 
-    public boolean temCor(String cor) {
+    public boolean temCor(String cor,ArrayList<Programmer> a) {
         switch (cor) {
             case "Purple", "Green", "Brown", "Blue" -> {
-                for (int i = 0; i < players.size(); i++) {
-                    if (cor.equals(players.get(i).cor.nome)) {
+                for (Programmer programmer : a) {
+                    if (cor.equals(programmer.cor.nome)) {
                         return false;
                     }
                 }
@@ -56,10 +58,9 @@ public class GameManager {
             }
         }
     }
-
-    public boolean temNovoId(String id) {
-        for (int i = 0; i < players.size(); i++) {
-            if (Integer.parseInt(id) == players.get(i).id) {
+    public boolean temNovoId(String id,ArrayList<Programmer> a) {
+        for (Programmer programmer : a) {
+            if (Integer.parseInt(id) == programmer.id) {
                 return false;
             }
         }
@@ -76,7 +77,7 @@ public class GameManager {
         if (position > tamanhoTab) {
             return null;
             //retorna imagem 50x50 glory.png
-        } else if( position == tamanhoTab){
+        } else if (position == tamanhoTab) {
             return "glory.png";
         }
         //position seja invalido retorna null
@@ -111,7 +112,7 @@ public class GameManager {
     }
 
     public int getCurrentPlayerID() {
-       return players.get(turno).getId();
+        return players.get(turno).getId();
     }
 
     public boolean moveCurrentPlayer(int nrPositions) {
