@@ -30,12 +30,13 @@ public class GameManager {
             if (strings[1] == null || strings[1].equals("") || !temCor(strings[3]) || !temNovoId(strings[0]) || !((playerInfo.length * 2) <= boardSize)) {
                 return false;
             }
-            a.add(new Programmer(strings[1], linguagens(String.valueOf(strings[2])), Integer.parseInt(String.valueOf(strings[0])), ProgrammerColor.getColor(strings[3])));
+             a.add(new Programmer(strings[1], linguagens(String.valueOf(strings[2])), Integer.parseInt(String.valueOf(strings[0])), ProgrammerColor.getColor(strings[3])));
         }
         a.sort(Comparator.comparingInt(Programmer::getId));
         for (int i = 0; i < a.size(); i++) {
             players.put(i, a.get(i));
         }
+
 //se tiver os players certos
         return players.size() > 1 && players.size() < 5;
     }
@@ -162,16 +163,13 @@ public class GameManager {
     }
 
     public boolean gameIsOver() {
-        if (players == null) {
-            return false;
-        }
         for (int i = 0; i < players.size(); i++) {
             if (players.get(i).posicao == tamanhoTab) {
                 vencedor = players.get(i);
+                nextTurn();
                 return true;
             }
         }
-        nextTurn();
         return false;
     }
 
