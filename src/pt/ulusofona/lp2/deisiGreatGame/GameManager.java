@@ -225,8 +225,11 @@ public class GameManager {
         a.add(prof);
         JLabel space = new JLabel();
         space.setText("        ");
-        JLabel copyright = new JLabel("© 2021 DEISI",SwingConstants.CENTER);
         a.add(space);
+        JLabel space2 = new JLabel();
+        space2.setText("                                     " );
+        a.add(space2);
+        JLabel copyright = new JLabel("                                      © 2021 DEISI");
         a.add(copyright);
         return a;
     }
