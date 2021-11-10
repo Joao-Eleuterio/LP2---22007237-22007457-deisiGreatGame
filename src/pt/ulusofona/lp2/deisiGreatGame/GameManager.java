@@ -203,15 +203,31 @@ public class GameManager {
     public JPanel getAuthorsPanel() {
         JPanel a = new JPanel();
         a.setSize(new Dimension(300, 300));
-        JLabel label = new JLabel("Créditos");
-        label.setVerticalAlignment(SwingConstants.TOP);
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        a.add(label);
+        JLabel autores = new JLabel("Autores: ");
+        autores.setVerticalAlignment(SwingConstants.CENTER);
+        autores.setHorizontalAlignment(SwingConstants.HORIZONTAL);
+        a.add(autores);
         JLabel nomes = new JLabel("João Eleutério        Mário Silva");
         nomes.setVerticalAlignment(SwingConstants.CENTER);
         nomes.setHorizontalAlignment(SwingConstants.CENTER);
         a.add(nomes);
-
+        JLabel profs1 = new JLabel("Professores:");
+        profs1.setVerticalAlignment(SwingConstants.CENTER);
+        profs1.setHorizontalAlignment(SwingConstants.HORIZONTAL);
+        a.add(profs1);
+        JLabel profs2 = new JLabel("Pedro Alves");
+        JLabel prof = new JLabel("         Lúcio Studer         Bruno Cipriano");
+        profs2.setHorizontalAlignment(SwingConstants.CENTER);
+        profs2.setVerticalAlignment(SwingConstants.CENTER);
+        a.add(profs2);
+        prof.setHorizontalAlignment(SwingConstants.CENTER);
+        prof.setVerticalAlignment(SwingConstants.CENTER);
+        a.add(prof);
+        JLabel space = new JLabel();
+        space.setText("        ");
+        JLabel copyright = new JLabel("© 2021 DEISI",SwingConstants.CENTER);
+        a.add(space);
+        a.add(copyright);
         return a;
     }
 
