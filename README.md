@@ -1,5 +1,7 @@
 # deisiGreatGame
-Trabalho de LP2
+
+
+Diagrama UML
 
 ![](diagrama.png?raw=true "Diagrama UML")
 
