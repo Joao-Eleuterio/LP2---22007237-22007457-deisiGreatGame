@@ -1,6 +1,4 @@
 package pt.ulusofona.lp2.deisiGreatGame;
-
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -8,10 +6,10 @@ public class Programmer {
     String nome = "";
     ArrayList<String> linguagens;
     int id = 0;
-    ProgrammerColor cor;
+    pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor cor;
     int posicao;
 
-    public Programmer(String nome, ArrayList<String> linguagens, int id, ProgrammerColor cor) {
+    public Programmer(String nome, ArrayList<String> linguagens, int id, pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor cor) {
         this.nome = nome;
         this.linguagens = linguagens;
         this.id = id;
@@ -28,7 +26,7 @@ public class Programmer {
         return this.nome == null ? "" : this.nome;
     }
 
-    public ProgrammerColor getColor() {
+    public pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor getColor() {
         return cor;
     }
 

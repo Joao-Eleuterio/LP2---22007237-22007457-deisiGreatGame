@@ -43,10 +43,10 @@ public class GameManager {
         return players.size() > 1 && players.size() < 5;
     }
 
-    public boolean temCor(String cor,ArrayList<Programmer> a) {
+    public boolean temCor(String cor,ArrayList<Programmer> programadores) {
         switch (cor) {
             case "Purple", "Green", "Brown", "Blue" -> {
-                for (Programmer programmer : a) {
+                for (pt.ulusofona.lp2.deisiGreatGame.Programmer programmer : programadores) {
                     if (cor.equals(programmer.cor.nome)) {
                         return false;
                     }
@@ -58,8 +58,9 @@ public class GameManager {
             }
         }
     }
-    public boolean temNovoId(String id,ArrayList<Programmer> a) {
-        for (Programmer programmer : a) {
+
+    public boolean temNovoId(String id,ArrayList<Programmer> programadores) {
+        for (pt.ulusofona.lp2.deisiGreatGame.Programmer programmer : programadores) {
             if (Integer.parseInt(id) == programmer.id) {
                 return false;
             }
@@ -85,7 +86,7 @@ public class GameManager {
     }
 
     public ArrayList<Programmer> getProgrammers() {
-        ArrayList<Programmer> a = new ArrayList<>();
+        ArrayList<pt.ulusofona.lp2.deisiGreatGame.Programmer> a = new ArrayList<>();
         for (int i = 0; i < players.size(); i++) {
             a.add(players.get(i));
         }
@@ -93,7 +94,7 @@ public class GameManager {
     }
 
     public ArrayList<Programmer> getProgrammers(int position) {
-        ArrayList<Programmer> programmers = new ArrayList<>();
+        ArrayList<pt.ulusofona.lp2.deisiGreatGame.Programmer> programmers = new ArrayList<>();
         boolean ocupado = false;
         if (position > tamanhoTab) {
             return null;
@@ -188,11 +189,11 @@ public class GameManager {
         if (players == null) {
             return null;
         }
-        Collection<Programmer> values = players.values();
-        ArrayList<Programmer> organizado = new ArrayList<>(values);
-        organizado.sort(Comparator.comparingInt((Programmer b) -> b.posicao).reversed());
+        Collection<pt.ulusofona.lp2.deisiGreatGame.Programmer> values = players.values();
+        ArrayList<pt.ulusofona.lp2.deisiGreatGame.Programmer> organizado = new ArrayList<>(values);
+        organizado.sort(Comparator.comparingInt((pt.ulusofona.lp2.deisiGreatGame.Programmer b) -> b.posicao).reversed());
 
-        for (Programmer programmer : organizado) {
+        for (pt.ulusofona.lp2.deisiGreatGame.Programmer programmer : organizado) {
             if (programmer.posicao != tamanhoTab) {
                 strings.add(programmer.nome + " " + programmer.posicao);
             }
@@ -202,35 +203,31 @@ public class GameManager {
 
     public JPanel getAuthorsPanel() {
         JPanel a = new JPanel();
-        a.setSize(new Dimension(300, 300));
-        JLabel autores = new JLabel("Autores: ");
-        autores.setVerticalAlignment(SwingConstants.CENTER);
-        autores.setHorizontalAlignment(SwingConstants.HORIZONTAL);
-        a.add(autores);
-        JLabel nomes = new JLabel("João Eleutério        Mário Silva");
-        nomes.setVerticalAlignment(SwingConstants.CENTER);
-        nomes.setHorizontalAlignment(SwingConstants.CENTER);
-        a.add(nomes);
-        JLabel profs1 = new JLabel("Professores:");
-        profs1.setVerticalAlignment(SwingConstants.CENTER);
-        profs1.setHorizontalAlignment(SwingConstants.HORIZONTAL);
-        a.add(profs1);
-        JLabel profs2 = new JLabel("Pedro Alves");
-        JLabel prof = new JLabel("         Lúcio Studer         Bruno Cipriano");
-        profs2.setHorizontalAlignment(SwingConstants.CENTER);
-        profs2.setVerticalAlignment(SwingConstants.CENTER);
-        a.add(profs2);
-        prof.setHorizontalAlignment(SwingConstants.CENTER);
-        prof.setVerticalAlignment(SwingConstants.CENTER);
-        a.add(prof);
-        JLabel space = new JLabel();
-        space.setText("        ");
-        a.add(space);
-        JLabel space2 = new JLabel();
-        space2.setText("                                     " );
-        a.add(space2);
-        JLabel copyright = new JLabel("                                      © 2021 DEISI");
-        a.add(copyright);
+        JTextArea text = new JTextArea();
+
+        text.setText("""
+                                                 DeisiGreatGame
+                                                 
+                Programadores: João Eleutério
+                                               Mário Silva
+                               
+                Professores:   Pedro Alves
+                                           Lúcio Studer
+                                           Bruno Cipriano
+                                
+                                
+                                
+                                
+                              
+                             
+                                                                                    © 2021 DEISI
+                """);
+        text.setSize(100, 100);
+        text.setEnabled(false);
+        text.setBackground(a.getBackground());
+        text.setDisabledTextColor(Color.BLACK);
+        a.add(text);
+
         return a;
     }
 
