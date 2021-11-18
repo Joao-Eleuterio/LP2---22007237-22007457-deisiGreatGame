@@ -5,16 +5,19 @@ import java.util.Collections;
 public class Programmer {
     String nome = "";
     ArrayList<String> linguagens;
+    ArrayList<String> ferramentas;
     int id = 0;
     pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor cor;
     int posicao;
 
-    public Programmer(String nome, ArrayList<String> linguagens, int id, pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor cor) {
+    public Programmer(String nome, ArrayList<String> linguagens,ArrayList<String> ferramentas, int id, pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor cor) {
         this.nome = nome;
         this.linguagens = linguagens;
         this.id = id;
         this.cor = cor;
         this.posicao = 1;
+        this.ferramentas = ferramentas;
+        ;
     }
 
 
@@ -36,6 +39,7 @@ public class Programmer {
 
     public String toString() {
         StringBuilder txtLinguagens = new StringBuilder();
+        StringBuilder txtferramentas = new StringBuilder();
         Collections.sort(this.linguagens);
         for (int i = 0; i < this.linguagens.size(); i++) {
             if (i == 0) {
@@ -44,6 +48,23 @@ public class Programmer {
                 txtLinguagens.append("; ").append(this.linguagens.get(i));
             }
         }
-        return this.id + " | " + this.nome + " | " + this.posicao + " | " + txtLinguagens + " | Em Jogo";
+        if(ferramentas != null || ferramentas.size() != 0){
+            for(int j = 0; j < this.ferramentas.size();j++){
+                if(j == 0){
+                    txtferramentas.append(this.ferramentas.get(j));
+                }else{
+                    txtferramentas.append("; ").append(this.ferramentas.get(j));
+                }
+            }
+
+
+        } else{
+            txtferramentas.append("No tools");
+        }
+
+
+
+
+        return this.id + " | " + this.nome + " | " + this.posicao + " | " + txtferramentas + " | " +  txtLinguagens + " | Em Jogo";
     }
 }
