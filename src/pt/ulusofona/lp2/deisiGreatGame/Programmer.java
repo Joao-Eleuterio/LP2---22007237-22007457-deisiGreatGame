@@ -5,21 +5,28 @@ import java.util.Collections;
 public class Programmer {
     String nome = "";
     ArrayList<String> linguagens;
-    ArrayList<String> ferramentas;
     int id = 0;
-    pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor cor;
+    ProgrammerColor cor;
     int posicao;
+    boolean defeat;
+    ArrayList<Ferramenta> ferramentas= new ArrayList<>();
 
-    public Programmer(String nome, ArrayList<String> linguagens,ArrayList<String> ferramentas, int id, pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor cor) {
+    public Programmer(String nome, ArrayList<String> linguagens, int id, pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor cor) {
         this.nome = nome;
         this.linguagens = linguagens;
         this.id = id;
         this.cor = cor;
         this.posicao = 1;
-        this.ferramentas = ferramentas;
-        ;
+        this.defeat=false;
     }
 
+
+    public boolean getDefeat(){
+        return defeat;
+    }
+    public void perdeu(){
+        this.defeat=true;
+    }
 
     public int getId() {
         return this.id;
@@ -29,7 +36,7 @@ public class Programmer {
         return this.nome == null ? "" : this.nome;
     }
 
-    public pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor getColor() {
+    public ProgrammerColor getColor() {
         return cor;
     }
 
@@ -39,7 +46,6 @@ public class Programmer {
 
     public String toString() {
         StringBuilder txtLinguagens = new StringBuilder();
-        StringBuilder txtferramentas = new StringBuilder();
         Collections.sort(this.linguagens);
         for (int i = 0; i < this.linguagens.size(); i++) {
             if (i == 0) {
@@ -48,23 +54,24 @@ public class Programmer {
                 txtLinguagens.append("; ").append(this.linguagens.get(i));
             }
         }
-        if(ferramentas != null || ferramentas.size() != 0){
-            for(int j = 0; j < this.ferramentas.size();j++){
-                if(j == 0){
-                    txtferramentas.append(this.ferramentas.get(j));
+        StringBuilder txtFerramentas = new StringBuilder();
+        if(this.ferramentas.size()==0){
+            txtFerramentas.append("No tools");
+        }else{
+            for(int i=0;i<this.ferramentas.size();i++){
+                if (i == 0) {
+                    txtFerramentas.append(this.ferramentas.get(i));
                 }else{
-                    txtferramentas.append("; ").append(this.ferramentas.get(j));
+                    txtFerramentas.append("; ").append(this.ferramentas.get(i));
                 }
             }
-
-
-        } else{
-            txtferramentas.append("No tools");
         }
-
-
-
-
-        return this.id + " | " + this.nome + " | " + this.posicao + " | " + txtferramentas + " | " +  txtLinguagens + " | Em Jogo";
+        String txtEstado="";
+        if(getDefeat()){
+            txtEstado="Derrotado";
+        }else{
+            txtEstado="Em Jogo";
+        }
+        return this.id + " | " + this.nome + " | " + this.posicao + " | " + txtFerramentas + " | " + txtLinguagens + " | " + txtEstado;
     }
 }
