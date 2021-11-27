@@ -5,4 +5,5 @@ public abstract class Trap {
     String titulo;
 
    abstract public String getImage();
+   abstract public String  getConsequencia();
 }

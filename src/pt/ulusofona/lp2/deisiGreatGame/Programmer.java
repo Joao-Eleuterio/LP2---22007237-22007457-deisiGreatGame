@@ -9,7 +9,9 @@ public class Programmer {
     ProgrammerColor cor;
     int posicao;
     boolean defeat;
+    Abismo abismo;
     ArrayList<Ferramenta> ferramentas= new ArrayList<>();
+    ArrayList<Integer> casas = new ArrayList<>();
 
     public Programmer(String nome, ArrayList<String> linguagens, int id, pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor cor) {
         this.nome = nome;
@@ -20,14 +22,16 @@ public class Programmer {
         this.defeat=false;
     }
 
-
+    public Trap getAbismo(){
+        return abismo;
+    }
     public boolean getDefeat(){
         return defeat;
     }
     public void perdeu(){
         this.defeat=true;
     }
-
+    int cicloIfinito=0;
     public int getId() {
         return this.id;
     }
@@ -74,4 +78,32 @@ public class Programmer {
         }
         return this.id + " | " + this.nome + " | " + this.posicao + " | " + txtFerramentas + " | " + txtLinguagens + " | " + txtEstado;
     }
+
+
+    void cicloInfinito(){
+        if(cicloIfinito==0){
+            cicloIfinito=3;
+        }else{
+            cicloIfinito--;
+        }
+    }
+    //TODO o que acontece nas casas com abismos
+    public boolean consequencias(Trap trap,int nrSpaces){
+         switch (trap.titulo){
+            case "Erro de sintaxe":{ this.posicao-=1; return true;}
+            case "Erro de lógica":{ this.posicao-=nrSpaces/2; return true; }
+            case "Exception": {this.posicao-=2; return true;}
+            case "File Not Found Exception": {this.posicao-=3; return true;}
+            case "Crash (aka Rebentanço)": {this.posicao=1; return true;}
+            case "Duplicated Code":{ this.posicao= casas.get(casas.size()-1); return true;}
+            case "Efeitos secundários" : {this.posicao=casas.get(casas.size()-2); return true;}
+            case "Blue Screen of Death": {this.defeat=true; return true;}
+            case "Ciclo infinito":
+            case "Segmentation Fault":
+            default:    return false;
+
+         }
+
+    }
+
 }

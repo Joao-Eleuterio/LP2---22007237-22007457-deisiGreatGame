@@ -14,13 +14,23 @@ public class Ferramenta extends Trap {
         }
     }
 
+    public String  getConsequencia(){
+        return switch (titulo){
+        case "Herança" ->"aaaa";
+        case "Programação funcional " ->"bbbb";
+        case "Testes unitários" -> "cccc";
+        case "Tratamento de Excepções" -> "ddddd";
+        case "IDE" ->"eeeee";
+        case "Ajuda Do Professor" -> "fffff";
+        default -> null;
+    };}
     @Override
     public String getImage() {
         return switch (titulo){
             case "Herança" ->"inheritance.png";
             case "Programação funcional " ->"functional.png";
             case "Testes unitários" -> "unit-tests.png";
-            case "Tratamento de Excepções" -> "Tratamento de Excepções";
+            case "Tratamento de Excepções" -> "catch.png";
             case "IDE" ->"IDE.png";
             case "Ajuda Do Professor" -> "ajuda-professor.png";
             default -> null;

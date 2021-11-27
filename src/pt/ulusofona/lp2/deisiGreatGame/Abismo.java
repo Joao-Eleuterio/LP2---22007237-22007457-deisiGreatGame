@@ -16,6 +16,22 @@ public class Abismo extends Trap{
             case 9 -> this.titulo = "Segmentation Fault";
         }
     }
+    @Override
+    public String  getConsequencia(){
+        return switch (titulo) {
+            case "Erro de sintaxe" -> "Irá recuar 1 casa.";
+            case "Erro de lógica" -> "Irá recuar metade das casas que saiu no dado.";
+            case "Exception" -> "Irá recuar 2 casas.";
+            case "File Not Found Exception" -> "Irá recuar 3 casas.";
+            case "Crash (aka Rebentanço)" -> "Irá voltar à primeira casa do jogo...";
+            case "Duplicated Code"-> "Irá ficar no mesmo sitio";
+            case "Efeitos secundários" ->"Irá recuar até à casa de à duas rodadas";
+            case "Blue Screen of Death"-> "GameOver.";
+            case "Ciclo infinito" -> "Irá ficar aqui retido até aparecer outro programador...";
+            case "Segmentation Fault" ->"Vão recuar 3 casas";
+            default -> "";
+        };
+    }
 
     @Override
     public String getImage() {
@@ -30,7 +46,7 @@ public class Abismo extends Trap{
             case "Blue Screen of Death"-> "bsod.png";
             case "Ciclo infinito" -> "infinite-loop.png";
             case "Segmentation Fault" ->"core-dumped.png";
-            default -> null;
+            default -> "";
         };
     }
 }
