@@ -1,5 +1,4 @@
 package pt.ulusofona.lp2.deisiGreatGame;
-
 public class Ferramenta extends Trap {
 
     public Ferramenta(int id) {
@@ -17,7 +16,7 @@ public class Ferramenta extends Trap {
     public String  getConsequencia(){
         return switch (titulo){
         case "Herança" ->"Anula os feitos de codigo duplicado";
-        case "Programação funcional " ->"Duplicated Code, efeitos secundários";
+        case "Programação funcional" ->"Anula Duplicated Code, efeitos secundários";
         case "Testes unitários" -> "Anula os abismos de Sintaxe,Lógica";
         case "Tratamento de Excepções" -> "Anula os efeitos dos abismos de File Not Found e Exception";
         case "IDE" ->"Anula os abismos de Sintaxe";

@@ -72,7 +72,7 @@ public class GameManager {
 
     public ArrayList<String> linguagens(String linguagens) {
         String[] linguagem = linguagens.split(";");
-        return new ArrayList<String>(List.of(linguagem));
+        return new ArrayList<>(List.of(linguagem));
     }
 
     //cria e faz tratamento de dados das traps
@@ -100,7 +100,6 @@ public class GameManager {
             return false;
         }
 
-        abismos.put(5, new Abismo(7));
 
         return inicialboard;
     }
@@ -169,12 +168,12 @@ public class GameManager {
     }
 
     public int getCurrentPlayerID() {
-        if(players.get(turno).getDefeat()){
-            for(int i= turno;i<players.size();){
+        if (players.get(turno).getDefeat()) {
+            for (int i = turno; i < players.size(); ) {
 
-                if(!players.get(i).getDefeat()){
-                    turno=i;
-                     return players.get(i).getId();
+                if (!players.get(i).getDefeat()) {
+                    turno = i;
+                    return players.get(i).getId();
                 }
                 if (i == players.size() - 1) {
                     i = 0;
@@ -213,35 +212,62 @@ public class GameManager {
             }
         }
         players.get(turno).casas.add(players.get(turno).getPosicao());
-        if (abismos.containsKey(players.get(turno).getPosicao()) && !players.get(turno).consequencias(abismos.get(players.get(turno).getPosicao()), nrSpaces)) {
-            if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Ciclo infinito")) {
-                for (int i = 0; i < players.size(); i++) {
-                    if (players.get(i).getPosicao() == players.get(turno).getPosicao() && players.get(i) != players.get(turno)) {
-                        players.get(i).abismo = null;
-                    }
-                }
-                players.get(turno).cicloInfinito();
-                players.get(turno).abismo = (Abismo) abismos.get(players.get(turno).getPosicao());
-
-            } else if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Segmentation Fault")) {
-                int posicaoAbismo = players.get(turno).getPosicao();
-                for (int i = 0, j = 0; i < players.size(); i++) {
-                    if (players.get(i).getPosicao() == posicaoAbismo) {
-                        j++;
-                    }
-                    if (j >= 3) {
-                        for (int h = 0; h < players.size(); h++) {
-                            if (players.get(h).getPosicao() == posicaoAbismo) {
-                                players.get(h).posicao -= 3;
-                            }
+        if (abismos.containsKey(players.get(turno).getPosicao()) && !ferramentasPlayer(abismos.get(players.get(turno).posicao).titulo)) {
+            if ( !players.get(turno).consequencias(abismos.get(players.get(turno).getPosicao()), nrSpaces)) {
+                if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Ciclo infinito")) {
+                    for (int i = 0; i < players.size(); i++) {
+                        if (players.get(i).getPosicao() == players.get(turno).getPosicao() && players.get(i) != players.get(turno)) {
+                            players.get(i).abismo = null;
                         }
-                        return;
                     }
-                }
+                    players.get(turno).cicloInfinito();
+                    players.get(turno).abismo = (Abismo) abismos.get(players.get(turno).getPosicao());
 
+                } else if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Segmentation Fault")) {
+                    int posicaoAbismo = players.get(turno).getPosicao();
+                    for (int i = 0, j = 0; i < players.size(); i++) {
+                        if (players.get(i).getPosicao() == posicaoAbismo) {
+                            j++;
+                        }
+                        if (j >= 3) {
+                            for (int h = 0; h < players.size(); h++) {
+                                if (players.get(h).getPosicao() == posicaoAbismo) {
+                                    players.get(h).posicao -= 3;
+                                }
+                            }
+                            return;
+                        }
+                    }
+
+                }
             }
         }
+    }
 
+    boolean ferramentasPlayer(String abismo) {
+        for(int i=0;i<players.get(turno).ferramentas.size();i++){
+            if(abismo.equals("Duplicated Code") && players.get(turno).ferramentas.get(i).titulo.equals("Herança")){
+                players.get(turno).ferramentas.remove(i);
+                return true;
+            }else if((abismo.equals("Duplicated Code") || abismo.equals("Efeitos secundários") )&& players.get(turno).ferramentas.get(i).titulo.equals("Programação funcional") ){
+                players.get(turno).ferramentas.remove(i);
+                return true;
+            }else if((abismo.equals("Erro de sintaxe") || abismo.equals("Erro de lógica") ) && players.get(turno).ferramentas.get(i).titulo.equals("Testes unitários") ){
+                players.get(turno).ferramentas.remove(i);
+                return true;
+            }else if((abismo.equals("Exception") || abismo.equals("File Not Found Exception") ) && players.get(turno).ferramentas.get(i).titulo.equals("Tratamento de Excepções") ){
+                players.get(turno).ferramentas.remove(i);
+                return true;
+            }else if( abismo.equals("Erro de sintaxe")  && players.get(turno).ferramentas.get(i).titulo.equals("IDE") ){
+                players.get(turno).ferramentas.remove(i);
+                return true;
+            }else if( (abismo.equals("Erro de sintaxe")|| abismo.equals("Erro de lógica") || abismo.equals("File Not Found Exception") )&& players.get(turno).ferramentas.get(i).titulo.equals("Ajuda Do Professor") ){
+                players.get(turno).ferramentas.remove(i);
+                return true;
+            }
+
+        }
+        return false;
     }
 
     public void nextTurn() {
@@ -255,18 +281,18 @@ public class GameManager {
     }
 
     public boolean gameIsOver() {
-        int emJogo=0;
-        Programmer winner=null;
-            for(int i=0;i<players.size();i++){
-                if(!players.get(i).getDefeat()){
-                    emJogo++;
-                    winner=players.get(i);
-                }
+        int emJogo = 0;
+        Programmer winner = null;
+        for (int i = 0; i < players.size(); i++) {
+            if (!players.get(i).getDefeat()) {
+                emJogo++;
+                winner = players.get(i);
             }
-            if(emJogo==1){
-               vencedor=winner;
-                return true;
-            }
+        }
+        if (emJogo == 1) {
+            vencedor = winner;
+            return true;
+        }
 
 
         for (int i = 0; i < players.size(); i++) {
@@ -368,7 +394,7 @@ public class GameManager {
     }
 
     public String reactToAbyssOrTool() {
-        String txt = "";
+        String txt;
         if (abismos.containsKey(players.get(turno).getPosicao())) {
             txt = "Caiu " + abismos.get(players.get(turno).getPosicao()).titulo + "! " + abismos.get(players.get(turno).getPosicao()).getConsequencia();
             nextTurn();
