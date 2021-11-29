@@ -95,12 +95,18 @@ public class Programmer {
             case "Exception": {this.posicao-=2; return true;}
             case "File Not Found Exception": {this.posicao-=3; return true;}
             case "Crash (aka Rebentanço)": {this.posicao=1; return true;}
-            case "Duplicated Code":{ this.posicao= casas.get(casas.size()-1); return true;}
-            case "Efeitos secundários" : {this.posicao=casas.get(casas.size()-2); return true;}
-            case "Blue Screen of Death": {this.defeat=true; return true;}
+            case "Duplicated Code":{ this.posicao= casas.get(casas.size()-2); return true;}
+            case "Efeitos secundários" : {this.posicao=casas.get(casas.size()-3); return true;}
+            case "Blue Screen of Death": {perdeu(); return true;}
             case "Ciclo infinito":
             case "Segmentation Fault":
             default:    return false;
+             case "Herança":{ ferramentas.add(new Ferramenta(0)); return true;}
+             case "Programação funcional":{ ferramentas.add(new Ferramenta(1)); return true;}
+             case "Testes unitários":{ ferramentas.add(new Ferramenta(2)); return true;}
+             case "Tratamento de Excepções":{ ferramentas.add(new Ferramenta(3)); return true;}
+             case "IDE":{ ferramentas.add(new Ferramenta(4)); return true;}
+             case "Ajuda Do Professor":{ ferramentas.add(new Ferramenta(5)); return true;}
 
          }
 

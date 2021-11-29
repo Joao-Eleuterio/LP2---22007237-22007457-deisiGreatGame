@@ -18,31 +18,33 @@ public class GameManager {
 
     //cria e faz o tratamento de dados dos players
 
-     public boolean createInitialBoard(String[][] playerInfo, int worldSize) {
-            players.clear();
-            nrTurnos = 0;
-            turno = 0;
-            vencedor = null;
-            if (playerInfo == null) {
+    public boolean createInitialBoard(String[][] playerInfo, int worldSize) {
+        players.clear();
+        nrTurnos = 0;
+        turno = 0;
+        vencedor = null;
+        if (playerInfo == null) {
+            return false;
+        }
+        ArrayList<Programmer> a = new ArrayList<>();
+        if (worldSize >= playerInfo.length * 2) {
+            this.tamanhoTab = worldSize;
+        }
+        for (String[] strings : playerInfo) {
+            if (strings[1] == null || strings[1].equals("") || !temCor(strings[3], a) || !temNovoId(strings[0], a) || !((playerInfo.length * 2) <= worldSize)) {
                 return false;
             }
-            ArrayList<Programmer> a = new ArrayList<>();
-            if (worldSize >= playerInfo.length * 2) {
-                this.tamanhoTab = worldSize;
-            }
-            for (String[] strings : playerInfo) {
-                if (strings[1] == null || strings[1].equals("") || !temCor(strings[3], a) || !temNovoId(strings[0], a) || !((playerInfo.length * 2) <= worldSize)) {
-                    return false;
-                }
-                a.add(new Programmer(strings[1], linguagens(String.valueOf(strings[2])), Integer.parseInt(String.valueOf(strings[0])), ProgrammerColor.getColor(strings[3])));
-            }
-            a.sort(Comparator.comparingInt(Programmer::getId));
-            for (int i = 0; i < a.size(); i++) {
-                players.put(i, a.get(i));
-            }
-            //se tiver os players certos
-            return players.size() > 1 && players.size() < 5;
+            a.add(new Programmer(strings[1], linguagens(String.valueOf(strings[2])), Integer.parseInt(String.valueOf(strings[0])), ProgrammerColor.getColor(strings[3])));
         }
+        a.sort(Comparator.comparingInt(Programmer::getId));
+        for (int i = 0; i < a.size(); i++) {
+            players.put(i, a.get(i));
+            players.get(i).casas.add(1);
+        }
+        //se tiver os players certos
+        return players.size() > 1 && players.size() < 5;
+    }
+
     public boolean temCor(String cor, ArrayList<Programmer> programadores) {
         switch (cor) {
             case "Purple", "Green", "Brown", "Blue" -> {
@@ -97,12 +99,15 @@ public class GameManager {
         if (playerInfo == null) {
             return false;
         }
+
+        abismos.put(5, new Abismo(7));
+
         return inicialboard;
     }
 
 
     //FUNCAO CRIADA PARA VERIFICAR SE TEM COR VALIDA
-    public boolean corValida(String corDoPlayer){
+    public boolean corValida(String corDoPlayer) {
         switch (corDoPlayer) {
             case "PURPLE", "BLUE", "GREEN", "BROWN" -> {
                 return true;
@@ -112,6 +117,7 @@ public class GameManager {
             }
         }
     }
+
     public String getImagePng(int position) {
         //position seja invalido retorna null
         if (position > tamanhoTab || position <= 0) {
@@ -144,7 +150,7 @@ public class GameManager {
     }
 
     public List<Programmer> getProgrammers(int position) {
-        ArrayList<pt.ulusofona.lp2.deisiGreatGame.Programmer> programmers = new ArrayList<>();
+        ArrayList<Programmer> programmers = new ArrayList<>();
         boolean ocupado = false;
         if (position > tamanhoTab) {
             return null;
@@ -163,6 +169,21 @@ public class GameManager {
     }
 
     public int getCurrentPlayerID() {
+        if(players.get(turno).getDefeat()){
+            for(int i= turno;i<players.size();){
+
+                if(!players.get(i).getDefeat()){
+                    turno=i;
+                     return players.get(i).getId();
+                }
+                if (i == players.size() - 1) {
+                    i = 0;
+                } else {
+                    i++;
+                }
+            }
+
+        }
         return players.get(turno).getId();
     }
 
@@ -173,13 +194,17 @@ public class GameManager {
         if (nrSpaces < 1 || nrSpaces > 6 || players.get(turno).defeat) {
             return false;
         }
-        mover(nrSpaces,turno);
-
+        mover(nrSpaces, turno);
 
         return true;
     }
-    public void mover(int nrSpaces,int turno){
 
+    public void mover(int nrSpaces, int turno) {
+
+        if (players.get(turno).getDefeat()) {
+            nextTurn();
+            return;
+        }
         if (players.get(turno).abismo == null) {
             if (players.get(turno).posicao + nrSpaces <= tamanhoTab) {
                 players.get(turno).posicao += nrSpaces;
@@ -188,21 +213,26 @@ public class GameManager {
             }
         }
         players.get(turno).casas.add(players.get(turno).getPosicao());
-        if(abismos.containsKey(players.get(turno).getPosicao()) && !players.get(turno).consequencias(abismos.get(players.get(turno).getPosicao()),nrSpaces)){
-
-            if(abismos.get(players.get(turno).getPosicao()).titulo.equals("Ciclo Infinito")){
+        if (abismos.containsKey(players.get(turno).getPosicao()) && !players.get(turno).consequencias(abismos.get(players.get(turno).getPosicao()), nrSpaces)) {
+            if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Ciclo infinito")) {
+                for (int i = 0; i < players.size(); i++) {
+                    if (players.get(i).getPosicao() == players.get(turno).getPosicao() && players.get(i) != players.get(turno)) {
+                        players.get(i).abismo = null;
+                    }
+                }
                 players.get(turno).cicloInfinito();
-                players.get(turno).abismo= (Abismo) abismos.get(players.get(turno).getPosicao());
-            }else if(abismos.get(players.get(turno).getPosicao()).titulo.equals("Segmentation Fault")){
-                int posicaoAbismo=players.get(turno).getPosicao();
-                for(int i=0,j=0;i<players.size();i++){
-                    if(players.get(i).getPosicao()==posicaoAbismo){
+                players.get(turno).abismo = (Abismo) abismos.get(players.get(turno).getPosicao());
+
+            } else if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Segmentation Fault")) {
+                int posicaoAbismo = players.get(turno).getPosicao();
+                for (int i = 0, j = 0; i < players.size(); i++) {
+                    if (players.get(i).getPosicao() == posicaoAbismo) {
                         j++;
                     }
-                    if(j>=3){
-                        for(int h=0;h<players.size();h++){
-                            if(players.get(i).getPosicao()==posicaoAbismo){
-                               players.get(h).posicao-=3;
+                    if (j >= 3) {
+                        for (int h = 0; h < players.size(); h++) {
+                            if (players.get(h).getPosicao() == posicaoAbismo) {
+                                players.get(h).posicao -= 3;
                             }
                         }
                         return;
@@ -211,8 +241,11 @@ public class GameManager {
 
             }
         }
+
     }
+
     public void nextTurn() {
+        System.out.println(getProgrammersInfo());
         nrTurnos++;
         if (turno == players.size() - 1) {
             turno = 0;
@@ -222,9 +255,20 @@ public class GameManager {
     }
 
     public boolean gameIsOver() {
-        if (players.size() == 1) {
-            return true;
-        }
+        int emJogo=0;
+        Programmer winner=null;
+            for(int i=0;i<players.size();i++){
+                if(!players.get(i).getDefeat()){
+                    emJogo++;
+                    winner=players.get(i);
+                }
+            }
+            if(emJogo==1){
+               vencedor=winner;
+                return true;
+            }
+
+
         for (int i = 0; i < players.size(); i++) {
             if (players.get(i).posicao == tamanhoTab) {
                 vencedor = players.get(i);
@@ -301,7 +345,7 @@ public class GameManager {
             }
             for (int j = 0; j < players.get(i).ferramentas.size(); j++) {
 
-                if (i == 0) {
+                if (j == 0) {
                     txt.append(players.get(i).ferramentas.get(j).titulo);
                 } else {
                     txt.append(";").append(players.get(i).ferramentas.get(j).titulo);
