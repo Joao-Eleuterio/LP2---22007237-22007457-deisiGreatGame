@@ -21,7 +21,7 @@ public class Ferramenta extends Trap {
         case "Testes unitários" -> "cccc";
         case "Tratamento de Excepções" -> "ddddd";
         case "IDE" ->"eeeee";
-        case "Ajuda Do Professor" -> "fffff";
+        case "Ajuda Do Professor" -> "Anula os abismos de Sintaxe.Lógica,File Not Found e Exception  ";
         default -> null;
     };}
     @Override

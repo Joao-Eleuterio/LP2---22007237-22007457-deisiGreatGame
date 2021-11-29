@@ -171,7 +171,7 @@ public class TestCreateInitialBoard {
         pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
         String[][] jogadores = creat4Players();
         manager.createInitialBoard(jogadores, 30);
-        assertEquals("Tem de ordenar por id", "2 | Ines | 1 | Python | Em Jogo", manager.getProgrammers().get(0).toString());
+        assertEquals("Tem de ordenar por id", "2 | Ines | 1 | Python | Em Jogo", manager.getProgrammers(1).get(0).toString());
     }
 
     //getProgrammers Position

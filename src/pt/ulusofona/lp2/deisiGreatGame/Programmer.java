@@ -59,7 +59,7 @@ public class Programmer {
             }
         }
         StringBuilder txtFerramentas = new StringBuilder();
-        if(this.ferramentas.size()==0){
+        if(this.ferramentas.size() == 0){
             txtFerramentas.append("No tools");
         }else{
             for(int i=0;i<this.ferramentas.size();i++){
