@@ -122,13 +122,14 @@ public class Programmer {
             else{
                 { this.posicao = 0; return true;}
             }
-            default:    return false;
+
              case "Herança":{ ferramentas.add(new Ferramenta(0)); return true;}
              case "Programação funcional":{ ferramentas.add(new Ferramenta(1)); return true;}
              case "Testes unitários":{ ferramentas.add(new Ferramenta(2)); return true;}
              case "Tratamento de Excepções":{ ferramentas.add(new Ferramenta(3)); return true;}
              case "IDE":{ ferramentas.add(new Ferramenta(4)); return true;}
              case "Ajuda Do Professor":{ ferramentas.add(new Ferramenta(5)); return true;}
+             default:    return false;
 
          }
 
