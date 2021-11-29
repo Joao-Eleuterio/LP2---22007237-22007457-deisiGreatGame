@@ -105,24 +105,8 @@ public class Programmer {
             case "Duplicated Code":{ this.posicao= casas.get(casas.size()-2); return true;}
             case "Efeitos secundários" : {this.posicao=casas.get(casas.size()-3); return true;}
             case "Blue Screen of Death": {perdeu(); return true;}
-            case "Ciclo infinito":{cicloInfinito();return true; } //Temos que ver isto
-            case "Segmentation Fault":
-                //Acho que não está a funcionar totalmente bem
-                players.add( new Programmer(nome, linguagens, id, cor));
-                for(int i = 0; i <players.size(); i++){
-                    for (int j = 0; j < playersOnSquare.size(); j++){
-                        if(playersOnSquare.get(i).getPosicao() == playersOnSquare.get(j).getPosicao()){
-                            playersOnSquare.add( players.get(i));
-                        }
-                    }
-                }
-                if( playersOnSquare.size() >= 2 ){
-                { this.posicao -= 3; return true    ;}
-                }
-            else{
-                { this.posicao = 0; return true;}
-            }
-
+            case "Ciclo infinito":{cicloInfinito();return false; }
+             case "Segmentation Fault":{return false;}
              case "Herança":{ ferramentas.add(new Ferramenta(0)); return true;}
              case "Programação funcional":{ ferramentas.add(new Ferramenta(1)); return true;}
              case "Testes unitários":{ ferramentas.add(new Ferramenta(2)); return true;}
