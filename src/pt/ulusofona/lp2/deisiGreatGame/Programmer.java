@@ -105,7 +105,7 @@ public class Programmer {
             case "Duplicated Code":{ this.posicao= casas.get(casas.size()-2); return true;}
             case "Efeitos secundários" : {this.posicao=casas.get(casas.size()-3); return true;}
             case "Blue Screen of Death": {perdeu(); return true;}
-            case "Ciclo infinito":
+            case "Ciclo infinito":{cicloInfinito();return true; } //Temos que ver isto
             case "Segmentation Fault":
                 //Acho que não está a funcionar totalmente bem
                 players.add( new Programmer(nome, linguagens, id, cor));
