@@ -1,6 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class Programmer {
     String nome = "";
@@ -11,7 +12,13 @@ public class Programmer {
     boolean defeat;
     Abismo abismo;
     ArrayList<Ferramenta> ferramentas= new ArrayList<>();
+    ArrayList<Programmer> players = new ArrayList<>();
+    ArrayList<Programmer> playersOnSquare = new ArrayList<>();
     ArrayList<Integer> casas = new ArrayList<>();
+
+
+
+
 
     public Programmer(String nome, ArrayList<String> linguagens, int id, pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor cor) {
         this.nome = nome;
@@ -100,6 +107,21 @@ public class Programmer {
             case "Blue Screen of Death": {perdeu(); return true;}
             case "Ciclo infinito":
             case "Segmentation Fault":
+                //Acho que não está a funcionar totalmente bem
+                players.add( new Programmer(nome, linguagens, id, cor));
+                for(int i = 0; i <players.size(); i++){
+                    for (int j = 0; j < playersOnSquare.size(); j++){
+                        if(playersOnSquare.get(i).getPosicao() == playersOnSquare.get(j).getPosicao()){
+                            playersOnSquare.add( players.get(i));
+                        }
+                    }
+                }
+                if( playersOnSquare.size() >= 2 ){
+                { this.posicao -= 3; return true    ;}
+                }
+            else{
+                { this.posicao = 0; return true;}
+            }
             default:    return false;
              case "Herança":{ ferramentas.add(new Ferramenta(0)); return true;}
              case "Programação funcional":{ ferramentas.add(new Ferramenta(1)); return true;}
