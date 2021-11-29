@@ -16,12 +16,12 @@ public class Ferramenta extends Trap {
 
     public String  getConsequencia(){
         return switch (titulo){
-        case "Herança" ->"aaaa";
-        case "Programação funcional " ->"bbbb";
-        case "Testes unitários" -> "cccc";
-        case "Tratamento de Excepções" -> "ddddd";
-        case "IDE" ->"eeeee";
-        case "Ajuda Do Professor" -> "Anula os abismos de Sintaxe.Lógica,File Not Found e Exception  ";
+        case "Herança" ->"Anula os feitos de codigo duplicado";
+        case "Programação funcional " ->"Duplicated Code, efeitos secundários";
+        case "Testes unitários" -> "Anula os abismos de Sintaxe,Lógica";
+        case "Tratamento de Excepções" -> "Anula os efeitos dos abismos de File Not Found e Exception";
+        case "IDE" ->"Anula os abismos de Sintaxe";
+        case "Ajuda Do Professor" -> "Anula os abismos de Sintaxe,Lógica,File Not Found e Exception";
         default -> null;
     };}
     @Override
