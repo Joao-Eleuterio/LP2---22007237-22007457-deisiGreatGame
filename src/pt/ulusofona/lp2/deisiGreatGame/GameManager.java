@@ -334,8 +334,10 @@ public class GameManager {
     public JPanel getAuthorsPanel() {
         JPanel a = new JPanel();
         JTextArea text = new JTextArea();
-
-        text.setText("""
+        text.setText("                           DeisiGreatGame\n\nProgramadores: João Eleutério\n                               Mário Silva"+
+                "\n\nProfessores:   Pedro Alves\n                          Lúcio Studer\n                           Bruno Cipriano\n\n\n\n\n"+
+                "\n\n\n\n                                                                    © 2021 DEISI");
+       /* text.setText("""
                                                  DeisiGreatGame
                                                  
                 Programadores: João Eleutério
@@ -351,7 +353,7 @@ public class GameManager {
                               
                              
                                                                                     © 2021 DEISI
-                """);
+                """);*/
         text.setSize(100, 100);
         text.setEnabled(false);
         text.setBackground(a.getBackground());
