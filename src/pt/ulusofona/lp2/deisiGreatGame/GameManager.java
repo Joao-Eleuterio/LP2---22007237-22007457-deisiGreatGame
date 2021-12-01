@@ -105,18 +105,6 @@ public class GameManager {
     }
 
 
-    //FUNCAO CRIADA PARA VERIFICAR SE TEM COR VALIDA
-    public boolean corValida(String corDoPlayer) {
-        switch (corDoPlayer) {
-            case "PURPLE", "BLUE", "GREEN", "BROWN" -> {
-                return true;
-            }
-            default -> {
-                return false;
-            }
-        }
-    }
-
     public String getImagePng(int position) {
         //position seja invalido retorna null
         if (position > tamanhoTab || position <= 0) {
