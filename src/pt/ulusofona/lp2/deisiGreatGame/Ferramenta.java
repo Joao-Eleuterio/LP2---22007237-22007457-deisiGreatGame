@@ -5,7 +5,7 @@ public class Ferramenta extends Trap {
         this.id = id;
         switch (id) {
             case 0 -> this.titulo = "Herança";
-            case 1 -> this.titulo = "Programação funcional ";
+            case 1 -> this.titulo = "Programação Funcional";
             case 2 -> this.titulo = "Testes unitários";
             case 3 -> this.titulo = "Tratamento de Excepções";
             case 4 -> this.titulo = "IDE";
@@ -27,7 +27,7 @@ public class Ferramenta extends Trap {
     public String getImage() {
         return switch (titulo){
             case "Herança" ->"inheritance.png";
-            case "Programação funcional " ->"functional.png";
+            case "Programação Funcional " ->"functional.png";
             case "Testes unitários" -> "unit-tests.png";
             case "Tratamento de Excepções" -> "catch.png";
             case "IDE" ->"IDE.png";
