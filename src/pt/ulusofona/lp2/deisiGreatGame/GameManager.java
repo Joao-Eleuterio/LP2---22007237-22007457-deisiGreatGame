@@ -300,7 +300,7 @@ public class GameManager {
         JPanel a = new JPanel();
         JTextArea text = new JTextArea();
         text.setText("                           DeisiGreatGame\n\nProgramadores: João Eleutério\n                               Mário Silva" +
-                "\n\nProfessores:   Pedro Alves\n                          Lúcio Studer\n                          Bruno Cipriano\n\n\n\n\n" +
+                "\n\nProfessores:   Pedro Alves\n                          Lúcio Studer\n                           Bruno Cipriano\n\n\n\n\n" +
                 "\n\n\n\n                                                                    © 2021 DEISI");
        /* text.setText("""
                                                  DeisiGreatGame
