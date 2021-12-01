@@ -69,9 +69,9 @@ public class Programmer {
         } else {
             for (int i = 0; i < this.ferramentas.size(); i++) {
                 if (i == 0) {
-                    txtFerramentas.append(this.ferramentas.get(i));
+                    txtFerramentas.append(this.ferramentas.get(i).titulo);
                 } else {
-                    txtFerramentas.append("; ").append(this.ferramentas.get(i));
+                    txtFerramentas.append("; ").append(this.ferramentas.get(i).titulo);
                 }
             }
         }

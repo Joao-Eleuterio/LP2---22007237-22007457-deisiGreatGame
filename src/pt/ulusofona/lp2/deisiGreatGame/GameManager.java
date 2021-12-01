@@ -12,6 +12,7 @@ public class GameManager {
     int nrTurnos = 1;
     Programmer vencedor;
     HashMap<Integer, Trap> abismos = new HashMap<>();
+    int nrSpaces = 0;
 
     public GameManager() {
     }
@@ -40,7 +41,6 @@ public class GameManager {
         a.sort(Comparator.comparingInt(Programmer::getId));
         for (int i = 0; i < a.size(); i++) {
             players.put(i, a.get(i));
-            players.get(i).casas.add(1);
         }
         //se tiver os players certos
         return players.size() > 1 && players.size() < 5;
@@ -96,9 +96,6 @@ public class GameManager {
                     abismos.put(Integer.valueOf(abyssesAndTool[2]), new Ferramenta(Integer.parseInt(abyssesAndTool[1])));
                 }
             }
-        }
-        if (playerInfo == null) {
-            return false;
         }
 
         return inicialboard;
@@ -176,9 +173,10 @@ public class GameManager {
 
     //O jogador atual está impossibilitado de se mover (por ex., por ter caído num ciclo infinito)
     public boolean moveCurrentPlayer(int nrSpaces) {
-        if (nrSpaces < 1 || nrSpaces > 6 || players.get(turno).defeat || players.get(turno).cicloIfinito!=0) {
+        if (nrSpaces < 1 || nrSpaces > 6 || players.get(turno).defeat || players.get(turno).cicloIfinito != 0) {
             return false;
         }
+        players.get(turno).casas.add(players.get(turno).getPosicao());
         if (players.get(turno).abismo == null) {
             if (players.get(turno).posicao + nrSpaces <= tamanhoTab) {
                 players.get(turno).posicao += nrSpaces;
@@ -187,46 +185,46 @@ public class GameManager {
             }
         }
 
-        return mover(nrSpaces,turno);
+        this.nrSpaces = nrSpaces;
+        return true;
     }
 
-    public boolean mover(int nrSpaces, int turno) {
+    public void mover(int nrSpaces, int turno) {
 
         if (players.get(turno).getDefeat()) {
             nextTurn();
-            return false;
+            return;
         }
-        players.get(turno).casas.add(players.get(turno).getPosicao());
-        if (abismos.containsKey(players.get(turno).getPosicao()) && !players.get(turno).consequencias(abismos.get(players.get(turno).getPosicao()), nrSpaces)) {
-                if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Ciclo infinito")) {
-                    for (int i = 0; i < players.size(); i++) {
-                        if (players.get(i).getPosicao() == players.get(turno).getPosicao() && players.get(i) != players.get(turno)) {
-                            players.get(i).abismo = null;
-                        }
-                    }
-                    players.get(turno).cicloInfinito();
-                    players.get(turno).abismo = (Abismo) abismos.get(players.get(turno).getPosicao());
-                    return false;
-                } else if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Segmentation Fault")) {
-                    int posicaoAbismo = players.get(turno).getPosicao();
-                    for (int i = 0, j = 0; i < players.size(); i++) {
-                        if (players.get(i).getPosicao() == posicaoAbismo) {
-                            j++;
-                        }
-                        if (j >= 3) {
-                            for (int h = 0; h < players.size(); h++) {
-                                if (players.get(h).getPosicao() == posicaoAbismo) {
-                                    players.get(h).posicao -= 3;
-                                }
-                            }
-                            return true;
-                        }
-                    }
 
+        if (abismos.containsKey(players.get(turno).getPosicao()) && !players.get(turno).consequencias(abismos.get(players.get(turno).getPosicao()), nrSpaces)) {
+            if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Ciclo infinito")) {
+                for (int i = 0; i < players.size(); i++) {
+                    if (players.get(i).getPosicao() == players.get(turno).getPosicao() && players.get(i) != players.get(turno)) {
+                        players.get(i).abismo = null;
+                    }
                 }
+                players.get(turno).cicloInfinito();
+                players.get(turno).abismo = (Abismo) abismos.get(players.get(turno).getPosicao());
+            } else if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Segmentation Fault")) {
+                int posicaoAbismo = players.get(turno).getPosicao();
+                for (int i = 0, j = 0; i < players.size(); i++) {
+                    if (players.get(i).getPosicao() == posicaoAbismo) {
+                        j++;
+                    }
+                    if (j >= 3) {
+                        for (int h = 0; h < players.size(); h++) {
+                            if (players.get(h).getPosicao() == posicaoAbismo) {
+                                players.get(h).posicao -= 3;
+                            }
+                        }
+                        return;
+                    }
+                }
+
+            }
         }
-        return true;
     }
+
     public void nextTurn() {
         nrTurnos++;
         if (turno == players.size() - 1) {
@@ -290,8 +288,8 @@ public class GameManager {
     public JPanel getAuthorsPanel() {
         JPanel a = new JPanel();
         JTextArea text = new JTextArea();
-        text.setText("                           DeisiGreatGame\n\nProgramadores: João Eleutério\n                               Mário Silva"+
-                "\n\nProfessores:   Pedro Alves\n                          Lúcio Studer\n                           Bruno Cipriano\n\n\n\n\n"+
+        text.setText("                           DeisiGreatGame\n\nProgramadores: João Eleutério\n                               Mário Silva" +
+                "\n\nProfessores:   Pedro Alves\n                          Lúcio Studer\n                           Bruno Cipriano\n\n\n\n\n" +
                 "\n\n\n\n                                                                    © 2021 DEISI");
        /* text.setText("""
                                                  DeisiGreatGame
@@ -352,10 +350,13 @@ public class GameManager {
     }
 
     public String reactToAbyssOrTool() {
+
         if (abismos.containsKey(players.get(turno).getPosicao())) {
             String txt = "Caiu " + abismos.get(players.get(turno).getPosicao()).titulo + "! " + abismos.get(players.get(turno).getPosicao()).getConsequencia();
+            mover(nrSpaces, turno);
             nextTurn();
             return txt;
+
         }
         nextTurn();
         return null;
