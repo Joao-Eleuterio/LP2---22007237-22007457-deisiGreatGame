@@ -175,7 +175,7 @@ public class Programmer {
                 }
                 return true;
             }
-            case "Programação funcional ": {
+            case "Programação Funcional ": {
                 if (!temFerramenta(new Ferramenta(1))) {
                     ferramentas.add(new Ferramenta(1));
                 }
