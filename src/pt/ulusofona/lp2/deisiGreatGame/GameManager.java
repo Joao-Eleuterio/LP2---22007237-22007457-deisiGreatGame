@@ -197,7 +197,6 @@ public class GameManager {
             nextTurn();
             return;
         }
-        
         if (abismos.containsKey(players.get(turno).getPosicao()) && !players.get(turno).consequencias(abismos.get(players.get(turno).getPosicao()), nrSpaces)) {
             if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Ciclo infinito")) {
                 for (int i = 0; i < players.size(); i++) {
