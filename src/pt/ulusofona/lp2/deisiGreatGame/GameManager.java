@@ -97,7 +97,9 @@ public class GameManager {
                 }
             }
         }
-
+        /*for (int i = 10; i < tamanhoTab; i++) {
+            abismos.put(i,new Abismo(9));
+        }*/
         return inicialboard;
     }
 
@@ -173,7 +175,7 @@ public class GameManager {
 
     //O jogador atual está impossibilitado de se mover (por ex., por ter caído num ciclo infinito)
     public boolean moveCurrentPlayer(int nrSpaces) {
-        if (nrSpaces < 1 || nrSpaces > 6 || players.get(turno).defeat || players.get(turno).cicloIfinito != 0) {
+        if (nrSpaces < 1 || nrSpaces > 6  || players.get(turno).cicloIfinito != 0) {
             return false;
         }
         players.get(turno).casas.add(players.get(turno).getPosicao());
@@ -211,7 +213,7 @@ public class GameManager {
                     if (players.get(i).getPosicao() == posicaoAbismo) {
                         j++;
                     }
-                    if (j >= 3) {
+                    if (j >= 2) {
                         for (int h = 0; h < players.size(); h++) {
                             if (players.get(h).getPosicao() == posicaoAbismo) {
                                 players.get(h).posicao -= 3;
@@ -275,8 +277,17 @@ public class GameManager {
         }
         Collection<Programmer> values = players.values();
         ArrayList<Programmer> organizado = new ArrayList<>(values);
-        organizado.sort(Comparator.comparingInt((Programmer b) -> b.posicao).reversed());
 
+        organizado.sort((p1, p2) -> {
+            if (p1.getPosicao() < p2.getPosicao()) {
+                return -1;
+            } else if (p1.getPosicao() > p2.getPosicao()) {
+                return 1;
+            } else {
+                return p1.getName().compareTo(p2.getName());
+            }
+        });
+        organizado.sort(Comparator.comparingInt((Programmer b) -> b.posicao).reversed());
         for (pt.ulusofona.lp2.deisiGreatGame.Programmer programmer : organizado) {
             if (programmer.posicao != tamanhoTab) {
                 strings.add(programmer.nome + " " + programmer.posicao);
