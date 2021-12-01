@@ -117,6 +117,9 @@ public class Programmer {
         switch (trap.titulo) {
             case "Erro de sintaxe": {
                 if (!(getFerramenta(new Ferramenta(4)) || getFerramenta(new Ferramenta(5)))) {
+                    if((this.posicao-1)<=0){
+                        this.posicao=0;
+                    }
                     this.posicao -= 1;
                 }
                 return true;
@@ -129,12 +132,18 @@ public class Programmer {
             }
             case "Exception": {
                 if (!(getFerramenta(new Ferramenta(3)) || getFerramenta(new Ferramenta(5)))) {
+                    if((this.posicao-2)<=0){
+                        this.posicao=0;
+                    }
                     this.posicao -= 2;
                 }
                 return true;
             }
             case "File Not Found Exception": {
                 if (!(getFerramenta(new Ferramenta(3)) || getFerramenta(new Ferramenta(5)))) {
+                    if((this.posicao-3)<=0){
+                        this.posicao=0;
+                    }
                     this.posicao -= 3;
                 }
                 return true;
@@ -161,37 +170,37 @@ public class Programmer {
                 return getFerramenta(new Ferramenta(1));
             }
             case "Herança": {
-                if (temFerramenta(new Ferramenta(0))) {
+                if (!temFerramenta(new Ferramenta(0))) {
                     ferramentas.add(new Ferramenta(0));
                 }
                 return true;
             }
             case "Programação funcional ": {
-                if (temFerramenta(new Ferramenta(1))) {
+                if (!temFerramenta(new Ferramenta(1))) {
                     ferramentas.add(new Ferramenta(1));
                 }
                 return true;
             }
             case "Testes unitários": {
-                if (temFerramenta(new Ferramenta(2))) {
+                if (!temFerramenta(new Ferramenta(2))) {
                     ferramentas.add(new Ferramenta(2));
                 }
                 return true;
             }
             case "Tratamento de Excepções": {
-                if (temFerramenta(new Ferramenta(3))) {
+                if (!temFerramenta(new Ferramenta(3))) {
                     ferramentas.add(new Ferramenta(3));
                 }
                 return true;
             }
             case "IDE": {
-                if (temFerramenta(new Ferramenta(4))) {
+                if (!temFerramenta(new Ferramenta(4))) {
                     ferramentas.add(new Ferramenta(4));
                 }
                 return true;
             }
             case "Ajuda Do Professor": {
-                if (temFerramenta(new Ferramenta(5))) {
+                if (!temFerramenta(new Ferramenta(5))) {
                     ferramentas.add(new Ferramenta(5));
                 }
                 return true;

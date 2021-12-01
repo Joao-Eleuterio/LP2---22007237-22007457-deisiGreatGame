@@ -23,6 +23,7 @@ public class GameManager {
         nrTurnos = 0;
         turno = 0;
         vencedor = null;
+        abismos.clear();
         if (playerInfo == null) {
             return false;
         }
@@ -100,7 +101,6 @@ public class GameManager {
             return false;
         }
 
-
         return inicialboard;
     }
 
@@ -174,23 +174,10 @@ public class GameManager {
         return players.get(turno).getId();
     }
 
-    //TODO PARTE DE NAO CONSEGUIR ANDAR
     //O jogador atual está impossibilitado de se mover (por ex., por ter caído num ciclo infinito)
     public boolean moveCurrentPlayer(int nrSpaces) {
-
-        if (nrSpaces < 1 || nrSpaces > 6 || players.get(turno).defeat) {
+        if (nrSpaces < 1 || nrSpaces > 6 || players.get(turno).defeat || players.get(turno).cicloIfinito!=0) {
             return false;
-        }
-        mover(nrSpaces, turno);
-
-        return true;
-    }
-
-    public void mover(int nrSpaces, int turno) {
-
-        if (players.get(turno).getDefeat()) {
-            nextTurn();
-            return;
         }
         if (players.get(turno).abismo == null) {
             if (players.get(turno).posicao + nrSpaces <= tamanhoTab) {
@@ -199,9 +186,18 @@ public class GameManager {
                 players.get(turno).posicao = tamanhoTab + (tamanhoTab - players.get(0).posicao - nrSpaces);
             }
         }
+
+        return mover(nrSpaces,turno);
+    }
+
+    public boolean mover(int nrSpaces, int turno) {
+
+        if (players.get(turno).getDefeat()) {
+            nextTurn();
+            return false;
+        }
         players.get(turno).casas.add(players.get(turno).getPosicao());
-        if (abismos.containsKey(players.get(turno).getPosicao()) && !ferramentasPlayer(abismos.get(players.get(turno).posicao).titulo)) {
-            if ( !players.get(turno).consequencias(abismos.get(players.get(turno).getPosicao()), nrSpaces)) {
+        if (abismos.containsKey(players.get(turno).getPosicao()) && !players.get(turno).consequencias(abismos.get(players.get(turno).getPosicao()), nrSpaces)) {
                 if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Ciclo infinito")) {
                     for (int i = 0; i < players.size(); i++) {
                         if (players.get(i).getPosicao() == players.get(turno).getPosicao() && players.get(i) != players.get(turno)) {
@@ -210,7 +206,7 @@ public class GameManager {
                     }
                     players.get(turno).cicloInfinito();
                     players.get(turno).abismo = (Abismo) abismos.get(players.get(turno).getPosicao());
-
+                    return false;
                 } else if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Segmentation Fault")) {
                     int posicaoAbismo = players.get(turno).getPosicao();
                     for (int i = 0, j = 0; i < players.size(); i++) {
@@ -223,43 +219,15 @@ public class GameManager {
                                     players.get(h).posicao -= 3;
                                 }
                             }
-                            return;
+                            return true;
                         }
                     }
 
                 }
-            }
         }
+        return true;
     }
-
-    boolean ferramentasPlayer(String abismo) {
-        for(int i=0;i<players.get(turno).ferramentas.size();i++){
-            if(abismo.equals("Duplicated Code") && players.get(turno).ferramentas.get(i).titulo.equals("Herança")){
-                players.get(turno).ferramentas.remove(i);
-                return true;
-            }else if((abismo.equals("Duplicated Code") || abismo.equals("Efeitos secundários") )&& players.get(turno).ferramentas.get(i).titulo.equals("Programação funcional") ){
-                players.get(turno).ferramentas.remove(i);
-                return true;
-            }else if((abismo.equals("Erro de sintaxe") || abismo.equals("Erro de lógica") ) && players.get(turno).ferramentas.get(i).titulo.equals("Testes unitários") ){
-                players.get(turno).ferramentas.remove(i);
-                return true;
-            }else if((abismo.equals("Exception") || abismo.equals("File Not Found Exception") ) && players.get(turno).ferramentas.get(i).titulo.equals("Tratamento de Excepções") ){
-                players.get(turno).ferramentas.remove(i);
-                return true;
-            }else if( abismo.equals("Erro de sintaxe")  && players.get(turno).ferramentas.get(i).titulo.equals("IDE") ){
-                players.get(turno).ferramentas.remove(i);
-                return true;
-            }else if( (abismo.equals("Erro de sintaxe")|| abismo.equals("Erro de lógica") || abismo.equals("File Not Found Exception") )&& players.get(turno).ferramentas.get(i).titulo.equals("Ajuda Do Professor") ){
-                players.get(turno).ferramentas.remove(i);
-                return true;
-            }
-
-        }
-        return false;
-    }
-
     public void nextTurn() {
-        System.out.println(getProgrammersInfo());
         nrTurnos++;
         if (turno == players.size() - 1) {
             turno = 0;
@@ -384,9 +352,8 @@ public class GameManager {
     }
 
     public String reactToAbyssOrTool() {
-        String txt;
         if (abismos.containsKey(players.get(turno).getPosicao())) {
-            txt = "Caiu " + abismos.get(players.get(turno).getPosicao()).titulo + "! " + abismos.get(players.get(turno).getPosicao()).getConsequencia();
+            String txt = "Caiu " + abismos.get(players.get(turno).getPosicao()).titulo + "! " + abismos.get(players.get(turno).getPosicao()).getConsequencia();
             nextTurn();
             return txt;
         }
