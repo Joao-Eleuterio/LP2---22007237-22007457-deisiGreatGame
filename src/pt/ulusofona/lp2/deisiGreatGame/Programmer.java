@@ -112,7 +112,6 @@ public class Programmer {
         return false;
     }
 
-    //TODO o que acontece nas casas com abismos
     public boolean consequencias(Trap trap, int nrSpaces) {
         switch (trap.titulo) {
             case "Erro de sintaxe": {
@@ -153,12 +152,12 @@ public class Programmer {
                 return true;
             }
             case "Duplicated Code": {
-                this.posicao = casas.get(casas.size() - 2);
+                this.posicao = casas.get(casas.size() - 1);
                 return true;
             }
             case "Efeitos secundários": {
                 if (!(getFerramenta(new Ferramenta(1)))) {
-                    this.posicao = casas.get(casas.size() - 3);
+                    this.posicao = casas.get(casas.size() - 2);
                 }
                 return true;
             }
@@ -175,7 +174,7 @@ public class Programmer {
                 }
                 return true;
             }
-            case "Programação Funcional ": {
+            case "Programação Funcional": {
                 if (!temFerramenta(new Ferramenta(1))) {
                     ferramentas.add(new Ferramenta(1));
                 }

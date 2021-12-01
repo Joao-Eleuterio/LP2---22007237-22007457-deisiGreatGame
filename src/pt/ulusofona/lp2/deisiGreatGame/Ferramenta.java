@@ -16,7 +16,7 @@ public class Ferramenta extends Trap {
     public String  getConsequencia(){
         return switch (titulo){
         case "Herança" ->"Anula os feitos de codigo duplicado";
-        case "Programação funcional" ->"Anula Duplicated Code, efeitos secundários";
+        case "Programação Funcional" ->"Anula Duplicated Code, efeitos secundários";
         case "Testes unitários" -> "Anula os abismos de Sintaxe,Lógica";
         case "Tratamento de Excepções" -> "Anula os efeitos dos abismos de File Not Found e Exception";
         case "IDE" ->"Anula os abismos de Sintaxe";
@@ -27,7 +27,7 @@ public class Ferramenta extends Trap {
     public String getImage() {
         return switch (titulo){
             case "Herança" ->"inheritance.png";
-            case "Programação Funcional " ->"functional.png";
+            case "Programação Funcional" ->"functional.png";
             case "Testes unitários" -> "unit-tests.png";
             case "Tratamento de Excepções" -> "catch.png";
             case "IDE" ->"IDE.png";
