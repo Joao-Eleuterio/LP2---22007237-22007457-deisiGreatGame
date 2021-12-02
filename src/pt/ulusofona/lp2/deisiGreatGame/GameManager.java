@@ -18,7 +18,6 @@ public class GameManager {
     }
 
     //cria e faz o tratamento de dados dos players
-
     public boolean createInitialBoard(String[][] playerInfo, int worldSize) {
         players.clear();
         nrTurnos = 0;
@@ -42,10 +41,10 @@ public class GameManager {
         for (int i = 0; i < a.size(); i++) {
             players.put(i, a.get(i));
         }
+
         //se tiver os players certos
         return players.size() > 1 && players.size() < 5;
     }
-
     public boolean temCor(String cor, ArrayList<Programmer> programadores) {
         switch (cor) {
             case "Purple", "Green", "Brown", "Blue" -> {
@@ -61,7 +60,6 @@ public class GameManager {
             }
         }
     }
-
     public boolean temNovoId(String id, ArrayList<Programmer> programadores) {
         for (pt.ulusofona.lp2.deisiGreatGame.Programmer programmer : programadores) {
             if (Integer.parseInt(id) == programmer.id) {
@@ -70,12 +68,10 @@ public class GameManager {
         }
         return true;
     }
-
     public ArrayList<String> linguagens(String linguagens) {
         String[] linguagem = linguagens.split(";");
         return new ArrayList<>(List.of(linguagem));
     }
-
     //cria e faz tratamento de dados das traps
     public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) {
 
@@ -90,16 +86,11 @@ public class GameManager {
             if (!((abyssesAndTool[0].equals("0") || abyssesAndTool[0].equals("1")) && abismo && dentroTab)) {
                 return false;
             } else {
-                if (abyssesAndTool[0].equals("0")) {
-                    abismos.put(Integer.valueOf(abyssesAndTool[2]), new Abismo(Integer.parseInt(abyssesAndTool[1])));
-                } else {
-                    abismos.put(Integer.valueOf(abyssesAndTool[2]), new Ferramenta(Integer.parseInt(abyssesAndTool[1])));
-                }
+                    abismos.put(Integer.valueOf(abyssesAndTool[2]), new Trap(Integer.parseInt(abyssesAndTool[1])));//ver aula
             }
         }
         return inicialboard;
     }
-
 
     public String getImagePng(int position) {
         //position seja invalido retorna null
@@ -131,7 +122,6 @@ public class GameManager {
         }
         return a;
     }
-
     public List<Programmer> getProgrammers(int position) {
         ArrayList<Programmer> programmers = new ArrayList<>();
         boolean ocupado = false;
@@ -170,17 +160,20 @@ public class GameManager {
         return players.get(turno).getId();
     }
 
-    //O jogador atual está impossibilitado de se mover (por ex., por ter caído num ciclo infinito)
     public boolean moveCurrentPlayer(int nrSpaces) {
-        if (nrSpaces < 1 || nrSpaces > 6 ) {
+        if (nrSpaces < 1 || nrSpaces > 6  || players.get(turno).getCicloIfinito()) {
             return false;
         }
-        players.get(turno).casas.add(players.get(turno).getPosicao());
-        if (players.get(turno).abismo == null) {
-            if (players.get(turno).posicao + nrSpaces <= tamanhoTab) {
-                players.get(turno).posicao += nrSpaces;
+        players.get(turno).addCasa(players.get(turno).getPosicao());
+        if (players.get(turno).getAbismo() == null) {
+            if ((players.get(turno).posicao + nrSpaces) <= tamanhoTab) {
+                try {
+                    players.get(turno).andar(nrSpaces);
+                } catch (java.lang.Exception e) {
+                    e.printStackTrace();
+                }
             } else {
-                players.get(turno).posicao = tamanhoTab + (tamanhoTab - players.get(0).posicao - nrSpaces);
+                players.get(turno).setPosicao(tamanhoTab + (tamanhoTab - players.get(0).posicao - nrSpaces));
             }
         }
         this.nrSpaces = nrSpaces;
@@ -198,10 +191,11 @@ public class GameManager {
                 for (int i = 0; i < players.size(); i++) {
                     if (players.get(i).getPosicao() == players.get(turno).getPosicao() && players.get(i) != players.get(turno)) {
                         players.get(i).abismo = null;
+                        players.get(i).cicloInfinito(false);
                     }
                 }
-                players.get(turno).cicloInfinito();
-                players.get(turno).abismo = (Abismo) abismos.get(players.get(turno).getPosicao());
+                players.get(turno).cicloInfinito(true);
+                players.get(turno).addAbismo((Abismo) abismos.get(players.get(turno).getPosicao()));
             } else if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Segmentation Fault")) {
                 int posicaoAbismo = players.get(turno).getPosicao();
                 for (int i = 0, j = 0; i < players.size(); i++) {
@@ -297,23 +291,7 @@ public class GameManager {
         text.setText("                           DeisiGreatGame\n\nProgramadores: João Eleutério\n                               Mário Silva" +
                 "\n\nProfessores:   Pedro Alves\n                          Lúcio Studer\n                           Bruno Cipriano\n\n\n\n\n" +
                 "\n\n\n\n                                                                    © 2021 DEISI");
-       /* text.setText("""
-                                                 DeisiGreatGame
-                                                 
-                Programadores: João Eleutério
-                                               Mário Silva
-                               
-                Professores:   Pedro Alves
-                                           Lúcio Studer
-                                           Bruno Cipriano
-                                
-                                
-                                
-                                
-                              
-                             
-                                                                                    © 2021 DEISI
-                """);*/
+
         text.setSize(100, 100);
         text.setEnabled(false);
         text.setBackground(a.getBackground());
@@ -334,9 +312,9 @@ public class GameManager {
             for (int j = 0; j < players.get(i).ferramentas.size(); j++) {
 
                 if (j == 0) {
-                    txt.append(players.get(i).ferramentas.get(j).titulo);
+                    txt.append(players.get(i).ferramentas.get(j).getTitulo());
                 } else {
-                    txt.append(";").append(players.get(i).ferramentas.get(j).titulo);
+                    txt.append(";").append(players.get(i).ferramentas.get(j).getTitulo());
                 }
             }
             if (!(i == players.size() - 1)) {
@@ -349,7 +327,7 @@ public class GameManager {
 
     public String getTitle(int position) {
         if (position > 0 && position <= tamanhoTab && abismos.containsKey(position)) {
-            return abismos.get(position).titulo;
+            return abismos.get(position).getTitulo();
         } else {
             return null;
         }
@@ -358,7 +336,7 @@ public class GameManager {
     public String reactToAbyssOrTool() {
 
         if (abismos.containsKey(players.get(turno).getPosicao())) {
-            String txt = "Caiu " + abismos.get(players.get(turno).getPosicao()).titulo + "! " + abismos.get(players.get(turno).getPosicao()).getConsequencia();
+            String txt = "Caiu " + abismos.get(players.get(turno).getPosicao()).getTitulo() + "! " + abismos.get(players.get(turno).getPosicao()).getConsequencia();
             mover(nrSpaces, turno);
             nextTurn();
             return txt;

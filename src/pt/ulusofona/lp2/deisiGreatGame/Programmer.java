@@ -2,19 +2,20 @@ package pt.ulusofona.lp2.deisiGreatGame;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
+import java.lang.*;
 public class Programmer {
-    String nome = "";
+    String nome;
     ArrayList<String> linguagens;
-    int id = 0;
+    int id;
     ProgrammerColor cor;
     int posicao;
     boolean defeat;
     Abismo abismo;
     ArrayList<Ferramenta> ferramentas = new ArrayList<>();
     ArrayList<Integer> casas = new ArrayList<>();
+    boolean cicloIfinito = false;
 
-    public Programmer(String nome, ArrayList<String> linguagens, int id, pt.ulusofona.lp2.deisiGreatGame.ProgrammerColor cor) {
+    public Programmer(String nome, ArrayList<String> linguagens, int id, ProgrammerColor cor) {
         this.nome = nome;
         this.linguagens = linguagens;
         this.id = id;
@@ -26,6 +27,8 @@ public class Programmer {
     public Trap getAbismo() {
         return abismo;
     }
+    public void addAbismo(Abismo abismo){this.abismo=abismo;}
+    public void removeAbismo(){this.abismo=null; }
 
     public boolean getDefeat() {
         return defeat;
@@ -35,8 +38,6 @@ public class Programmer {
         this.defeat = true;
     }
 
-    int cicloIfinito = 0;
-
     public int getId() {
         return this.id;
     }
@@ -45,6 +46,9 @@ public class Programmer {
         return this.nome == null ? "" : this.nome;
     }
 
+    public void addCasa(int posicao){
+        casas.add(posicao);
+    }
     public ProgrammerColor getColor() {
         return cor;
     }
@@ -52,6 +56,15 @@ public class Programmer {
     public int getPosicao() {
         return this.posicao;
     }
+    public void setPosicao(int posicao){
+        this.posicao=posicao;
+    }
+    void andar(int nrSpaces) throws java.lang.Exception {
+        if((this.posicao+=nrSpaces)<=0){
+            throw new java.lang.Exception();
+        }
+    }
+
 
     public String toString() {
         StringBuilder txtLinguagens = new StringBuilder();
@@ -84,16 +97,15 @@ public class Programmer {
         return this.id + " | " + this.nome + " | " + this.posicao + " | " + txtFerramentas + " | " + txtLinguagens + " | " + txtEstado;
     }
 
-
-    void cicloInfinito() {
-        if (cicloIfinito == 0) {
-            cicloIfinito = 3;
-        } else {
-            cicloIfinito--;
-        }
+    public void cicloInfinito(boolean estaCiclo) {
+        this.cicloIfinito=estaCiclo;
     }
+    public boolean getCicloIfinito(){ return cicloIfinito;}
 
-    boolean getFerramenta(Ferramenta ferramenta) {
+    public void addFerramenta(Ferramenta ferramenta){
+        ferramentas.add(ferramenta);
+    }
+    boolean removeFerramenta(Ferramenta ferramenta) {
         for (int i=0;i< ferramentas.size();i++) {
             if (ferramenta.titulo.equals(ferramentas.get(i).titulo)) {
                 ferramentas.remove(i);
@@ -102,7 +114,6 @@ public class Programmer {
         }
         return false;
     }
-
     boolean temFerramenta(Ferramenta ferramenta){
         for (Ferramenta value : ferramentas) {
             if (ferramenta.titulo.equals(value.titulo)) {
@@ -113,37 +124,45 @@ public class Programmer {
     }
 
     public boolean consequencias(Trap trap, int nrSpaces) {
-        switch (trap.titulo) {
+        switch (trap.getTitulo()) {
             case "Erro de sintaxe": {
-                if (!(getFerramenta(new Ferramenta(4)) || getFerramenta(new Ferramenta(5)))) {
-                    if((this.posicao-1)<=0){
-                        this.posicao=0;
+                if (!(removeFerramenta(new IDE(4)) || removeFerramenta(new AjudaProfessor(5)))) {
+                    try {
+                        andar(-1);
+                    }catch (java.lang.Exception c){
+                        c.printStackTrace();
                     }
-                    this.posicao -= 1;
                 }
                 return true;
             }
             case "Erro de lógica": {
-                if (!(getFerramenta(new Ferramenta(2)) || getFerramenta(new Ferramenta(5)))) {
-                    this.posicao -= nrSpaces / 2;
+                if (!(removeFerramenta(new ProgramaçãoFuncional(2)) || removeFerramenta(new AjudaProfessor(5)))) {
+                    try {
+                        andar(-(nrSpaces / 2));
+                    }catch (java.lang.Exception c){
+                        c.printStackTrace();
+                    }
                 }
                 return true;
             }
             case "Exception": {
-                if (!(getFerramenta(new Ferramenta(3)) || getFerramenta(new Ferramenta(5)))) {
-                    if((this.posicao-2)<=0){
-                        this.posicao=0;
+                if (!(removeFerramenta(new TratamentoExcepções(3)) || removeFerramenta(new AjudaProfessor(5)))) {
+                    try {
+                        andar(-2);
+                    }catch (java.lang.Exception c){
+                        c.printStackTrace();
                     }
-                    this.posicao -= 2;
                 }
                 return true;
             }
             case "File Not Found Exception": {
-                if (!(getFerramenta(new Ferramenta(3)) || getFerramenta(new Ferramenta(5)))) {
-                    if((this.posicao-3)<=0){
-                        this.posicao=0;
+                if (!(removeFerramenta(new TratamentoExcepções(3)) || removeFerramenta(new AjudaProfessor(5)))) {
+                    try {
+                        andar(-3);
+                    }catch (java.lang.Exception c){
+                        c.printStackTrace();
                     }
-                    this.posicao -= 3;
+
                 }
                 return true;
             }
@@ -152,12 +171,20 @@ public class Programmer {
                 return true;
             }
             case "Duplicated Code": {
-                this.posicao = casas.get(casas.size() - 1);
+                try {
+                    this.posicao = casas.get(casas.size() - 1);
+                }catch (java.lang.Exception c){
+                    c.printStackTrace();
+                }
                 return true;
             }
             case "Efeitos secundários": {
-                if (!(getFerramenta(new Ferramenta(1)))) {
-                    this.posicao = casas.get(casas.size() - 2);
+                if (!(removeFerramenta(new ProgramaçãoFuncional(1)))) {
+                    try {
+                        this.posicao = casas.get(casas.size() - 2);
+                    }catch (java.lang.Exception c){
+                        c.printStackTrace();
+                    }
                 }
                 return true;
             }
@@ -166,41 +193,41 @@ public class Programmer {
                 return true;
             }
             case "Ciclo infinito": {
-                return getFerramenta(new Ferramenta(1));
+                return removeFerramenta(new ProgramaçãoFuncional(1));
             }
             case "Herança": {
-                if (!temFerramenta(new Ferramenta(0))) {
-                    ferramentas.add(new Ferramenta(0));
+                if (!temFerramenta(new Herança(0))) {
+                    ferramentas.add(new Herança(0));
                 }
                 return true;
             }
             case "Programação Funcional": {
-                if (!temFerramenta(new Ferramenta(1))) {
-                    ferramentas.add(new Ferramenta(1));
+                if (!temFerramenta(new ProgramaçãoFuncional(1))) {
+                    ferramentas.add(new ProgramaçãoFuncional(1));
                 }
                 return true;
             }
             case "Testes unitários": {
-                if (!temFerramenta(new Ferramenta(2))) {
-                    ferramentas.add(new Ferramenta(2));
+                if (!temFerramenta(new TestesUnitários(2))) {
+                    ferramentas.add(new TestesUnitários(2));
                 }
                 return true;
             }
             case "Tratamento de Excepções": {
-                if (!temFerramenta(new Ferramenta(3))) {
-                    ferramentas.add(new Ferramenta(3));
+                if (!temFerramenta(new TratamentoExcepções(3))) {
+                    ferramentas.add(new TratamentoExcepções(3));
                 }
                 return true;
             }
             case "IDE": {
-                if (!temFerramenta(new Ferramenta(4))) {
-                    ferramentas.add(new Ferramenta(4));
+                if (!temFerramenta(new IDE(4))) {
+                    ferramentas.add(new IDE(4));
                 }
                 return true;
             }
             case "Ajuda Do Professor": {
-                if (!temFerramenta(new Ferramenta(5))) {
-                    ferramentas.add(new Ferramenta(5));
+                if (!temFerramenta(new AjudaProfessor(5))) {
+                    ferramentas.add(new AjudaProfessor(5));
                 }
                 return true;
             }

@@ -4,6 +4,8 @@ public abstract class Trap {
     int id;
     String titulo;
 
+
+    abstract public String getTitulo();
    abstract public String getImage();
    abstract public String  getConsequencia();
 }
