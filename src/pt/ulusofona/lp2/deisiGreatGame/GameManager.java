@@ -97,9 +97,6 @@ public class GameManager {
                 }
             }
         }
-        /*for (int i = 10; i < tamanhoTab; i++) {
-            abismos.put(i,new Abismo(9));
-        }*/
         return inicialboard;
     }
 

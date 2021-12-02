@@ -26,12 +26,12 @@ public class Ferramenta extends Trap {
     @Override
     public String getImage() {
         return switch (titulo){
-            case "Herança" ->"inheritance.png";
+            case "Herança" ->"herança.png";//
             case "Programação Funcional" ->"functional.png";
-            case "Testes unitários" -> "unit-tests.png";
+            case "Testes unitários" -> "junit.png";//
             case "Tratamento de Excepções" -> "catch.png";
-            case "IDE" ->"IDE.png";
-            case "Ajuda Do Professor" -> "ajuda-professor.png";
+            case "IDE" ->"intellij2.png";//
+            case "Ajuda Do Professor" -> "ajudaProf2.png";//
             default -> null;
         };
     }

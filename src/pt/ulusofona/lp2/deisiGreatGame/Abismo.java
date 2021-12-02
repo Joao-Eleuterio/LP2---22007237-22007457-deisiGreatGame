@@ -36,16 +36,16 @@ public class Abismo extends Trap{
     @Override
     public String getImage() {
         return switch (titulo) {
-            case "Erro de sintaxe" -> "syntax.png";
-            case "Erro de lógica" -> "logic.png";
+            case "Erro de sintaxe" -> "erro_sintaxe2.png";//
+            case "Erro de lógica" -> "erro_logica2.png";//
             case "Exception" -> "exception.png";
-            case "File Not Found Exception" -> "file-not-found-exception.png";
-            case "Crash (aka Rebentanço)" -> "crash.png";
-            case "Duplicated Code"-> "duplicated-code.png";
-            case "Efeitos secundários" ->"secondary-effects.png";
-            case "Blue Screen of Death"-> "bsod.png";
-            case "Ciclo infinito" -> "infinite-loop.png";
-            case "Segmentation Fault" ->"core-dumped.png";
+            case "File Not Found Exception" -> "file_not_found_exception2.png";//
+            case "Crash (aka Rebentanço)" ->"crash2.png";//
+            case "Duplicated Code"-> "duplicate_code2.png";//
+            case "Efeitos secundários" ->"side-effects2.png";//
+            case "Blue Screen of Death"-> "blue_screen2.png";//
+            case "Ciclo infinito" -> "infinite-loop.png";//
+            case "Segmentation Fault" ->"core_dump2.png";//
             default -> "";
         };
     }
