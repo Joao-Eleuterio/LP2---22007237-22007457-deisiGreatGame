@@ -172,7 +172,7 @@ public class GameManager {
 
     //O jogador atual está impossibilitado de se mover (por ex., por ter caído num ciclo infinito)
     public boolean moveCurrentPlayer(int nrSpaces) {
-        if (nrSpaces < 1 || nrSpaces > 6  || players.get(turno).cicloIfinito != 0) {
+        if (nrSpaces < 1 || nrSpaces > 6 ) {
             return false;
         }
         players.get(turno).casas.add(players.get(turno).getPosicao());
@@ -183,7 +183,6 @@ public class GameManager {
                 players.get(turno).posicao = tamanhoTab + (tamanhoTab - players.get(0).posicao - nrSpaces);
             }
         }
-
         this.nrSpaces = nrSpaces;
         return true;
     }
