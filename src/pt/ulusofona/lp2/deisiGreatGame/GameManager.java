@@ -86,7 +86,7 @@ public class GameManager {
             if (!((abyssesAndTool[0].equals("0") || abyssesAndTool[0].equals("1")) && abismo && dentroTab)) {
                 return false;
             } else {
-                    abismos.put(Integer.valueOf(abyssesAndTool[2]), new Trap(Integer.parseInt(abyssesAndTool[1])));//ver aula ou perguntar ao stor 
+                    abismos.put(Integer.valueOf(abyssesAndTool[2]), new Trap(Integer.parseInt(abyssesAndTool[1])));//ver aula ou perguntar ao stor
             }
         }
         return inicialboard;
