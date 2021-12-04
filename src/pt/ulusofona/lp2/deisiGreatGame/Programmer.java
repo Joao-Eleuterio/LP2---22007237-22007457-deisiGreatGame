@@ -75,7 +75,7 @@ public class Programmer {
             this.posicao+=nrSpaces;
         }
     }
-    
+
     public String toString() {
         StringBuilder txtLinguagens = new StringBuilder();
         Collections.sort(this.linguagens);
