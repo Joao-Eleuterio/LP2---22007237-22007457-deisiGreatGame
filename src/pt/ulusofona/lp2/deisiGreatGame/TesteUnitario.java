@@ -6,7 +6,6 @@ public class TesteUnitario extends Trap{
         this.titulo="Testes unitários";
         this.id=2;
     }
-
     public String getTitulo() {
         return this.titulo;
     }
