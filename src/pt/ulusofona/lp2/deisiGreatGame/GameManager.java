@@ -89,7 +89,7 @@ public class GameManager {
             dentroTab = Integer.parseInt(abyssesAndTool[2]) > 0 && Integer.parseInt(abyssesAndTool[2]) <= tamanhoTab;
             if (!((abyssesAndTool[0].equals("0") || abyssesAndTool[0].equals("1")) && abismo && dentroTab)) {
                 return false;
-            } else {
+            } else { 
                 //Trap  addTrap (idTrap, id)   = (abyssesAndTool[0].equals("0"),Integer.parseInt(abyssesAndTool[1]))
                 escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]));
             }
