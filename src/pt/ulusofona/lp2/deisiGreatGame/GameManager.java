@@ -91,7 +91,10 @@ public class GameManager {
                 return false;
             } else {
                 //Trap  addTrap (idTrap, id)   = (abyssesAndTool[0].equals("0"),Integer.parseInt(abyssesAndTool[1]))
-                escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]));
+                //escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]));
+                for(int i=5;i<tamanhoTab;i++){
+                    escolheTrap(0,1 , i);
+                }
 
             }
         }
@@ -235,7 +238,8 @@ public class GameManager {
                 }
                 players.get(turno).cicloInfinito(true);
                 players.get(turno).addAbismo(abismos.get(players.get(turno).getPosicao()));
-            } else if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Segmentation Fault")) {
+            }
+            else if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Segmentation Fault")) {
                 int posicaoAbismo = players.get(turno).getPosicao();
 
                     for (int i = 0, j = 0; i < players.size(); i++) {

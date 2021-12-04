@@ -69,12 +69,13 @@ public class Programmer {
     }
 
     void andar(int nrSpaces) throws java.lang.Exception {
-        if ((this.posicao += nrSpaces) <= 0) {
+        if (getPosicao()+nrSpaces <= 0) {
             throw new java.lang.Exception();
+        }else{
+            this.posicao+=nrSpaces;
         }
     }
-
-
+    
     public String toString() {
         StringBuilder txtLinguagens = new StringBuilder();
         Collections.sort(this.linguagens);
