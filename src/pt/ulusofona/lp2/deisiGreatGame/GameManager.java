@@ -345,7 +345,7 @@ public class GameManager {
         StringBuilder txt = new StringBuilder();
 
         for (int i = 0; i < players.size(); i++) {
-
+            if (!players.get(i).getDefeat()) {
                 txt.append(players.get(i).nome).append(" : ");
                 if (players.get(i).ferramentas.size() == 0) {
                     txt.append("No tools");
@@ -361,7 +361,7 @@ public class GameManager {
                 if (!(i == players.size() - 1)) {
                     txt.append(" | ");
                 }
-
+            }
         }
 
         return txt.toString();
