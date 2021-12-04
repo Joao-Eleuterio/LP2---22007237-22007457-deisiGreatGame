@@ -169,7 +169,7 @@ public class GameManager {
             return null;
         } else {
             for (int i = 0; i < players.size(); i++) {
-                if (players.get(i).posicao == position) {
+                if (players.get(i).getPosicao() == position) {
                     programmers.add(players.get(i));
                     ocupado = true;
                 }
@@ -206,14 +206,14 @@ public class GameManager {
         }
         players.get(turno).addCasa(players.get(turno).getPosicao());
         if (players.get(turno).getAbismo() == null) {
-            if ((players.get(turno).posicao + nrSpaces) <= tamanhoTab) {
+            if ((players.get(turno).getPosicao() + nrSpaces) <= tamanhoTab) {
                 try {
                     players.get(turno).andar(nrSpaces);
                 } catch (java.lang.Exception e) {
                     e.printStackTrace();
                 }
             } else {
-                players.get(turno).setPosicao(tamanhoTab + (tamanhoTab - players.get(0).posicao - nrSpaces));
+                players.get(turno).setPosicao(tamanhoTab + (tamanhoTab - players.get(0).getPosicao() - nrSpaces));
             }
         }
         this.nrSpaces = nrSpaces;
@@ -298,7 +298,7 @@ public class GameManager {
         strings.add("" + nrTurnos);
         strings.add("");
         strings.add("VENCEDOR");
-        strings.add("" + vencedor.nome);
+        strings.add("" + vencedor.getName());
         strings.add("");
         strings.add("RESTANTES");
         if (players == null) {
@@ -317,9 +317,9 @@ public class GameManager {
             }
         });
         organizado.sort(Comparator.comparingInt((Programmer b) -> b.posicao).reversed());
-        for (pt.ulusofona.lp2.deisiGreatGame.Programmer programmer : organizado) {
-            if (programmer.posicao != tamanhoTab) {
-                strings.add(programmer.nome + " " + programmer.posicao);
+        for (Programmer programmer : organizado) {
+            if (programmer.getPosicao() != tamanhoTab && !programmer.getDefeat()) {
+                strings.add(programmer.getName() + " " + programmer.getPosicao());
             }
         }
         return strings;
@@ -345,21 +345,23 @@ public class GameManager {
         StringBuilder txt = new StringBuilder();
 
         for (int i = 0; i < players.size(); i++) {
-            txt.append(players.get(i).nome).append(" : ");
-            if (players.get(i).ferramentas.size() == 0) {
-                txt.append("No tools");
-            }
-            for (int j = 0; j < players.get(i).ferramentas.size(); j++) {
 
-                if (j == 0) {
-                    txt.append(players.get(i).ferramentas.get(j).getTitulo());
-                } else {
-                    txt.append(";").append(players.get(i).ferramentas.get(j).getTitulo());
+                txt.append(players.get(i).nome).append(" : ");
+                if (players.get(i).ferramentas.size() == 0) {
+                    txt.append("No tools");
                 }
-            }
-            if (!(i == players.size() - 1)) {
-                txt.append(" | ");
-            }
+                for (int j = 0; j < players.get(i).ferramentas.size(); j++) {
+
+                    if (j == 0) {
+                        txt.append(players.get(i).ferramentas.get(j).getTitulo());
+                    } else {
+                        txt.append(";").append(players.get(i).ferramentas.get(j).getTitulo());
+                    }
+                }
+                if (!(i == players.size() - 1)) {
+                    txt.append(" | ");
+                }
+
         }
 
         return txt.toString();
