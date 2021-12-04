@@ -13,7 +13,7 @@ public class FileNotFoundException extends Trap{
     }
     @Override
     public String getImage() {
-        return "file-not-found-exception2.png";
+        return "file_not_found_exception2.png";
     }
 
     @Override

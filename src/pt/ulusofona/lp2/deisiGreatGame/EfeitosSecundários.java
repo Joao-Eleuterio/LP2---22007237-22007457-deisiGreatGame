@@ -1,6 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 public class EfeitosSecundários extends Trap{
+
     public EfeitosSecundários() {
         this.titulo="Efeitos Secundários";
         this.id=6;

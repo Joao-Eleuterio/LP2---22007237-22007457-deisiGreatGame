@@ -1,7 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class TratamentoExcepções extends Trap{
-    public TratamentoExcepções() {
+public class TratamentoExcepcoes extends Trap{
+    public TratamentoExcepcoes() {
         this.titulo="Tratamento de Excepções";
         this.id=3;
     }

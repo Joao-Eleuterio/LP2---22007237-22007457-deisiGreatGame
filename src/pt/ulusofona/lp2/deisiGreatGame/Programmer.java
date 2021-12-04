@@ -136,7 +136,7 @@ public class Programmer {
                 return true;
             }
             case "Erro de lógica": {
-                if (!(removeFerramenta(new ProgramaçãoFuncional()) || removeFerramenta(new AjudaProfessor()))) {
+                if (!(removeFerramenta(new ProgramacaoFuncional()) || removeFerramenta(new AjudaProfessor()))) {
                     try {
                         andar(-(nrSpaces / 2));
                     }catch (java.lang.Exception c){
@@ -146,7 +146,7 @@ public class Programmer {
                 return true;
             }
             case "Exception": {
-                if (!(removeFerramenta(new TratamentoExcepções()) || removeFerramenta(new AjudaProfessor()))) {
+                if (!(removeFerramenta(new TratamentoExcepcoes()) || removeFerramenta(new AjudaProfessor()))) {
                     try {
                         andar(-2);
                     }catch (java.lang.Exception c){
@@ -156,7 +156,7 @@ public class Programmer {
                 return true;
             }
             case "File Not Found Exception": {
-                if (!(removeFerramenta(new TratamentoExcepções()) || removeFerramenta(new AjudaProfessor()))) {
+                if (!(removeFerramenta(new TratamentoExcepcoes()) || removeFerramenta(new AjudaProfessor()))) {
                     try {
                         andar(-3);
                     }catch (java.lang.Exception c){
@@ -179,7 +179,7 @@ public class Programmer {
                 return true;
             }
             case "Efeitos secundários": {
-                if (!(removeFerramenta(new ProgramaçãoFuncional()))) {
+                if (!(removeFerramenta(new ProgramacaoFuncional()))) {
                     try {
                         this.posicao = casas.get(casas.size() - 2);
                     }catch (java.lang.Exception c){
@@ -193,17 +193,17 @@ public class Programmer {
                 return true;
             }
             case "Ciclo infinito": {
-                return removeFerramenta(new ProgramaçãoFuncional());
+                return removeFerramenta(new ProgramacaoFuncional());
             }
             case "Herança": {
-                if (!temFerramenta(new Herança())) {
-                    ferramentas.add(new Herança());
+                if (!temFerramenta(new Heranca())) {
+                    ferramentas.add(new Heranca());
                 }
                 return true;
             }
             case "Programação Funcional": {
-                if (!temFerramenta(new ProgramaçãoFuncional())) {
-                    ferramentas.add(new ProgramaçãoFuncional());
+                if (!temFerramenta(new ProgramacaoFuncional())) {
+                    ferramentas.add(new ProgramacaoFuncional());
                 }
                 return true;
             }
@@ -214,8 +214,8 @@ public class Programmer {
                 return true;
             }
             case "Tratamento de Excepções": {
-                if (!temFerramenta(new TratamentoExcepções())) {
-                    ferramentas.add(new TratamentoExcepções());
+                if (!temFerramenta(new TratamentoExcepcoes())) {
+                    ferramentas.add(new TratamentoExcepcoes());
                 }
                 return true;
             }

@@ -109,7 +109,7 @@ public class GameManager {
             case 0:
                 switch (id) {
                     case 0 -> trap = new ErroSintaxe();
-                    case 1 -> trap = new ErroLógica();
+                    case 1 -> trap = new ErroLogica();
                     case 2 -> trap = new Exception();
                     case 3 -> trap = new FileNotFoundException();
                     case 4 -> trap = new Crash();
@@ -118,14 +118,13 @@ public class GameManager {
                     case 7 -> trap = new BlueScreenOfDeath();
                     case 8 -> trap = new CicloInfinito();
                     case 9 -> trap = new SegmentationFault();
-                }
-                ;
+                }break;
             case 1:
                 switch (id) {
-                    case 0 -> trap = new Herança();
-                    case 1 -> trap = new ProgramaçãoFuncional();
+                    case 0 -> trap = new Heranca();
+                    case 1 -> trap = new ProgramacaoFuncional();
                     case 2 -> trap = new JUnit();
-                    case 3 -> trap = new TratamentoExcepções();
+                    case 3 -> trap = new TratamentoExcepcoes();
                     case 4 -> trap = new IDE();
                     case 5 -> trap = new AjudaProfessor();
                 }

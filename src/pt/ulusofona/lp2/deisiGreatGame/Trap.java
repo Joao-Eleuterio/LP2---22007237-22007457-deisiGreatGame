@@ -61,7 +61,7 @@ public abstract class Trap {
        switch (idTrap){
            case 0: switch (id){
                case 0: new ErroSintaxe();
-               case 1: new ErroLógica();
+               case 1: new ErroLogica();
                case 2: new Exception();
                case 3: new FileNotFoundException();
                case 4: new Crash();
@@ -72,10 +72,10 @@ public abstract class Trap {
                case 9: new SegmentationFault();
            }break;
            case 1:  switch (id) {
-               case 0 -> new Herança();
-               case 1 -> new ProgramaçãoFuncional();
-               case 2 -> new JUnit(); 
-               case 3 -> new TratamentoExcepções();
+               case 0 -> new Heranca();
+               case 1 -> new ProgramacaoFuncional();
+               case 2 -> new JUnit();
+               case 3 -> new TratamentoExcepcoes();
                case 4 -> new IDE();
                case 5 -> new AjudaProfessor();
            }break;

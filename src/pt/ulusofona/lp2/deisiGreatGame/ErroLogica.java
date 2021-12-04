@@ -1,8 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class ErroLógica extends Trap{
+public class ErroLogica extends Trap{
 
-    public ErroLógica() {
+    public ErroLogica() {
         this.id=1;
         this.titulo="Erro lógica";
     }

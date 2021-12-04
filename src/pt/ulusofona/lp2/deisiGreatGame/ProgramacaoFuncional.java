@@ -1,8 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class ProgramaçãoFuncional extends Trap{
+public class ProgramacaoFuncional extends Trap{
 
-    public ProgramaçãoFuncional() {
+    public ProgramacaoFuncional() {
         this.titulo="Programação Funcional";
         this.id=1;
     }
