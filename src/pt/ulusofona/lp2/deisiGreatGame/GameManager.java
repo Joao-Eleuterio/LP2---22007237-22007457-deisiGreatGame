@@ -92,6 +92,7 @@ public class GameManager {
             } else {
                 //Trap  addTrap (idTrap, id)   = (abyssesAndTool[0].equals("0"),Integer.parseInt(abyssesAndTool[1]))
                 escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]));
+
             }
         }
         return inicialboard;
@@ -238,19 +239,22 @@ public class GameManager {
                 players.get(turno).addAbismo(abismos.get(players.get(turno).getPosicao()));
             } else if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Segmentation Fault")) {
                 int posicaoAbismo = players.get(turno).getPosicao();
-                for (int i = 0, j = 0; i < players.size(); i++) {
-                    if (players.get(i).getPosicao() == posicaoAbismo) {
-                        j++;
-                    }
-                    if (j >= 2) {
-                        for (int h = 0; h < players.size(); h++) {
-                            if (players.get(h).getPosicao() == posicaoAbismo) {
-                                players.get(h).posicao -= 3;
-                            }
+
+                    for (int i = 0, j = 0; i < players.size(); i++) {
+                        if (players.get(i).getPosicao() == posicaoAbismo ) {
+                            j++;
                         }
-                        return;
+                        if (j >= 2) {
+                            for (int h = 0; h < players.size(); h++) {
+                                if (players.get(h).getPosicao() == posicaoAbismo && !players.get(h).temFerramenta(new ProgramacaoFuncional  ())) {
+                                    players.get(h).posicao -= 3;
+                                }else if(players.get(h).temFerramenta(new ProgramacaoFuncional()) && players.get(h).getPosicao() == posicaoAbismo){
+                                    players.get(h).removeFerramenta(new ProgramacaoFuncional());
+                                }
+                            }
+                            return;
+                        }
                     }
-                }
 
             }
         }
@@ -292,34 +296,37 @@ public class GameManager {
 
     public List<String> getGameResults() {
         ArrayList<String> strings = new ArrayList<>();
-        strings.add("O GRANDE JOGO DO DEISI");
-        strings.add("");
-        strings.add("NR. DE TURNOS");
-        strings.add("" + nrTurnos);
-        strings.add("");
-        strings.add("VENCEDOR");
-        strings.add("" + vencedor.getName());
-        strings.add("");
-        strings.add("RESTANTES");
-        if (players == null) {
-            return null;
-        }
-        Collection<Programmer> values = players.values();
-        ArrayList<Programmer> organizado = new ArrayList<>(values);
+        if(vencedor!=null) {
 
-        organizado.sort((p1, p2) -> {
-            if (p1.getPosicao() < p2.getPosicao()) {
-                return -1;
-            } else if (p1.getPosicao() > p2.getPosicao()) {
-                return 1;
-            } else {
-                return p1.getName().compareTo(p2.getName());
+            strings.add("O GRANDE JOGO DO DEISI");
+            strings.add("");
+            strings.add("NR. DE TURNOS");
+            strings.add("" + nrTurnos);
+            strings.add("");
+            strings.add("VENCEDOR");
+            strings.add("" + vencedor.getName());
+            strings.add("");
+            strings.add("RESTANTES");
+            if (players == null) {
+                return null;
             }
-        });
-        organizado.sort(Comparator.comparingInt((Programmer b) -> b.posicao).reversed());
-        for (Programmer programmer : organizado) {
-            if (programmer.getPosicao() != tamanhoTab && !programmer.getDefeat()) {
-                strings.add(programmer.getName() + " " + programmer.getPosicao());
+            Collection<Programmer> values = players.values();
+            ArrayList<Programmer> organizado = new ArrayList<>(values);
+
+            organizado.sort((p1, p2) -> {
+                if (p1.getPosicao() < p2.getPosicao()) {
+                    return -1;
+                } else if (p1.getPosicao() > p2.getPosicao()) {
+                    return 1;
+                } else {
+                    return p1.getName().compareTo(p2.getName());
+                }
+            });
+            organizado.sort(Comparator.comparingInt((Programmer b) -> b.posicao).reversed());
+            for (Programmer programmer : organizado) {
+                if (programmer.getPosicao() != tamanhoTab && !programmer.getDefeat()) {
+                    strings.add(programmer.getName() + " " + programmer.getPosicao());
+                }
             }
         }
         return strings;

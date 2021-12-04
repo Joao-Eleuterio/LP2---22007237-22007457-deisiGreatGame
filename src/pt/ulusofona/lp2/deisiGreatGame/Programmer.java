@@ -167,14 +167,24 @@ public class Programmer {
                 return true;
             }
             case "Crash (aka Rebentanço)": {
-                this.posicao = 1;
+                if (!(removeFerramenta(new IDE()))) {
+                    try {
+                        this.posicao=1;
+                    }catch (java.lang.Exception c){
+                        c.printStackTrace();
+                    }
+
+                }
                 return true;
             }
             case "Duplicated Code": {
-                try {
-                    this.posicao = casas.get(casas.size() - 1);
-                }catch (java.lang.Exception c){
-                    c.printStackTrace();
+                if (!(removeFerramenta(new Heranca()))) {
+                    try {
+                        this.posicao = casas.get(casas.size() - 1);
+                    }catch (java.lang.Exception c){
+                        c.printStackTrace();
+                    }
+
                 }
                 return true;
             }
