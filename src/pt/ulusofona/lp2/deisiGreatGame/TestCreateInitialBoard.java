@@ -245,5 +245,62 @@ public class TestCreateInitialBoard {
 
     }
 
+    //boardSize nulo
+    @Test
+    public void test20CreateInitialBoard() {
+        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        String[][] jogadores = creat4Players();
+
+        assertFalse("Não pode ter número nulo", manager.createInitialBoard(jogadores, 0));
+
+    }
+
+
+    //cor vazio
+    @Test
+    public void test21CreateInitialBoard() {
+        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        String[][] jogadores = creat4Players();
+        jogadores[0][3] = "";
+        assertFalse("Não podem ter a cor vazio", manager.createInitialBoard(jogadores, 30));
+    }
+
+    //normal 2 players
+    @Test
+    public void test22CreateInitialBoard() {
+        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        String[][] jogadores = creat2Players();
+        manager.createInitialBoard(jogadores, 30);
+        assertTrue("Só pode andar de 1-6", manager.moveCurrentPlayer(5));
+
+    }
+
+
+    //a mais 2 players
+    @Test
+    public void test23CreateInitialBoard() {
+        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        String[][] jogadores = creat2Players();
+        manager.createInitialBoard(jogadores, 30);
+        assertFalse("Só pode andar de 1-6", manager.moveCurrentPlayer(75));
+
+    }
+
+    //normal 3 players
+    @Test
+    public void test24CreateInitialBoard() {
+        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        String[][] jogadores = creat3Players();
+        manager.createInitialBoard(jogadores, 30);
+        assertTrue("Só pode andar de 1-6", manager.moveCurrentPlayer(5));
+
+    }
+
+
+
+
+
+
+
 
 }
