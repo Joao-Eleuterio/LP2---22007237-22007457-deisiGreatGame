@@ -124,7 +124,7 @@ public class GameManager {
                 switch (id) {
                     case 0 -> trap = new Herança();
                     case 1 -> trap = new ProgramaçãoFuncional();
-                    case 2 -> trap = new TesteUnitario();
+                    case 2 -> trap = new JUnit();
                     case 3 -> trap = new TratamentoExcepções();
                     case 4 -> trap = new IDE();
                     case 5 -> trap = new AjudaProfessor();

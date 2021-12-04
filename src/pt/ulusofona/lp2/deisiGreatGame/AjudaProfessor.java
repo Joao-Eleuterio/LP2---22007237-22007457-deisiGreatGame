@@ -6,7 +6,6 @@ public class AjudaProfessor extends Trap{
         this.titulo="Ajuda do Professor";
         this.id=5;
     }
-
     public String getTitulo() {
         return this.titulo;
     }
