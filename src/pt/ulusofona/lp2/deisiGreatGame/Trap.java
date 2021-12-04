@@ -74,7 +74,7 @@ public abstract class Trap {
            case 1:  switch (id) {
                case 0 -> new Herança();
                case 1 -> new ProgramaçãoFuncional();
-               case 2 -> new TestesUnitarios();
+               case 2 -> new TesteUnitario();
                case 3 -> new TratamentoExcepções();
                case 4 -> new IDE();
                case 5 -> new AjudaProfessor();

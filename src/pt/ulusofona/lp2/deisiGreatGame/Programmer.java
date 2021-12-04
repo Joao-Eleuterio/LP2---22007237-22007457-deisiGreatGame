@@ -208,8 +208,8 @@ public class Programmer {
                 return true;
             }
             case "Testes unitários": {
-                if (!temFerramenta(new TestesUnitarios())) {
-                    ferramentas.add(new TestesUnitarios());
+                if (!temFerramenta(new TesteUnitario())) {
+                    ferramentas.add(new TesteUnitario());
                 }
                 return true;
             }

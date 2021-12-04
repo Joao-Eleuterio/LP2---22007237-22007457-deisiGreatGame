@@ -10,12 +10,9 @@ public class AjudaProfessor extends Trap{
     public String getTitulo() {
         return this.titulo;
     }
-
     public String getImage() {
         return "ajudaProf2.png";
     }
-
-
     public String getConsequencia() {
         return "Qualquer coisa";
     }
