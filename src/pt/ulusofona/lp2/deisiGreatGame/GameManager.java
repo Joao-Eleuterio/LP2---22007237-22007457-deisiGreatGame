@@ -154,11 +154,9 @@ public class GameManager {
             if (players.get(i).getDefeat() && includeDefeated) {// os Fora de Jogo
                 a.add(players.get(i));
             }
-
             if (!players.get(i).getDefeat()) {// os Em Jogo
                 a.add(players.get(i));
             }
-
         }
         return a;
     }
@@ -246,10 +244,8 @@ public class GameManager {
                         }
                         if (j >= 2) {
                             for (int h = 0; h < players.size(); h++) {
-                                if (players.get(h).getPosicao() == posicaoAbismo && !players.get(h).temFerramenta(new ProgramacaoFuncional  ())) {
+                                if (players.get(h).getPosicao() == posicaoAbismo) {
                                     players.get(h).posicao -= 3;
-                                }else if(players.get(h).temFerramenta(new ProgramacaoFuncional()) && players.get(h).getPosicao() == posicaoAbismo){
-                                    players.get(h).removeFerramenta(new ProgramacaoFuncional());
                                 }
                             }
                             return;
@@ -324,7 +320,7 @@ public class GameManager {
             });
             organizado.sort(Comparator.comparingInt((Programmer b) -> b.posicao).reversed());
             for (Programmer programmer : organizado) {
-                if (programmer.getPosicao() != tamanhoTab && !programmer.getDefeat()) {
+                if (programmer.getPosicao() != tamanhoTab) {
                     strings.add(programmer.getName() + " " + programmer.getPosicao());
                 }
             }
@@ -353,8 +349,8 @@ public class GameManager {
 
         for (int i = 0; i < players.size(); i++) {
             if (!players.get(i).getDefeat()) {
-                txt.append(players.get(i).nome).append(" : ");
-                if (players.get(i).ferramentas.size() == 0) {
+                txt.append(players.get(i).getName()).append(" : ");
+                if (players.get(i).ferramentas==null || players.get(i).ferramentas.size() == 0) {
                     txt.append("No tools");
                 }
                 for (int j = 0; j < players.get(i).ferramentas.size(); j++) {

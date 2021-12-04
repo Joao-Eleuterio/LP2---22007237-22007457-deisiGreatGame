@@ -27,8 +27,14 @@ public class Programmer {
     public Trap getAbismo() {
         return abismo;
     }
-    public void addAbismo(Trap abismo){this.abismo=abismo;}
-    public void removeAbismo(){this.abismo=null; }
+
+    public void addAbismo(Trap abismo) {
+        this.abismo = abismo;
+    }
+
+    public void removeAbismo() {
+        this.abismo = null;
+    }
 
     public boolean getDefeat() {
         return defeat;
@@ -46,9 +52,10 @@ public class Programmer {
         return this.nome == null ? "" : this.nome;
     }
 
-    public void addCasa(int posicao){
+    public void addCasa(int posicao) {
         casas.add(posicao);
     }
+
     public ProgrammerColor getColor() {
         return cor;
     }
@@ -56,11 +63,13 @@ public class Programmer {
     public int getPosicao() {
         return this.posicao;
     }
-    public void setPosicao(int posicao){
-        this.posicao=posicao;
+
+    public void setPosicao(int posicao) {
+        this.posicao = posicao;
     }
+
     void andar(int nrSpaces) throws java.lang.Exception {
-        if((this.posicao+=nrSpaces)<=0){
+        if ((this.posicao += nrSpaces) <= 0) {
             throw new java.lang.Exception();
         }
     }
@@ -98,15 +107,19 @@ public class Programmer {
     }
 
     public void cicloInfinito(boolean estaCiclo) {
-        this.cicloIfinito=estaCiclo;
+        this.cicloIfinito = estaCiclo;
     }
-    public boolean getCicloIfinito(){ return cicloIfinito;}
 
-    public void addFerramenta(Trap ferramenta){
+    public boolean getCicloIfinito() {
+        return cicloIfinito;
+    }
+
+    public void addFerramenta(Trap ferramenta) {
         ferramentas.add(ferramenta);
     }
+
     boolean removeFerramenta(Trap ferramenta) {
-        for (int i=0;i< ferramentas.size();i++) {
+        for (int i = 0; i < ferramentas.size(); i++) {
             if (ferramenta.titulo.equals(ferramentas.get(i).titulo)) {
                 ferramentas.remove(i);
                 return true;
@@ -114,7 +127,8 @@ public class Programmer {
         }
         return false;
     }
-    boolean temFerramenta(Trap ferramenta){
+
+    boolean temFerramenta(Trap ferramenta) {
         for (Trap value : ferramentas) {
             if (ferramenta.titulo.equals(value.titulo)) {
                 return true;
@@ -126,10 +140,10 @@ public class Programmer {
     public boolean consequencias(Trap trap, int nrSpaces) {
         switch (trap.getTitulo()) {
             case "Erro de sintaxe": {
-                if (!(removeFerramenta(new IDE()) || removeFerramenta(new AjudaProfessor()))) {
+                if (!(removeFerramenta(new IDE())  ||removeFerramenta(new AjudaProfessor()))) {
                     try {
                         andar(-1);
-                    }catch (java.lang.Exception c){
+                    } catch (java.lang.Exception c) {
                         c.printStackTrace();
                     }
                 }
@@ -138,8 +152,8 @@ public class Programmer {
             case "Erro de lógica": {
                 if (!(removeFerramenta(new JUnit()) || removeFerramenta(new AjudaProfessor()))) {
                     try {
-                        andar(-(int)(nrSpaces / 2));
-                    }catch (java.lang.Exception c){
+                        andar(-(int) (nrSpaces / 2));
+                    } catch (java.lang.Exception c) {
                         c.printStackTrace();
                     }
                 }
@@ -149,7 +163,7 @@ public class Programmer {
                 if (!(removeFerramenta(new TratamentoExcepcoes()) || removeFerramenta(new AjudaProfessor()))) {
                     try {
                         andar(-2);
-                    }catch (java.lang.Exception c){
+                    } catch (java.lang.Exception c) {
                         c.printStackTrace();
                     }
                 }
@@ -159,7 +173,7 @@ public class Programmer {
                 if (!(removeFerramenta(new TratamentoExcepcoes()) || removeFerramenta(new AjudaProfessor()))) {
                     try {
                         andar(-3);
-                    }catch (java.lang.Exception c){
+                    } catch (java.lang.Exception c) {
                         c.printStackTrace();
                     }
 
@@ -167,21 +181,14 @@ public class Programmer {
                 return true;
             }
             case "Crash (aka Rebentanço)": {
-                if (!(removeFerramenta(new IDE()))) {
-                    try {
-                        this.posicao=1;
-                    }catch (java.lang.Exception c){
-                        c.printStackTrace();
-                    }
-
-                }
+                this.posicao = 1;
                 return true;
             }
             case "Duplicated Code": {
                 if (!(removeFerramenta(new Heranca()))) {
                     try {
                         this.posicao = casas.get(casas.size() - 1);
-                    }catch (java.lang.Exception c){
+                    } catch (java.lang.Exception c) {
                         c.printStackTrace();
                     }
 
@@ -192,7 +199,7 @@ public class Programmer {
                 if (!(removeFerramenta(new ProgramacaoFuncional()))) {
                     try {
                         this.posicao = casas.get(casas.size() - 2);
-                    }catch (java.lang.Exception c){
+                    } catch (java.lang.Exception c) {
                         c.printStackTrace();
                     }
                 }
