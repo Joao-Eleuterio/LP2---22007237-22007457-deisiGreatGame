@@ -138,7 +138,7 @@ public class Programmer {
             case "Erro de lógica": {
                 if (!(removeFerramenta(new ProgramacaoFuncional()) || removeFerramenta(new AjudaProfessor()))) {
                     try {
-                        andar(-(nrSpaces / 2));
+                        andar(-(int)(nrSpaces / 2));
                     }catch (java.lang.Exception c){
                         c.printStackTrace();
                     }

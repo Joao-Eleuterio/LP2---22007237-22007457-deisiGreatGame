@@ -3,7 +3,7 @@ package pt.ulusofona.lp2.deisiGreatGame;
 public class Crash extends Trap{
 
     public Crash() {
-        this.titulo="Crash";
+        this.titulo="Crash (aka Rebentanço)";
         this.id=4;
     }
 

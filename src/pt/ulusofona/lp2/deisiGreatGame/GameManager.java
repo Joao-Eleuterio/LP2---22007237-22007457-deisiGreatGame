@@ -92,12 +92,6 @@ public class GameManager {
             } else {
                 //Trap  addTrap (idTrap, id)   = (abyssesAndTool[0].equals("0"),Integer.parseInt(abyssesAndTool[1]))
                 escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]));
-
-              /* if((abyssesAndTool[0].equals("0"))) {
-                    abismos.put(Integer.valueOf(abyssesAndTool[2]), new Abismo(Integer.parseInt(abyssesAndTool[1])));
-                }else{
-                   abismos.put(Integer.valueOf(abyssesAndTool[2]), new Ferramenta(Integer.parseInt(abyssesAndTool[1])));
-               }*/
             }
         }
         return inicialboard;
@@ -114,11 +108,12 @@ public class GameManager {
                     case 3 -> trap = new FileNotFoundException();
                     case 4 -> trap = new Crash();
                     case 5 -> trap = new DuplicatedCode();
-                    case 6 -> trap = new EfeitosSecundários();
+                    case 6 -> trap = new EfeitosSecundarios();
                     case 7 -> trap = new BlueScreenOfDeath();
                     case 8 -> trap = new CicloInfinito();
                     case 9 -> trap = new SegmentationFault();
-                }break;
+                }
+                break;
             case 1:
                 switch (id) {
                     case 0 -> trap = new Heranca();

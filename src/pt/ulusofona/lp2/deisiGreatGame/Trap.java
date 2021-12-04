@@ -66,7 +66,7 @@ public abstract class Trap {
                case 3: new FileNotFoundException();
                case 4: new Crash();
                case 5: new DuplicatedCode();
-               case 6: new EfeitosSecundários();
+               case 6: new EfeitosSecundarios();
                case 7: new BlueScreenOfDeath();
                case 8: new CicloInfinito();
                case 9: new SegmentationFault();

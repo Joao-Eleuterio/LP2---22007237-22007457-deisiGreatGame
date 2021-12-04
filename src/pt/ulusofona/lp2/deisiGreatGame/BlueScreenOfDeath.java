@@ -3,7 +3,7 @@ package pt.ulusofona.lp2.deisiGreatGame;
 public class BlueScreenOfDeath extends Trap{
 
     public BlueScreenOfDeath() {
-        this.titulo="Blue screen of Death";
+        this.titulo="Blue Screen of Death";
         this.id=7;
     }
 

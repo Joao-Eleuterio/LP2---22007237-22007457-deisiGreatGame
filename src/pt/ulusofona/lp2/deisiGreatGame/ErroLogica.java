@@ -4,7 +4,7 @@ public class ErroLogica extends Trap{
 
     public ErroLogica() {
         this.id=1;
-        this.titulo="Erro lógica";
+        this.titulo="Erro de lógica";
     }
 
     @Override
