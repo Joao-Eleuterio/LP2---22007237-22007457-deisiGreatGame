@@ -1,8 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class TestesUnitários extends Trap{
+public class TestesUnitarios extends Trap{
 
-    public TestesUnitários() {
+    public TestesUnitarios() {
         this.titulo="Testes unitários";
         this.id=2;
     }
@@ -11,7 +11,7 @@ public class TestesUnitários extends Trap{
         return this.titulo;
     }
     public String getImage() {
-        return "junit.png";
+        return "junit2.png";
     }
     public String getConsequencia() {
         return "anula qualquer coisa";
