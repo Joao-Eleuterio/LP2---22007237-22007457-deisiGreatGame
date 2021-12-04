@@ -1,14 +1,16 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class CicloInfinito extends Abismo{
+public class CicloInfinito extends Trap{
 
-    public CicloInfinito(int id) {
-        super(id);
+
+    public CicloInfinito() {
+        this.titulo="Ciclo infinito";
+        this.id=8;
     }
 
     @Override
     public String getTitulo() {
-        return "Ciclo infinito";
+        return this.titulo;
     }
     @Override
     public String getImage() {

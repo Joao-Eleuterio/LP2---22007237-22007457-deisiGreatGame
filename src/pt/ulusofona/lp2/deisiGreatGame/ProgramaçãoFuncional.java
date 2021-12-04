@@ -1,15 +1,15 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class ProgramaçãoFuncional extends Ferramenta{
-    int id=1;
+public class ProgramaçãoFuncional extends Trap{
 
-    public ProgramaçãoFuncional(int id) {
-        super(id);
+    public ProgramaçãoFuncional() {
+        this.titulo="Programação Funcional";
+        this.id=1;
     }
 
     @Override
     public String getTitulo() {
-        return "Programação Funcional";
+        return this.titulo;
     }
 
     public String getImage(){

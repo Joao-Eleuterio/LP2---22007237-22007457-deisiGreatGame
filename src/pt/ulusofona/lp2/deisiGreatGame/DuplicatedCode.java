@@ -1,20 +1,19 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class DuplicatedCode extends Abismo{
-    public DuplicatedCode(int id) {
-        super(id);
+public class DuplicatedCode extends Trap{
+    public DuplicatedCode() {
+        this.titulo="Duplicated Code";
+        this.id=5;
     }
-
 
     @Override
     public String getTitulo() {
-        return "Duplicated Code";
+        return this.titulo;
     }
     @Override
     public String getImage() {
         return "duplicate_code2.png";
     }
-
     @Override
     public String getConsequencia() {
         return "Qualquer coisa";

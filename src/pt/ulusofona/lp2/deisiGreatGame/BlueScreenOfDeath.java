@@ -1,14 +1,15 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class BlueScreenOfDeath extends Abismo{
+public class BlueScreenOfDeath extends Trap{
 
-    public BlueScreenOfDeath(int id) {
-        super(id);
+    public BlueScreenOfDeath() {
+        this.titulo="Blue screen of Death";
+        this.id=7;
     }
 
     @Override
     public String getTitulo() {
-        return "Blue screen of Death";
+        return this.titulo;
     }
 
     @Override

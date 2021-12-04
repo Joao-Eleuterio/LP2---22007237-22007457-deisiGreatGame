@@ -1,21 +1,21 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class AjudaProfessor extends Ferramenta{
-    public AjudaProfessor(int id) {
-        super(id);
+public class AjudaProfessor extends Trap{
+
+    public AjudaProfessor() {
+        this.titulo="Ajuda do Professor";
+        this.id=5;
     }
 
-    @Override
     public String getTitulo() {
-        return "Ajuda do Professor";
+        return this.titulo;
     }
 
-    @Override
     public String getImage() {
         return "ajudaProf2.png";
     }
 
-    @Override
+
     public String getConsequencia() {
         return "Qualquer coisa";
     }

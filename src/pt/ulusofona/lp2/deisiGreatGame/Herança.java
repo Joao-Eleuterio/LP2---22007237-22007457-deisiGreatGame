@@ -1,16 +1,16 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class Herança extends Ferramenta{
-    int id=0;
+public class Herança extends Trap{
 
-    public Herança(int id) {
-        super(id);
+    public Herança() {
+
+        this.id=0;
+        this.titulo="Herança";
     }
-    @Override
+
     public String getTitulo() {
-        return "Herança";
+        return this.titulo;
     }
-
     public String getImage(){
         return "herança.png";
     }

@@ -1,20 +1,18 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class TestesUnitários extends Ferramenta{
-    public TestesUnitários(int id) {
-        super(id);
+public class TestesUnitários extends Trap{
+
+    public TestesUnitários() {
+        this.titulo="Testes unitários";
+        this.id=2;
     }
 
-    @Override
     public String getTitulo() {
-        return "Testes unitários";
+        return this.titulo;
     }
-    @Override
     public String getImage() {
         return "junit.png";
     }
-
-    @Override
     public String getConsequencia() {
         return "anula qualquer coisa";
     }

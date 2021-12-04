@@ -1,14 +1,15 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class FileNotFoundException extends Abismo{
+public class FileNotFoundException extends Trap{
 
-    public FileNotFoundException(int id) {
-        super(id);
+    public FileNotFoundException() {
+        this.id=3;
+        this.titulo="File Not Found Exception";
     }
 
     @Override
     public String getTitulo() {
-        return "File Not Found Exception";
+        return this.titulo;
     }
     @Override
     public String getImage() {

@@ -1,13 +1,15 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class Exception extends Abismo{
-    public Exception(int id) {
-        super(id);
+public class Exception extends Trap{
+
+    public Exception() {
+        this.id=2;
+        this.titulo="Exception";
     }
 
     @Override
     public String getTitulo() {
-        return "Exception";
+        return this.titulo;
     }
     @Override
     public String getImage() {

@@ -1,14 +1,15 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class SegmentationFault extends Abismo{
+public class SegmentationFault extends Trap{
 
-    public SegmentationFault(int id) {
-        super(id);
+    public SegmentationFault() {
+        this.titulo="Segmentation Fault";
+        this.id=9;
     }
 
     @Override
     public String getTitulo() {
-        return "Segmentation Fault";
+        return this.titulo;
     }
     @Override
     public String getImage() {

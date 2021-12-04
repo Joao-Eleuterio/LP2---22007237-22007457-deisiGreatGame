@@ -1,13 +1,15 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class ErroLógica extends Abismo{
-    public ErroLógica(int id) {
-        super(id);
+public class ErroLógica extends Trap{
+
+    public ErroLógica() {
+        this.id=1;
+        this.titulo="Erro lógica";
     }
 
     @Override
     public String getTitulo() {
-        return "Erro lógica";
+        return this.titulo;
     }
 
     @Override

@@ -1,13 +1,15 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class Crash extends Abismo{
-    public Crash(int id) {
-        super(id);
+public class Crash extends Trap{
+
+    public Crash() {
+        this.titulo="Crash";
+        this.id=4;
     }
 
     @Override
     public String getTitulo() {
-        return "Crash";
+        return this.titulo;
     }
     @Override
     public String getImage() {

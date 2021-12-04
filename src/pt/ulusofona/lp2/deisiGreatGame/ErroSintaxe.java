@@ -1,13 +1,15 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class ErroSintaxe extends Abismo{
-    public ErroSintaxe(int id) {
-        super(id);
+public class ErroSintaxe extends Trap{
+
+    public ErroSintaxe() {
+        this.id=0;
+        this.titulo="Erro de sintaxe";
     }
 
     @Override
     public String getTitulo() {
-        return "Erro de sintaxe";
+        return this.titulo;
     }
 
     @Override

@@ -1,20 +1,17 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class TratamentoExcepções extends Ferramenta{
-    public TratamentoExcepções(int id) {
-        super(id);
+public class TratamentoExcepções extends Trap{
+    public TratamentoExcepções() {
+        this.titulo="Tratamento de Excepções";
+        this.id=3;
     }
 
-    @Override
     public String getTitulo() {
-        return "Tratamento de Excepções";
+        return this.titulo;
     }
-    @Override
     public String getImage() {
         return "catch.png";
     }
-
-    @Override
     public String getConsequencia() {
         return "qualquer coisa";
     }

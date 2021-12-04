@@ -45,6 +45,7 @@ public class GameManager {
         //se tiver os players certos
         return players.size() > 1 && players.size() < 5;
     }
+
     public boolean temCor(String cor, ArrayList<Programmer> programadores) {
         switch (cor) {
             case "Purple", "Green", "Brown", "Blue" -> {
@@ -60,6 +61,7 @@ public class GameManager {
             }
         }
     }
+
     public boolean temNovoId(String id, ArrayList<Programmer> programadores) {
         for (pt.ulusofona.lp2.deisiGreatGame.Programmer programmer : programadores) {
             if (Integer.parseInt(id) == programmer.id) {
@@ -68,10 +70,12 @@ public class GameManager {
         }
         return true;
     }
+
     public ArrayList<String> linguagens(String linguagens) {
         String[] linguagem = linguagens.split(";");
         return new ArrayList<>(List.of(linguagem));
     }
+
     //cria e faz tratamento de dados das traps
     public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) {
 
@@ -86,11 +90,50 @@ public class GameManager {
             if (!((abyssesAndTool[0].equals("0") || abyssesAndTool[0].equals("1")) && abismo && dentroTab)) {
                 return false;
             } else {
-                    abismos.put(Integer.valueOf(abyssesAndTool[2]), new Trap(Integer.parseInt(abyssesAndTool[1])));//ver aula ou perguntar ao stor
+                //Trap  addTrap (idTrap, id)   = (abyssesAndTool[0].equals("0"),Integer.parseInt(abyssesAndTool[1]))
+                escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]));
+
+              /* if((abyssesAndTool[0].equals("0"))) {
+                    abismos.put(Integer.valueOf(abyssesAndTool[2]), new Abismo(Integer.parseInt(abyssesAndTool[1])));
+                }else{
+                   abismos.put(Integer.valueOf(abyssesAndTool[2]), new Ferramenta(Integer.parseInt(abyssesAndTool[1])));
+               }*/
             }
         }
         return inicialboard;
     }
+
+    public void escolheTrap(int idTrap, int id, int pos) {
+        Trap trap = null;
+        switch (idTrap) {
+            case 0:
+                switch (id) {
+                    case 0 -> trap = new ErroSintaxe();
+                    case 1 -> trap = new ErroLógica();
+                    case 2 -> trap = new Exception();
+                    case 3 -> trap = new FileNotFoundException();
+                    case 4 -> trap = new Crash();
+                    case 5 -> trap = new DuplicatedCode();
+                    case 6 -> trap = new EfeitosSecundários();
+                    case 7 -> trap = new BlueScreenOfDeath();
+                    case 8 -> trap = new CicloInfinito();
+                    case 9 -> trap = new SegmentationFault();
+                }
+                ;
+            case 1:
+                switch (id) {
+                    case 0 -> trap = new Herança();
+                    case 1 -> trap = new ProgramaçãoFuncional();
+                    case 2 -> trap = new TestesUnitários();
+                    case 3 -> trap = new TratamentoExcepções();
+                    case 4 -> trap = new IDE();
+                    case 5 -> trap = new AjudaProfessor();
+                }
+
+        }
+        abismos.put(pos, trap);
+    }
+
 
     public String getImagePng(int position) {
         //position seja invalido retorna null
@@ -122,6 +165,7 @@ public class GameManager {
         }
         return a;
     }
+
     public List<Programmer> getProgrammers(int position) {
         ArrayList<Programmer> programmers = new ArrayList<>();
         boolean ocupado = false;
@@ -161,7 +205,7 @@ public class GameManager {
     }
 
     public boolean moveCurrentPlayer(int nrSpaces) {
-        if (nrSpaces < 1 || nrSpaces > 6  || players.get(turno).getCicloIfinito()) {
+        if (nrSpaces < 1 || nrSpaces > 6 || players.get(turno).getCicloIfinito()) {
             return false;
         }
         players.get(turno).addCasa(players.get(turno).getPosicao());
@@ -195,7 +239,7 @@ public class GameManager {
                     }
                 }
                 players.get(turno).cicloInfinito(true);
-                players.get(turno).addAbismo((Abismo) abismos.get(players.get(turno).getPosicao()));
+                players.get(turno).addAbismo(abismos.get(players.get(turno).getPosicao()));
             } else if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Segmentation Fault")) {
                 int posicaoAbismo = players.get(turno).getPosicao();
                 for (int i = 0, j = 0; i < players.size(); i++) {

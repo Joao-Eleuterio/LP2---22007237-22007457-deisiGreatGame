@@ -1,13 +1,14 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class EfeitosSecundários extends Abismo{
-    public EfeitosSecundários(int id) {
-        super(id);
+public class EfeitosSecundários extends Trap{
+    public EfeitosSecundários() {
+        this.titulo="Efeitos Secundários";
+        this.id=6;
     }
 
     @Override
     public String getTitulo() {
-        return "Efeitos Secundários";
+        return this.titulo;
     }
 
     @Override
