@@ -130,7 +130,6 @@ public class GameManager {
         abismos.put(pos, trap);
     }
 
-
     public String getImagePng(int position) {
         //position seja invalido retorna null
         if (position > tamanhoTab || position <= 0) {
@@ -210,6 +209,7 @@ public class GameManager {
                 try {
                     players.get(turno).andar(nrSpaces);
                 } catch (java.lang.Exception e) {
+                    this.nrSpaces = nrSpaces;
                     e.printStackTrace();
                 }
             } else {
@@ -224,9 +224,7 @@ public class GameManager {
 
         if (players.get(turno).getDefeat()) {
             nextTurn();
-            return;
-        }
-        if (abismos.containsKey(players.get(turno).getPosicao()) && !players.get(turno).consequencias(abismos.get(players.get(turno).getPosicao()), nrSpaces)) {
+        }else if (abismos.containsKey(players.get(turno).getPosicao()) && !players.get(turno).consequencias(abismos.get(players.get(turno).getPosicao()), nrSpaces)) {
             if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Ciclo infinito")) {
                 for (int i = 0; i < players.size(); i++) {
                     if (players.get(i).getPosicao() == players.get(turno).getPosicao() && players.get(i) != players.get(turno)) {
