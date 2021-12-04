@@ -136,7 +136,7 @@ public class Programmer {
                 return true;
             }
             case "Erro de lógica": {
-                if (!(removeFerramenta(new ProgramacaoFuncional()) || removeFerramenta(new AjudaProfessor()))) {
+                if (!(removeFerramenta(new JUnit()) || removeFerramenta(new AjudaProfessor()))) {
                     try {
                         andar(-(int)(nrSpaces / 2));
                     }catch (java.lang.Exception c){
@@ -225,7 +225,7 @@ public class Programmer {
                 }
                 return true;
             }
-            case "Ajuda Do Professor": {
+            case "Ajuda do Professor": {
                 if (!temFerramenta(new AjudaProfessor())) {
                     ferramentas.add(new AjudaProfessor());
                 }

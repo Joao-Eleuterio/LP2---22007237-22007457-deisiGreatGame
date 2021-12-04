@@ -89,7 +89,7 @@ public class GameManager {
             dentroTab = Integer.parseInt(abyssesAndTool[2]) > 0 && Integer.parseInt(abyssesAndTool[2]) <= tamanhoTab;
             if (!((abyssesAndTool[0].equals("0") || abyssesAndTool[0].equals("1")) && abismo && dentroTab)) {
                 return false;
-            } else { 
+            } else {
                 //Trap  addTrap (idTrap, id)   = (abyssesAndTool[0].equals("0"),Integer.parseInt(abyssesAndTool[1]))
                 escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]));
             }
@@ -147,12 +147,14 @@ public class GameManager {
     }
 
     public List<Programmer> getProgrammers(boolean includeDefeated) {
-        ArrayList<pt.ulusofona.lp2.deisiGreatGame.Programmer> a = new ArrayList<>();
+        ArrayList<Programmer> a = new ArrayList<>();
         for (int i = 0; i < players.size(); i++) {
-            if (players.get(i).getDefeat() && includeDefeated) {
+            //includeDefeated = true acumula | includeDefeated= false nao adiciona
+            if (players.get(i).getDefeat() && includeDefeated) {// os Fora de Jogo
                 a.add(players.get(i));
             }
-            if (!players.get(i).getDefeat()) {
+
+            if (!players.get(i).getDefeat()) {// os Em Jogo
                 a.add(players.get(i));
             }
 
