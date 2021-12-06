@@ -69,6 +69,7 @@ public class Programmer {
     }
 
     void andar(int nrSpaces) throws java.lang.Exception {
+        addCasa(getPosicao());
         if (getPosicao()+nrSpaces <= 0) {
             throw new java.lang.Exception();
         }else{

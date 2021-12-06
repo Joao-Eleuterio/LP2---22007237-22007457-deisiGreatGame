@@ -203,7 +203,7 @@ public class GameManager {
         if (nrSpaces < 1 || nrSpaces > 6 || players.get(turno).getCicloIfinito()) {
             return false;
         }
-        players.get(turno).addCasa(players.get(turno).getPosicao());
+
         if (players.get(turno).getAbismo() == null) {
             if ((players.get(turno).getPosicao() + nrSpaces) <= tamanhoTab) {
                 try {
