@@ -154,7 +154,7 @@ public class Programmer {
             case "Erro de lógica": {
                 if (!(removeFerramenta(new JUnit()) || removeFerramenta(new AjudaProfessor()))) {
                     try {
-                        andar(-(int) (nrSpaces / 2));
+                        andar(-(nrSpaces / 2));
                     } catch (java.lang.Exception c) {
                         c.printStackTrace();
                     }

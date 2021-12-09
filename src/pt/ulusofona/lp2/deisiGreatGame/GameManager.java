@@ -24,12 +24,15 @@ public class GameManager {
         turno = 0;
         vencedor = null;
         abismos.clear();
+
         if (playerInfo == null) {
             return false;
         }
         ArrayList<Programmer> a = new ArrayList<>();
         if (worldSize >= playerInfo.length * 2) {
-            this.tamanhoTab = worldSize;
+            //this.tamanhoTab = worldSize;
+            this.tamanhoTab = 10;
+
         }
         for (String[] strings : playerInfo) {
             if (strings[1] == null || strings[1].equals("") || !temCor(strings[3], a) || !temNovoId(strings[0], a) || !((playerInfo.length * 2) <= worldSize)) {
@@ -92,8 +95,6 @@ public class GameManager {
             } else {
                 //Trap  addTrap (idTrap, id)   = (abyssesAndTool[0].equals("0"),Integer.parseInt(abyssesAndTool[1]))
                 escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]));
-
-
             }
         }
         return inicialboard;
@@ -213,7 +214,7 @@ public class GameManager {
                     e.printStackTrace();
                 }
             } else {
-                players.get(turno).setPosicao(tamanhoTab + (tamanhoTab - players.get(0).getPosicao() - nrSpaces));
+                players.get(turno).setPosicao(tamanhoTab + (tamanhoTab - players.get(turno).getPosicao() - nrSpaces));
             }
         }
         this.nrSpaces = nrSpaces;
