@@ -1,4 +1,4 @@
-/*package pt.ulusofona.lp2.deisiGreatGame;
+package pt.ulusofona.lp2.deisiGreatGame;
 
 import org.junit.Test;
 
@@ -165,6 +165,7 @@ public class TestCreateInitialBoard {
         assertFalse("Não podem ter outra cor", manager.createInitialBoard(jogadores, 30));
     }
 
+/*
     //getProgrammers
     @Test
     public void test12CreateInitialBoard() {
@@ -182,6 +183,7 @@ public class TestCreateInitialBoard {
         manager.createInitialBoard(jogadores, 30);
         assertEquals("Tem de ordenar por id", "2 | Ines | 1 | Python | Em Jogo", manager.getProgrammers(1).get(0).toString());
     }
+*/
 
     //getProgrammers Position
     @Test
@@ -303,4 +305,4 @@ public class TestCreateInitialBoard {
 
 
 
-}*/
+}
