@@ -30,9 +30,7 @@ public class GameManager {
         }
         ArrayList<Programmer> a = new ArrayList<>();
         if (worldSize >= playerInfo.length * 2) {
-            //this.tamanhoTab = worldSize;
-            this.tamanhoTab = 10;
-
+            this.tamanhoTab = worldSize;
         }
         for (String[] strings : playerInfo) {
             if (strings[1] == null || strings[1].equals("") || !temCor(strings[3], a) || !temNovoId(strings[0], a) || !((playerInfo.length * 2) <= worldSize)) {
