@@ -1,6 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class IDE extends Trap{
+public class IDE extends Ferramenta{
     public IDE() {
         this.titulo="IDE";
         this.id=4;

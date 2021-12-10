@@ -1,9 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class Heranca extends Trap{
+public class Heranca extends Ferramenta{
 
     public Heranca() {
-
         this.id=0;
         this.titulo="Herança";
     }

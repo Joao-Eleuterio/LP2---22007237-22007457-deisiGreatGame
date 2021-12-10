@@ -1,6 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class AjudaProfessor extends Trap{
+public class AjudaProfessor extends Ferramenta{
 
     public AjudaProfessor() {
         this.titulo="Ajuda do Professor";

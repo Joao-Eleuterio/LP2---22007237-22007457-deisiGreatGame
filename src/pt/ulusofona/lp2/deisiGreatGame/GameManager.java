@@ -202,8 +202,14 @@ public class GameManager {
         if (nrSpaces < 1 || nrSpaces > 6 || players.get(turno).getCicloIfinito()) {
             return false;
         }
-
-        if (players.get(turno).getAbismo() == null) {
+            if ((players.get(turno).getPosicao() + nrSpaces) <= tamanhoTab) {
+                    players.get(turno).andar(nrSpaces);
+            } else {
+                players.get(turno).setPosicao(tamanhoTab + (tamanhoTab - players.get(0).getPosicao() - nrSpaces));
+            }
+            this.nrSpaces=nrSpaces;
+        return true;
+        /*if (players.get(turno).getAbismo() == null) {
             if ((players.get(turno).getPosicao() + nrSpaces) <= tamanhoTab) {
                 try {
                     players.get(turno).andar(nrSpaces);
@@ -212,16 +218,14 @@ public class GameManager {
                     e.printStackTrace();
                 }
             } else {
-                players.get(turno).setPosicao(tamanhoTab + (tamanhoTab - players.get(turno).getPosicao() - nrSpaces));
+                players.get(turno).setPosicao(tamanhoTab + (tamanhoTab - players.get(0).getPosicao() - nrSpaces));
             }
-        }
-        this.nrSpaces = nrSpaces;
-        return true;
+        }*/
     }
 
     public void mover(int nrSpaces, int turno) {
-
-        if (players.get(turno).getDefeat()) {
+       // players.get(turno).consequencias(abismos.get(players.get(turno).getPosicao()), nrSpaces);
+       /* if (players.get(turno).getDefeat()) {
             nextTurn();
         }else if (abismos.containsKey(players.get(turno).getPosicao()) && !players.get(turno).consequencias(abismos.get(players.get(turno).getPosicao()), nrSpaces)) {
             if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Ciclo infinito")) {
@@ -252,7 +256,7 @@ public class GameManager {
                     }
 
             }
-        }
+        }*/
     }
 
     public void nextTurn() {
@@ -291,7 +295,7 @@ public class GameManager {
 
     public List<String> getGameResults() {
         ArrayList<String> strings = new ArrayList<>();
-        if(vencedor!=null) {
+        if (vencedor != null) {
 
             strings.add("O GRANDE JOGO DO DEISI");
             strings.add("");
@@ -349,7 +353,7 @@ public class GameManager {
         for (int i = 0; i < players.size(); i++) {
             if (!players.get(i).getDefeat()) {
                 txt.append(players.get(i).getName()).append(" : ");
-                if (players.get(i).ferramentas==null || players.get(i).ferramentas.size() == 0) {
+                if (players.get(i).ferramentas == null || players.get(i).ferramentas.size() == 0) {
                     txt.append("No tools");
                 }
                 for (int j = 0; j < players.get(i).ferramentas.size(); j++) {
@@ -378,13 +382,13 @@ public class GameManager {
     }
 
     public String reactToAbyssOrTool() {
-
         if (abismos.containsKey(players.get(turno).getPosicao())) {
-            String txt = "Caiu " + abismos.get(players.get(turno).getPosicao()).getTitulo() + "! " + abismos.get(players.get(turno).getPosicao()).getConsequencia();
-            mover(nrSpaces, turno);
+            Trap trap= abismos.get(players.get(turno).getPosicao());
+            String txt = "Caiu " + trap.titulo + "! " + trap.getConsequencia();
+            players.get(turno).addAbismo(abismos.get(players.get(turno).getPosicao()));
+            trap.consequencia(players,nrSpaces,turno);
             nextTurn();
             return txt;
-
         }
         nextTurn();
         return null;

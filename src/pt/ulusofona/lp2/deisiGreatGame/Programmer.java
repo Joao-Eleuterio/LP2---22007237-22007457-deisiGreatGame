@@ -13,7 +13,6 @@ public class Programmer {
     Trap abismo;
     ArrayList<Trap> ferramentas = new ArrayList<>();
     ArrayList<Integer> casas = new ArrayList<>();
-    boolean cicloIfinito = false;
 
     public Programmer(String nome, ArrayList<String> linguagens, int id, ProgrammerColor cor) {
         this.nome = nome;
@@ -68,12 +67,10 @@ public class Programmer {
         this.posicao = posicao;
     }
 
-    void andar(int nrSpaces) throws java.lang.Exception {
+    void andar(int nrSpaces) {
         addCasa(getPosicao());
-        if (getPosicao()+nrSpaces <= 0) {
-            throw new java.lang.Exception();
-        }else{
-            this.posicao+=nrSpaces;
+        if (getPosicao() + nrSpaces > 0) {
+            this.posicao += nrSpaces;
         }
     }
 
@@ -108,12 +105,8 @@ public class Programmer {
         return this.id + " | " + this.nome + " | " + this.posicao + " | " + txtFerramentas + " | " + txtLinguagens + " | " + txtEstado;
     }
 
-    public void cicloInfinito(boolean estaCiclo) {
-        this.cicloIfinito = estaCiclo;
-    }
-
     public boolean getCicloIfinito() {
-        return cicloIfinito;
+        return abismo!=null && abismo.titulo.equals("Ciclo infinito");
     }
 
     public void addFerramenta(Trap ferramenta) {
@@ -139,8 +132,12 @@ public class Programmer {
         return false;
     }
 
-    public boolean consequencias(Trap trap, int nrSpaces) {
-        switch (trap.getTitulo()) {
+    ArrayList<Integer> getCasas() {
+        return casas;
+    }
+
+    //public void consequencias(Trap trap, int nrSpaces) {
+    /* switch (trap.getTitulo()) {
             case "Erro de sintaxe": {
                 if (!(removeFerramenta(new IDE())  ||removeFerramenta(new AjudaProfessor()))) {
                     try {
@@ -254,7 +251,7 @@ public class Programmer {
             default:
                 return false;
 
-        }
-    }
+        }*/
+    //}
 
 }

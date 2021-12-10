@@ -1,10 +1,31 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class ErroSintaxe extends Trap{
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class ErroSintaxe extends Abismo {
 
     public ErroSintaxe() {
-        this.id=0;
-        this.titulo="Erro de sintaxe";
+        this.id = 0;
+        this.titulo = "Erro de sintaxe";
+    }
+
+
+
+    public boolean consequencia(Programmer player, int nrSpaces) {
+            if(!(player.removeFerramenta(new IDE()) || player.removeFerramenta(new AjudaProfessor()))) {
+                player.andar(- 1);
+                player.removeAbismo();
+                return true;
+            }
+        return false;
+    }
+
+
+    @Override
+    public boolean consequencia(HashMap<Integer, Programmer> player, int nrSpaces, int turno) {
+        return consequencia(player.get(turno),nrSpaces);
+
     }
 
     @Override
@@ -19,6 +40,6 @@ public class ErroSintaxe extends Trap{
 
     @Override
     public String getConsequencia() {
-        return "Qualquer coisa";
+        return "Recua 1 casa";
     }
 }

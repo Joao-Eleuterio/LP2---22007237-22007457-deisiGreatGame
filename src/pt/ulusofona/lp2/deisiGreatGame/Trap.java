@@ -1,5 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public abstract class Trap {
     int id;
     String titulo;
@@ -68,8 +71,8 @@ public abstract class Trap {
                case 5: new DuplicatedCode();
                case 6: new EfeitosSecundarios();
                case 7: new BlueScreenOfDeath();
-               case 8: new CicloInfinito();
-               case 9: new SegmentationFault();
+               case 8: new CicloInfinito();//TODO
+               case 9: new SegmentationFault();//TODO
            }break;
            case 1:  switch (id) {
                case 0 -> new Heranca();
@@ -82,6 +85,7 @@ public abstract class Trap {
        }
     }
 
+    public abstract boolean consequencia(HashMap<Integer, Programmer> players, int nrSpaces, int turno);
     public abstract String getTitulo();
     public abstract String getImage();
     public abstract String getConsequencia();

@@ -1,24 +1,38 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class ErroLogica extends Trap{
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class ErroLogica extends Abismo {
 
     public ErroLogica() {
-        this.id=1;
-        this.titulo="Erro de lógica";
+        this.id = 1;
+        this.titulo = "Erro de lógica";
+    }
+
+
+    @Override
+    public boolean consequencia(Programmer player, int nrSpaces) {
+
+        if (!(player.removeFerramenta(new JUnit()) || player.removeFerramenta(new AjudaProfessor()))) {
+            player.andar(- (nrSpaces/2));
+            player.removeAbismo();
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public String getTitulo() {
-        return this.titulo;
+    public boolean consequencia(HashMap<Integer, Programmer> player, int nrSpaces, int turno) {
+        return consequencia(player.get(turno),nrSpaces);
     }
 
     @Override
-    public String getImage() {
-        return "logic.png";
-    }
+    public String getTitulo() {return this.titulo;}
 
     @Override
-    public String getConsequencia() {
-        return "Qualquer coisa";
-    }
+    public String getImage() {return "logic.png";}
+
+    @Override
+    public String getConsequencia() {return "Recua metade do nr do dado";}
 }

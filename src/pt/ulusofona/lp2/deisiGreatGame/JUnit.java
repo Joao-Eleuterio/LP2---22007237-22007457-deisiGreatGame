@@ -1,6 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class JUnit extends Trap{
+public class JUnit extends Ferramenta{
 
     public JUnit() {
         this.titulo="Testes unitários";

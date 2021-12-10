@@ -1,10 +1,32 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class SegmentationFault extends Trap{
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class SegmentationFault extends Abismo{
 
     public SegmentationFault() {
         this.titulo="Segmentation Fault";
         this.id=9;
+    }
+
+    @Override
+    public boolean consequencia(HashMap<Integer, Programmer> players, int nrSpaces, int turno) {
+        int posicaoAbismo = players.get(turno).getPosicao();
+        for (int i = 0, j = 0; i < players.size(); i++) {
+            if (players.get(i).getPosicao() == posicaoAbismo ) {
+                j++;
+            }
+            if (j >= 2) {
+                for (int h = 0; h < players.size(); h++) {
+                    if (players.get(h).getPosicao() == posicaoAbismo) {
+                        players.get(h).posicao -= 3;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -18,6 +40,13 @@ public class SegmentationFault extends Trap{
 
     @Override
     public String getConsequencia() {
-        return "Qualquer coisa";
+        return "Quando tiverem 2+ jogadores na casa todos recuam 3 casas";
+    }
+
+
+    @Override
+    public boolean consequencia(Programmer player, int nrSpaces) {
+
+        return false;
     }
 }
