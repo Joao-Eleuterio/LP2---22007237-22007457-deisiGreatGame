@@ -14,6 +14,7 @@ public class Programmer {
     ArrayList<Trap> ferramentas = new ArrayList<>();
     ArrayList<Integer> casas = new ArrayList<>();
 
+    
     public Programmer(String nome, ArrayList<String> linguagens, int id, ProgrammerColor cor) {
         this.nome = nome;
         this.linguagens = linguagens;
