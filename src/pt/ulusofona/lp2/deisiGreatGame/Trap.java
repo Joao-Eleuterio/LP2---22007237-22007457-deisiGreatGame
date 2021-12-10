@@ -71,8 +71,8 @@ public abstract class Trap {
                case 5: new DuplicatedCode();
                case 6: new EfeitosSecundarios();
                case 7: new BlueScreenOfDeath();
-               case 8: new CicloInfinito();//TODO
-               case 9: new SegmentationFault();//TODO
+               case 8: new CicloInfinito();
+               case 9: new SegmentationFault();
            }break;
            case 1:  switch (id) {
                case 0 -> new Heranca();

@@ -205,59 +205,12 @@ public class GameManager {
             if ((players.get(turno).getPosicao() + nrSpaces) <= tamanhoTab) {
                     players.get(turno).andar(nrSpaces);
             } else {
-                players.get(turno).setPosicao(tamanhoTab + (tamanhoTab - players.get(0).getPosicao() - nrSpaces));
+                players.get(turno).setPosicao(tamanhoTab + (tamanhoTab - players.get(turno).getPosicao() - nrSpaces));
             }
             this.nrSpaces=nrSpaces;
         return true;
-        /*if (players.get(turno).getAbismo() == null) {
-            if ((players.get(turno).getPosicao() + nrSpaces) <= tamanhoTab) {
-                try {
-                    players.get(turno).andar(nrSpaces);
-                } catch (java.lang.Exception e) {
-                    this.nrSpaces = nrSpaces;
-                    e.printStackTrace();
-                }
-            } else {
-                players.get(turno).setPosicao(tamanhoTab + (tamanhoTab - players.get(0).getPosicao() - nrSpaces));
-            }
-        }*/
     }
 
-    public void mover(int nrSpaces, int turno) {
-       // players.get(turno).consequencias(abismos.get(players.get(turno).getPosicao()), nrSpaces);
-       /* if (players.get(turno).getDefeat()) {
-            nextTurn();
-        }else if (abismos.containsKey(players.get(turno).getPosicao()) && !players.get(turno).consequencias(abismos.get(players.get(turno).getPosicao()), nrSpaces)) {
-            if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Ciclo infinito")) {
-                for (int i = 0; i < players.size(); i++) {
-                    if (players.get(i).getPosicao() == players.get(turno).getPosicao() && players.get(i) != players.get(turno)) {
-                        players.get(i).abismo = null;
-                        players.get(i).cicloInfinito(false);
-                    }
-                }
-                players.get(turno).cicloInfinito(true);
-                players.get(turno).addAbismo(abismos.get(players.get(turno).getPosicao()));
-            }
-            else if (abismos.get(players.get(turno).getPosicao()).titulo.equals("Segmentation Fault")) {
-                int posicaoAbismo = players.get(turno).getPosicao();
-
-                    for (int i = 0, j = 0; i < players.size(); i++) {
-                        if (players.get(i).getPosicao() == posicaoAbismo ) {
-                            j++;
-                        }
-                        if (j >= 2) {
-                            for (int h = 0; h < players.size(); h++) {
-                                if (players.get(h).getPosicao() == posicaoAbismo) {
-                                    players.get(h).posicao -= 3;
-                                }
-                            }
-                            return;
-                        }
-                    }
-
-            }
-        }*/
-    }
     public void nextTurn() {
         nrTurnos++;
         if (turno == players.size() - 1) {
