@@ -258,7 +258,6 @@ public class GameManager {
             }
         }*/
     }
-
     public void nextTurn() {
         nrTurnos++;
         if (turno == players.size() - 1) {
