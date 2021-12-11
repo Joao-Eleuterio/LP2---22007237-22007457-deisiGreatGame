@@ -92,13 +92,7 @@ public class GameManager {
                 return false;
             } else {
                 //Trap  addTrap (idTrap, id)   = (abyssesAndTool[0].equals("0"),Integer.parseInt(abyssesAndTool[1]))
-                //escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]));
-                for(int i=6;i<tamanhoTab;i++){
-                    escolheTrap(0, 8, i);
-                }
-                for(int i=1;i<5;i++){
-                    escolheTrap(1, 1, i);
-                }
+                escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]));
 
             }
         }
