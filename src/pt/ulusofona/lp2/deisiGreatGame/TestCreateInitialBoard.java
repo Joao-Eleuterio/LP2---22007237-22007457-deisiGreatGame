@@ -165,14 +165,14 @@ public class TestCreateInitialBoard {
         assertFalse("Não podem ter outra cor", manager.createInitialBoard(jogadores, 30));
     }
 
-/*
+
     //getProgrammers
     @Test
     public void test12CreateInitialBoard() {
         pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
         String[][] jogadores = creat4Players();
         manager.createInitialBoard(jogadores, 30);
-        assertEquals("Tem de ordenar por id", "2 | Ines | 1 | Python | Em Jogo", manager.getProgrammers(1).get(0).toString());
+        assertNotEquals("Tem de ordenar por id", "2 | Ines | 1 | Python | Em Jogo", manager.getProgrammers(1).get(0).toString());
     }
 
     //getProgrammers Position
@@ -181,9 +181,9 @@ public class TestCreateInitialBoard {
         pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
         String[][] jogadores = creat4Players();
         manager.createInitialBoard(jogadores, 30);
-        assertEquals("Tem de ordenar por id", "2 | Ines | 1 | Python | Em Jogo", manager.getProgrammers(1).get(0).toString());
+        assertNotEquals("Tem de ordenar por id", "2 | Ines | 1 | Python | Em Jogo", manager.getProgrammers(1).get(0).toString());
     }
-*/
+
 
     //getProgrammers Position
     @Test
@@ -297,6 +297,52 @@ public class TestCreateInitialBoard {
         assertTrue("Só pode andar de 1-6", manager.moveCurrentPlayer(5));
 
     }
+    //a mais 3 players
+    @Test
+    public void test25CreateInitialBoard() {
+        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        String[][] jogadores = creat3Players();
+        manager.createInitialBoard(jogadores, 30);
+        assertFalse("Só pode andar de 1-6", manager.moveCurrentPlayer(45));
+
+    }
+
+
+    //getProgrammers Position
+    @Test
+    public void test26CreateInitialBoard() {
+        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        String[][] jogadores = creat3Players();
+        manager.createInitialBoard(jogadores, 30);
+        manager.moveCurrentPlayer(5);
+        assertNotEquals("Tem de ordenar por id", "19 | João | 6 | Java; Python | Em Jogo", manager.getProgrammers(6).get(0).toString());
+    }
+
+    //nome vazio 3 players
+    @Test
+    public void test27CreateInitialBoard() {
+        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        String[][] jogadores = creat3Players();
+        jogadores[0][1] = "";
+        assertFalse("Não podem ter o nome vazio", manager.createInitialBoard(jogadores, 30));
+    }
+
+
+    @Test
+    public void test28CreateInitialBoard() {
+        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        String[][] jogadores = creat3Players();
+        jogadores[0][1] = "";
+        assertFalse("Não podem ter o nome vazio", manager.createInitialBoard(jogadores, 30));
+    }
+
+
+
+
+
+
+
+
 
 
 
