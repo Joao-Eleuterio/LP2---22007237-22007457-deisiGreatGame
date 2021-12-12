@@ -32,28 +32,38 @@ public class TestCreateInitialBoard2 {
         return jogadores;
     }
 
-    public String [] [] createAbyssesAndTools (){
-        String[][] abysses = new String[0][16];
-        abysses[0] [0] = "ErroSintaxe";
-        abysses[0] [1] = "ErroLogica";
-        abysses[0] [2] = "Exception";
-        abysses[0] [3] = "FileNotFoundException";
-        abysses[0] [4] = "Crash";
-        abysses[0] [5] = "DuplicatedCode";
-        abysses[0] [6] = "EfeitosSecundarios";
-        abysses[0] [7] = "BlueScreenOfDeath";
-        abysses[0] [8] = "CicloInfinito";
-        abysses[0] [9] = "SegmentationFault";
-        abysses[0] [10] = "Heranca";
-        abysses[0] [11] = "ProgramacaoFuncional";
-        abysses[0] [12] = "JUnit";
-        abysses[0] [13] = "TratamentoExcepcoes";
-        abysses[0] [14] = "IDE";
-        abysses[0] [15] = "AjudaProfessor";
+    public String [] [] abyssesAndTools (){
+        String[][] abysses = new String[4][3];
+        abysses[0][0] = "1";
+        abysses[0][1] = "0";
+        abysses[0][2] = "2";
+
+        abysses[1][0] = "0";
+        abysses[1][1] = "5";
+        abysses[1][2] = "3";
+
+        abysses[2][0] = "1";
+        abysses[2][1] = "0";
+        abysses[2][2] = "4";
+
+        abysses[3][0] = "0";
+        abysses[3][1] = "5";
+        abysses[3][2] = "5";
 
 
       return abysses;
     }
+
+
+
+    //normal
+    @Test
+    public void test01CreateInitialBoard() {
+        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        assertTrue("Tem de conseguir criar", manager.createInitialBoard(creat4Players(), 10,abyssesAndTools()));
+
+    }
+
 
 
 }
