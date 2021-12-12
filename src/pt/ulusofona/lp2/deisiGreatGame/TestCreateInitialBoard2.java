@@ -32,28 +32,91 @@ public class TestCreateInitialBoard2 {
         return jogadores;
     }
 
-    public String [] [] createAbyssesAndTools (){
-        String[][] abysses = new String[0][16];
-        abysses[0] [0] = "ErroSintaxe";
-        abysses[0] [1] = "ErroLogica";
-        abysses[0] [2] = "Exception";
-        abysses[0] [3] = "FileNotFoundException";
-        abysses[0] [4] = "Crash";
-        abysses[0] [5] = "DuplicatedCode";
-        abysses[0] [6] = "EfeitosSecundarios";
-        abysses[0] [7] = "BlueScreenOfDeath";
-        abysses[0] [8] = "CicloInfinito";
-        abysses[0] [9] = "SegmentationFault";
-        abysses[0] [10] = "Heranca";
-        abysses[0] [11] = "ProgramacaoFuncional";
-        abysses[0] [12] = "JUnit";
-        abysses[0] [13] = "TratamentoExcepcoes";
-        abysses[0] [14] = "IDE";
-        abysses[0] [15] = "AjudaProfessor";
+    public String [] [] abyssesAndTools1 (){
+        String[][] abysses = new String[4][3];
+        abysses[0][0] = "1";
+        abysses[0][1] = "0";
+        abysses[0][2] = "2";
+
+        abysses[1][0] = "0";
+        abysses[1][1] = "5";
+        abysses[1][2] = "3";
+
+        abysses[2][0] = "1";
+        abysses[2][1] = "0";
+        abysses[2][2] = "4";
+
+        abysses[3][0] = "0";
+        abysses[3][1] = "5";
+        abysses[3][2] = "5";
 
 
       return abysses;
     }
+
+
+
+    //normal
+    @Test
+    public void test01CreateInitialBoard2() {
+        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        assertTrue("Tem de conseguir criar", manager.createInitialBoard(creat4Players(), 10,abyssesAndTools1()));
+
+    }
+
+
+
+    //boardSize demasiado pequeno
+    @Test
+    public void test02CreateInitialBoard2() {
+        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        assertFalse("O tabuleiro tem de ter, pelo menos, duas posições por cada jogador que esteja em jogo.", manager.createInitialBoard(creat4Players(), 6,abyssesAndTools1()));
+    }
+
+
+
+    //nome vazio
+    @Test
+    public void test03CreateInitialBoard2() {
+        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        String[][] jogadores = creat4Players();
+        jogadores[0][1] = "";
+        assertFalse("Não podem ter o nome vazio", manager.createInitialBoard(jogadores, 30,abyssesAndTools1()));
+    }
+
+    //getProgrammers
+    @Test
+    public void test04CreateInitialBoard2() {
+        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        String[][] jogadores = creat4Players();
+        manager.createInitialBoard(jogadores, 30,abyssesAndTools1());
+        assertNotEquals("Tem de ordenar por id", "2 | Ines | 1 | Python | Em Jogo", manager.getProgrammers(1).get(0).toString());
+    }
+
+
+
+
+
+    @Test
+    public void test05CreateInitialBoard2() {
+        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        String[][] jogadores = creat4Players();
+        manager.createInitialBoard(jogadores, 25,abyssesAndTools1());
+        assertTrue(manager.moveCurrentPlayer(1));
+        String esperada = "Caiu Herança! Anula os feitos de codigo duplicado";
+        assertEquals(esperada,manager.reactToAbyssOrTool());
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
