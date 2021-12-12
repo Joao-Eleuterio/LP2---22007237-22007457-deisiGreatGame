@@ -64,6 +64,35 @@ public class TestCreateInitialBoard2 {
 
     }
 
+    //herença
+    @Test
+    public void test02CreateInitialBoard() {
+
+        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        manager.createInitialBoard(creat4Players(),25,abyssesAndTools());
+        assertTrue(manager.moveCurrentPlayer(1));
+        String esperada1 = "Caiu Herança! Anula os feitos de codigo duplicado";
+        assertEquals(esperada1,manager.reactToAbyssOrTool());
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
