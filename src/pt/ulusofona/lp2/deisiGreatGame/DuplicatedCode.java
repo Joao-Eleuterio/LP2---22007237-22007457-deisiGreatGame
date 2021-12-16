@@ -1,6 +1,5 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DuplicatedCode extends Abismo {

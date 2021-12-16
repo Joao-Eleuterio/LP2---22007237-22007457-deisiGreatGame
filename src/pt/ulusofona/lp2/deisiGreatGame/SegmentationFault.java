@@ -1,6 +1,5 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SegmentationFault extends Abismo{
@@ -45,8 +44,5 @@ public class SegmentationFault extends Abismo{
 
 
     @Override
-    public boolean consequencia(Programmer player, int nrSpaces) {
-
-        return false;
-    }
+    public boolean consequencia(Programmer player, int nrSpaces) {return false;}
 }

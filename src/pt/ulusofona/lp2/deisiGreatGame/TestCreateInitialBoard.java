@@ -75,7 +75,7 @@ public class TestCreateInitialBoard {
     //normal
     @Test
     public void test01CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         assertTrue("Tem de conseguir criar", manager.createInitialBoard(creat4Players(), 10));
 
     }
@@ -83,14 +83,14 @@ public class TestCreateInitialBoard {
     //boardSize demasiado pequeno
     @Test
     public void test02CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         assertFalse("O tabuleiro tem de ter, pelo menos, duas posições por cada jogador que esteja em jogo.", manager.createInitialBoard(creat4Players(), 6));
     }
 
     //boardSize negativo
     @Test
     public void test03CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         String[][] jogadores = creat4Players();
 
         assertFalse("Não pode ter número negativo", manager.createInitialBoard(jogadores, -1));
@@ -100,28 +100,28 @@ public class TestCreateInitialBoard {
     //So 1 jogador
     @Test
     public void test04CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         assertFalse("Nao pode ter 1 jogador", manager.createInitialBoard(creat1Players(), 10));
     }
 
     //boardSize demasiado pequeno
     @Test
     public void test05CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         assertFalse("O tabuleiro tem de ter, pelo menos, duas posições por cada jogador que esteja em jogo.", manager.createInitialBoard(creat2Players(), 3));
     }
 
     //normal
     @Test
     public void test06CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         assertTrue("Tem que conseguir", manager.createInitialBoard(creat2Players(), 4));
     }
 
     //mesma cor
     @Test
     public void test07CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         String[][] jogadores = creat4Players();
         jogadores[0][3] = "Purple";
         jogadores[2][3] = "Purple";
@@ -131,7 +131,7 @@ public class TestCreateInitialBoard {
     //mesmo id
     @Test
     public void test08CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         String[][] jogadores = creat4Players();
         jogadores[0][0] = "44";
         jogadores[2][0] = "44";
@@ -141,7 +141,7 @@ public class TestCreateInitialBoard {
     //nome vazio
     @Test
     public void test09CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         String[][] jogadores = creat4Players();
         jogadores[0][1] = "";
         assertFalse("Não podem ter o nome vazio", manager.createInitialBoard(jogadores, 30));
@@ -150,7 +150,7 @@ public class TestCreateInitialBoard {
     //nome a null
     @Test
     public void test10CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         String[][] jogadores = creat4Players();
         jogadores[0][1] = null;
         assertFalse("Não podem ter o nome a null", manager.createInitialBoard(jogadores, 30));
@@ -159,7 +159,7 @@ public class TestCreateInitialBoard {
     //outra cor
     @Test
     public void test11CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         String[][] jogadores = creat4Players();
         jogadores[0][3] = "Black";
         assertFalse("Não podem ter outra cor", manager.createInitialBoard(jogadores, 30));
@@ -169,7 +169,7 @@ public class TestCreateInitialBoard {
     //getProgrammers
     @Test
     public void test12CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         String[][] jogadores = creat4Players();
         manager.createInitialBoard(jogadores, 30);
         assertNotEquals("Tem de ordenar por id", "2 | Ines | 1 | Python | Em Jogo", manager.getProgrammers(1).get(0).toString());
@@ -178,7 +178,7 @@ public class TestCreateInitialBoard {
     //getProgrammers Position
     @Test
     public void test13CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         String[][] jogadores = creat4Players();
         manager.createInitialBoard(jogadores, 30);
         assertNotEquals("Tem de ordenar por id", "2 | Ines | 1 | Python | Em Jogo", manager.getProgrammers(1).get(0).toString());
@@ -188,7 +188,7 @@ public class TestCreateInitialBoard {
     //getProgrammers Position
     @Test
     public void test14CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         String[][] jogadores = creat4Players();
         manager.createInitialBoard(jogadores, 30);
         manager.moveCurrentPlayer(5);
@@ -198,7 +198,7 @@ public class TestCreateInitialBoard {
     //ordenou
     @Test
     public void test15CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+       GameManager manager = new GameManager();
         String[][] jogadores = creat4Players();
         manager.createInitialBoard(jogadores, 30);
         manager.moveCurrentPlayer(5);
@@ -208,7 +208,7 @@ public class TestCreateInitialBoard {
     //ordenou
     @Test
     public void test16CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         String[][] jogadores = creat4Players();
         manager.createInitialBoard(jogadores, 30);
         assertEquals("Tem de ordenar por id", 2, manager.getCurrentPlayerID());
@@ -219,7 +219,7 @@ public class TestCreateInitialBoard {
     //nao ordenou
     @Test
     public void test17CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         String[][] jogadores = creat4Players();
         manager.createInitialBoard(jogadores, 30);
         assertNotEquals("Tem de ordenar por id", 19, manager.getCurrentPlayerID());
@@ -230,7 +230,7 @@ public class TestCreateInitialBoard {
     //andar a mais
     @Test
     public void test18CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         String[][] jogadores = creat4Players();
         manager.createInitialBoard(jogadores, 30);
         assertFalse("Só pode andar de 1-6", manager.moveCurrentPlayer(19));
@@ -240,7 +240,7 @@ public class TestCreateInitialBoard {
     //normal
     @Test
     public void test19CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         String[][] jogadores = creat4Players();
         manager.createInitialBoard(jogadores, 30);
         assertTrue("Só pode andar de 1-6", manager.moveCurrentPlayer(5));
@@ -250,7 +250,7 @@ public class TestCreateInitialBoard {
     //boardSize nulo
     @Test
     public void test20CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         String[][] jogadores = creat4Players();
 
         assertFalse("Não pode ter número nulo", manager.createInitialBoard(jogadores, 0));
@@ -261,7 +261,7 @@ public class TestCreateInitialBoard {
     //cor vazio
     @Test
     public void test21CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         String[][] jogadores = creat4Players();
         jogadores[0][3] = "";
         assertFalse("Não podem ter a cor vazio", manager.createInitialBoard(jogadores, 30));
@@ -270,7 +270,7 @@ public class TestCreateInitialBoard {
     //normal 2 players
     @Test
     public void test22CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         String[][] jogadores = creat2Players();
         manager.createInitialBoard(jogadores, 30);
         assertTrue("Só pode andar de 1-6", manager.moveCurrentPlayer(5));
@@ -281,7 +281,7 @@ public class TestCreateInitialBoard {
     //a mais 2 players
     @Test
     public void test23CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         String[][] jogadores = creat2Players();
         manager.createInitialBoard(jogadores, 30);
         assertFalse("Só pode andar de 1-6", manager.moveCurrentPlayer(75));
@@ -291,7 +291,7 @@ public class TestCreateInitialBoard {
     //normal 3 players
     @Test
     public void test24CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
+        GameManager manager = new GameManager();
         String[][] jogadores = creat3Players();
         manager.createInitialBoard(jogadores, 30);
         assertTrue("Só pode andar de 1-6", manager.moveCurrentPlayer(5));
@@ -344,11 +344,55 @@ public class TestCreateInitialBoard {
 
 
 
+    @Test
+    public void test25CreateInitialBoard() {
+        GameManager manager = new GameManager();
+        assertFalse("players null",manager.createInitialBoard(null, 30) );
 
+    }
+    @Test
+    public void test26CreateInitialBoard() {
+        GameManager manager = new GameManager();
+        String[][] jogadores = new String[2][4];
+        jogadores[0][0] = "19";
+        jogadores[0][1] = "João";
+        jogadores[0][2] = "Java;Python";
+        jogadores[0][3] = "Purple";
 
+        jogadores[1][0] = "10";
+        jogadores[1][1] = "Ana";
+        jogadores[1][2] = "C;Java";
+        jogadores[1][3] = "Red";
 
+        assertFalse("cor errada",manager.createInitialBoard(jogadores, 30) );
 
+        String[][] jogadores1 = new String[2][4];
+        jogadores[0][0] = "19";
+        jogadores[0][1] = "";
+        jogadores[0][2] = "Java;Python";
+        jogadores[0][3] = "Purple";
 
+        jogadores[1][0] = "10";
+        jogadores[1][1] = "Ana";
+        jogadores[1][2] = "C;Java";
+        jogadores[1][3] = "Brown";
 
+        assertFalse("nome errado",manager.createInitialBoard(jogadores1, 30) );
 
+        String[][] jogadores3 = new String[2][4];
+        jogadores[0][0] = "1";
+        jogadores[0][1] = "João";
+        jogadores[0][2] = "Java;Python";
+        jogadores[0][3] = "Purple";
+
+        jogadores[1][0] = "1";
+        jogadores[1][1] = "Ana";
+        jogadores[1][2] = "C;Java";
+        jogadores[1][3] = "Brown";
+
+        assertFalse("id duplicado",manager.createInitialBoard(jogadores3, 30) );
+
+        assertFalse("tamanho errado",manager.createInitialBoard(creat2Players(), 3) );
+
+    }
 }

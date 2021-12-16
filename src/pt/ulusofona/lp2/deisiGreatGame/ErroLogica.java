@@ -1,6 +1,5 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ErroLogica extends Abismo {
@@ -9,7 +8,6 @@ public class ErroLogica extends Abismo {
         this.id = 1;
         this.titulo = "Erro de lógica";
     }
-
 
     @Override
     public boolean consequencia(Programmer player, int nrSpaces) {

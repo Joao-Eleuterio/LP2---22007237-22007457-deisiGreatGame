@@ -1,6 +1,5 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ErroSintaxe extends Abismo {
@@ -9,9 +8,6 @@ public class ErroSintaxe extends Abismo {
         this.id = 0;
         this.titulo = "Erro de sintaxe";
     }
-
-
-
     public boolean consequencia(Programmer player, int nrSpaces) {
             if(!(player.removeFerramenta(new IDE()) || player.removeFerramenta(new AjudaProfessor()))) {
                 player.andar(- 1);
@@ -20,7 +16,6 @@ public class ErroSintaxe extends Abismo {
             }
         return false;
     }
-
 
     @Override
     public boolean consequencia(HashMap<Integer, Programmer> player, int nrSpaces, int turno) {
