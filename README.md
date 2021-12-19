@@ -6,5 +6,5 @@ Diagrama UML
 ![](diagrama.png?raw=true "Diagrama UML")
 
 Link para o Video:
-[Video do Jogo](https://youtu.be/pw-z0s4k35Y)
+[Video do Jogo](https://https://youtu.be/W0v2QDhCM_M)
 
