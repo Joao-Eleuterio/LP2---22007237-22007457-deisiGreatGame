@@ -2,6 +2,7 @@ package pt.ulusofona.lp2.deisiGreatGame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.*;
 import java.util.List;
 
@@ -18,7 +19,8 @@ public class GameManager {
     }
 
     //cria e faz o tratamento de dados dos players
-    public boolean createInitialBoard(String[][] playerInfo, int worldSize) {
+    public boolean createInitialBoard(String[][] playerInfo, int worldSize)/* throws
+            InvalidInitialBoardException*/ {
         players.clear();
         nrTurnos = 0;
         turno = 0;
@@ -78,7 +80,8 @@ public class GameManager {
     }
 
     //cria e faz tratamento de dados das traps
-    public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) {
+    public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools)/*throws
+            InvalidInitialBoardException*/ {
 
         boolean abismo, dentroTab, inicialboard = createInitialBoard(playerInfo, worldSize);
         for (String[] abyssesAndTool : abyssesAndTools) {
@@ -345,6 +348,18 @@ public class GameManager {
         nextTurn();
         return null;
     }
+
+
+    public boolean saveGame(File file) {
+        return true;
+    }
+
+    public boolean loadGame(File file){
+                return true;
+    }
+
+
+
 }
 
 
