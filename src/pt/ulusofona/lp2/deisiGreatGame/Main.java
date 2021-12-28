@@ -4,14 +4,38 @@ import java.io.File;
 
 public class Main {
     public static void main(String[] args) {
+        GameManager manager = new GameManager();
+
+        try {
+            manager.createInitialBoard(creat4Players(),50,abyssesAndTools());
+            File fp = new File("filename.txt");
+            manager.saveGame(fp);
+            manager.createInitialBoard(creat4PlayersExtra(),30,abyssesAndTools());
+            File fp1 = new File("filename.txt");
+            manager.loadGame(fp1);
+            manager.createInitialBoard(creat4Players(),30,abyssesAndTools());
+            manager.saveGame(fp1);
+            manager.moveCurrentPlayer(1);
+            manager.nextTurn();
+            manager.moveCurrentPlayer(2);manager.nextTurn();
+            manager.moveCurrentPlayer(3);manager.nextTurn();
+            manager.moveCurrentPlayer(5);manager.nextTurn();
+            manager.moveCurrentPlayer(4);manager.nextTurn();
+            manager.saveGame(fp1);
+        } catch (InvalidInitialBoardException e) {
+            e.printStackTrace();
+        }
+
+
+
 
     }
-   /* public static String[][] creat4PlayersExtra() {
+    public static String[][] creat4PlayersExtra() {
         String[][] jogadores = new String[4][4];
         jogadores[0][0] = "19";
         jogadores[0][1] = "kjjjjjj";
         jogadores[0][2] = "Java;Python";
-        jogadores[0][3] = "Purple";
+        jogadores[0][3] = "PuAAAA";
 
         jogadores[1][0] = "10";
         jogadores[1][1] = "aaaaaaaa";
@@ -74,5 +98,5 @@ public class Main {
 
 
         return abysses;
-    }*/
+    }
 }

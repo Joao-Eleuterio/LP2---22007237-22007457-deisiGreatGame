@@ -17,7 +17,7 @@ public enum ProgrammerColor {
             case "Blue" -> ProgrammerColor.BLUE;
             case "Green" -> ProgrammerColor.GREEN;
             case "Brown" -> ProgrammerColor.BROWN;
-            default -> ProgrammerColor.BROWN;
+            default -> null;
         };
     }
 

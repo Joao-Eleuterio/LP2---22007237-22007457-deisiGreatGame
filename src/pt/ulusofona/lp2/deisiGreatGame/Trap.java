@@ -13,7 +13,7 @@ public abstract class Trap {
         return getImage();
     }
     abstract public int getId();
-    abstract public int AbismoFerramenta();
+    abstract public int abismoFerramenta();
     public static Trap addTrap(int idTrap, int id) {
        switch (idTrap){
            case 0: switch (id){

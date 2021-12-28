@@ -27,10 +27,14 @@ public class Programmer {
     }
     public Programmer(String nome,String linguagens,String id,String cor,String pos,String defeat,String casas){
         this.nome=nome;
-        String[] linguagensProg = linguagens.split(",");
-        this.linguagens.addAll(List.of(linguagensProg));
+        if(!linguagens.equals("null")) {
+            String[] linguagensProg = linguagens.split(",");
+            this.linguagens.addAll(List.of(linguagensProg));
+        }
         this.id=Integer.parseInt(id);
-        this.cor=ProgrammerColor.valueOf(cor.toUpperCase());
+        if(ProgrammerColor.getColor(cor)!=null){
+            this.cor=ProgrammerColor.valueOf(cor.toUpperCase());
+        }
         this.posicao=Integer.parseInt(pos);
         this.defeat= defeat.equals("true");
         if(!casas.equals("null")){
@@ -39,7 +43,6 @@ public class Programmer {
         }
 
     }
-
     public Trap getAbismo() {
         return abismo;
     }
