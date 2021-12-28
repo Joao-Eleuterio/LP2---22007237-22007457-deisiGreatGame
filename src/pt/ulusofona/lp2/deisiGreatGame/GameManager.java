@@ -359,19 +359,10 @@ public class GameManager {
 
 
     public boolean saveGame(File file) {
-
         //worldSize
-
         //turno em que esta -/- turnos
-
         //abyssesAndTools
-
-        //playerInfo
-        //player    ->  nome / posicao / ferramentas / abismo
-        //player
-        //...
-
-
+        //playerInfo     //player    ->  nome / posicao / ferramentas / abismo
         try {
             if (file.createNewFile()) {
                 System.out.println("File created: " + file.getName());
@@ -380,15 +371,11 @@ public class GameManager {
             }
             FileWriter fileWriter = new FileWriter(file);
             PrintWriter printWriter = new PrintWriter(fileWriter);
-
             printWriter.println(tamanhoTab);
-            System.out.println(tamanhoTab);
             printWriter.println(turno+";"+nrTurnos);
-            System.out.println(turno+";"+nrTurnos);
             for(int i=0;i<tamanhoTab;i++){
                 if(abismos.get(i)!=null) {
-                    System.out.println(i + ";" + abismos.get(i).titulo);
-                    printWriter.println(i + ";" + abismos.get(i).titulo);
+                    printWriter.println(i + ";" + abismos.get(i).getId() +";"+abismos.get(i).AbismoFerramenta());
                 }
             }
             StringBuilder linguagens= new StringBuilder();
@@ -418,8 +405,6 @@ public class GameManager {
                     }
                 }
                 printWriter.println(players.get(i).getName()+";"+linguagens+";"+players.get(i).getId()+";"+players.get(i).getColor()+";"+players.get(i).getPosicao()+";"
-                +players.get(i).getDefeat()+";"+players.get(i).getAbismo()+ferramentas+";"+casas);
-                System.out.println(players.get(i).getName()+";"+linguagens+";"+players.get(i).getId()+";"+players.get(i).getColor()+";"+players.get(i).getPosicao()+";"
                 +players.get(i).getDefeat()+";"+players.get(i).getAbismo()+ferramentas+";"+casas);
             }
             printWriter.close();
@@ -451,8 +436,8 @@ public class GameManager {
                         nrTurnos = Integer.parseInt(linhas[1]);
                     }
                     default -> {
-                        if(linhas.length==2){
-                            Trap abismo= criaAbismo(linhas[1]);
+                        if(linhas.length==3){
+                            Trap abismo= Trap.addTrap(Integer.parseInt(linhas[2]), Integer.parseInt(linhas[1]));
                             abismos.put(Integer.parseInt(linhas[0]),abismo);
                         }else{
                             players.put(playerTurno,new Programmer(linhas[0],linhas[1],linhas[2],linhas[3],linhas[4],linhas[5],linhas[6]));
@@ -469,9 +454,7 @@ public class GameManager {
         }
         return true;
     }
-public Trap criaAbismo(String nome){
-        return new Heranca();
-}
+
 
 
 }

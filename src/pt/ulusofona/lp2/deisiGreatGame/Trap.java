@@ -5,13 +5,16 @@ import java.util.HashMap;
 public abstract class Trap {
     int id;
     String titulo;
+    int abismoFerramenta;
     public String getTrapTitulo(){
         return getTitulo();
     }
     public String getTrapImage(){
         return getImage();
     }
-    public void addTrap(int idTrap,int id) {
+    abstract public int getId();
+    abstract public int AbismoFerramenta();
+    public static Trap addTrap(int idTrap, int id) {
        switch (idTrap){
            case 0: switch (id){
                case 0: new ErroSintaxe();
@@ -34,6 +37,7 @@ public abstract class Trap {
                case 5 -> new AjudaProfessor();
            }break;
        }
+        return null;
     }
 
     public abstract boolean consequencia(HashMap<Integer, Programmer> players, int nrSpaces, int turno);
