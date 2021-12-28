@@ -19,8 +19,7 @@ public class GameManager {
     }
 
     //cria e faz o tratamento de dados dos players
-    public boolean createInitialBoard(String[][] playerInfo, int worldSize)/* throws
-            InvalidInitialBoardException*/ {
+    public void createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException {
         players.clear();
         nrTurnos = 0;
         turno = 0;
@@ -28,7 +27,7 @@ public class GameManager {
         abismos.clear();
 
         if (playerInfo == null) {
-            return false;
+            throw new InvalidInitialBoardException("Os números são ambos impares");
         }
         ArrayList<Programmer> a = new ArrayList<>();
         if (worldSize >= playerInfo.length * 2) {
@@ -36,7 +35,7 @@ public class GameManager {
         }
         for (String[] strings : playerInfo) {
             if (strings[1] == null || strings[1].equals("") || !temCor(strings[3], a) || !temNovoId(strings[0], a) || !((playerInfo.length * 2) <= worldSize)) {
-                return false;
+                throw new InvalidInitialBoardException("Os números são ambos impares");
             }
             a.add(new Programmer(strings[1], linguagens(String.valueOf(strings[2])), Integer.parseInt(String.valueOf(strings[0])), ProgrammerColor.getColor(strings[3])));
         }
@@ -46,7 +45,7 @@ public class GameManager {
         }
 
         //se tiver os players certos
-        return players.size() > 1 && players.size() < 5;
+        throw new InvalidInitialBoardException("Os números são ambos impares");
     }
 
     public boolean temCor(String cor, ArrayList<Programmer> programadores) {
@@ -80,10 +79,10 @@ public class GameManager {
     }
 
     //cria e faz tratamento de dados das traps
-    public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools)/*throws
-            InvalidInitialBoardException*/ {
+    public void createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools)throws InvalidInitialBoardException {
 
-        boolean abismo, dentroTab, inicialboard = createInitialBoard(playerInfo, worldSize);
+        boolean abismo, dentroTab;
+
         for (String[] abyssesAndTool : abyssesAndTools) {
             if (abyssesAndTool[0].equals("0")) {
                 abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 9;
@@ -92,13 +91,16 @@ public class GameManager {
             }
             dentroTab = Integer.parseInt(abyssesAndTool[2]) > 0 && Integer.parseInt(abyssesAndTool[2]) <= tamanhoTab;
             if (!((abyssesAndTool[0].equals("0") || abyssesAndTool[0].equals("1")) && abismo && dentroTab)) {
-                return false;
+                throw new InvalidInitialBoardException("Os números são ambos impares");
             } else {
-                //Trap  addTrap (idTrap, id)   = (abyssesAndTool[0].equals("0"),Integer.parseInt(abyssesAndTool[1]))
                 escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]));
             }
         }
-        return inicialboard;
+        try {
+            createInitialBoard(playerInfo, worldSize);
+        } catch (InvalidInitialBoardException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void escolheTrap(int idTrap, int id, int pos) {

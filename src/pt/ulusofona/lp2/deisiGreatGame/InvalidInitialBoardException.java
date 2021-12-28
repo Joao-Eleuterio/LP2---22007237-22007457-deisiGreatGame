@@ -6,22 +6,16 @@ public class InvalidInitialBoardException extends Exception {
     InvalidInitialBoardException(String message) {
         this.message = message;
     }
-  String  getMessage(){
+    String  getMessage(){ return message;}
 
-      return message;
-  }
-
-  Boolean isInvalidAbyss(){
-
-      return true;
-  }
+    Boolean isInvalidAbyss(){return true;}
 
 
-   Boolean isInvalidTool(){
+    Boolean isInvalidTool(){
       return true;
    }
 
-   Integer getTypeId(){
+    Integer getTypeId(){
       return 0;
    }
 }

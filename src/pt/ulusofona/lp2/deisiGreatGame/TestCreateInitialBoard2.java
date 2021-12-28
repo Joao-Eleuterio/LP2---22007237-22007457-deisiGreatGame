@@ -59,8 +59,12 @@ public class TestCreateInitialBoard2 {
     //normal
     @Test
     public void test01CreateInitialBoard() {
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
-        assertTrue("Tem de conseguir criar", manager.createInitialBoard(creat4Players(), 10,abyssesAndTools()));
+        GameManager manager = new GameManager();
+        try {
+            assertTrue("Tem de conseguir criar", manager.createInitialBoard(creat4Players(), 10,abyssesAndTools()));
+        } catch (InvalidInitialBoardException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
@@ -68,8 +72,12 @@ public class TestCreateInitialBoard2 {
     @Test
     public void test02CreateInitialBoard() {
 
-        pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
-        manager.createInitialBoard(creat4Players(),25,abyssesAndTools());
+        GameManager manager = new GameManager();
+        try {
+            manager.createInitialBoard(creat4Players(),25,abyssesAndTools());
+        } catch (InvalidInitialBoardException e) {
+            System.out.println(e.getMessage());
+        }
         assertTrue(manager.moveCurrentPlayer(1));
         String esperada1 = "Caiu Herança! Anula os feitos de codigo duplicado";
         assertEquals(esperada1,manager.reactToAbyssOrTool());
@@ -83,7 +91,11 @@ public class TestCreateInitialBoard2 {
     public void test03CreateInitialBoard() {
 
         pt.ulusofona.lp2.deisiGreatGame.GameManager manager = new pt.ulusofona.lp2.deisiGreatGame.GameManager();
-        manager.createInitialBoard(creat4Players(),25,abyssesAndTools());
+        try {
+            manager.createInitialBoard(creat4Players(),25,abyssesAndTools());
+        } catch (InvalidInitialBoardException e) {
+            System.out.println(e.getMessage());
+        }
         assertTrue(manager.moveCurrentPlayer(1));
         String esperada1 = "Caiu Herança! Anula os feitos de codigo duplicado";
         assertEquals(esperada1,manager.reactToAbyssOrTool());
