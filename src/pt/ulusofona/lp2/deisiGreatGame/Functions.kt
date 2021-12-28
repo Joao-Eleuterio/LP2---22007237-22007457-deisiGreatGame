@@ -6,8 +6,8 @@ fun getPlayer(manager: GameManager, args: List<String>): String?{
     return null;
 }
 
-fun router( ) {
-
+fun router( ):((CommandType) -> (GameManager, List<String>) -> String)? {
+return null;
 }
 
 
