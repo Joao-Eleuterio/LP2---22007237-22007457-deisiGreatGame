@@ -3,6 +3,9 @@ package pt.ulusofona.lp2.deisiGreatGame;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 import java.util.List;
 
@@ -27,7 +30,7 @@ public class GameManager {
         abismos.clear();
 
         if (playerInfo == null) {
-            throw new InvalidInitialBoardException("Os números são ambos impares");
+            throw new InvalidInitialBoardException("playerInfo é null");
         }
         ArrayList<Programmer> a = new ArrayList<>();
         if (worldSize >= playerInfo.length * 2) {
@@ -35,7 +38,7 @@ public class GameManager {
         }
         for (String[] strings : playerInfo) {
             if (strings[1] == null || strings[1].equals("") || !temCor(strings[3], a) || !temNovoId(strings[0], a) || !((playerInfo.length * 2) <= worldSize)) {
-                throw new InvalidInitialBoardException("Os números são ambos impares");
+                throw new InvalidInitialBoardException("erro");
             }
             a.add(new Programmer(strings[1], linguagens(String.valueOf(strings[2])), Integer.parseInt(String.valueOf(strings[0])), ProgrammerColor.getColor(strings[3])));
         }
@@ -44,8 +47,11 @@ public class GameManager {
             players.put(i, a.get(i));
         }
 
-        //se tiver os players certos
-        throw new InvalidInitialBoardException("Os números são ambos impares");
+        //se tiver os players
+        if(players.size()>=2 && players.size()<5){
+            return;
+        }
+        throw new InvalidInitialBoardException("players invalidos");
     }
 
     public boolean temCor(String cor, ArrayList<Programmer> programadores) {
@@ -82,7 +88,11 @@ public class GameManager {
     public void createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools)throws InvalidInitialBoardException {
 
         boolean abismo, dentroTab;
-
+        try {
+            createInitialBoard(playerInfo, worldSize);
+        } catch (InvalidInitialBoardException e) {
+            System.out.println(e.getMessage());
+        }
         for (String[] abyssesAndTool : abyssesAndTools) {
             if (abyssesAndTool[0].equals("0")) {
                 abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 9;
@@ -91,16 +101,12 @@ public class GameManager {
             }
             dentroTab = Integer.parseInt(abyssesAndTool[2]) > 0 && Integer.parseInt(abyssesAndTool[2]) <= tamanhoTab;
             if (!((abyssesAndTool[0].equals("0") || abyssesAndTool[0].equals("1")) && abismo && dentroTab)) {
-                throw new InvalidInitialBoardException("Os números são ambos impares");
+                throw new InvalidInitialBoardException("erro");
             } else {
                 escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]));
             }
         }
-        try {
-            createInitialBoard(playerInfo, worldSize);
-        } catch (InvalidInitialBoardException e) {
-            System.out.println(e.getMessage());
-        }
+
     }
 
     public void escolheTrap(int idTrap, int id, int pos) {
@@ -278,7 +284,7 @@ public class GameManager {
                     return p1.getName().compareTo(p2.getName());
                 }
             });
-            organizado.sort(Comparator.comparingInt((Programmer b) -> b.posicao).reversed());
+            organizado.sort(Comparator.comparingInt(Programmer::getPosicao).reversed());
             for (Programmer programmer : organizado) {
                 if (programmer.getPosicao() != tamanhoTab) {
                     strings.add(programmer.getName() + " " + programmer.getPosicao());
@@ -353,13 +359,119 @@ public class GameManager {
 
 
     public boolean saveGame(File file) {
+
+        //worldSize
+
+        //turno em que esta -/- turnos
+
+        //abyssesAndTools
+
+        //playerInfo
+        //player    ->  nome / posicao / ferramentas / abismo
+        //player
+        //...
+
+
+        try {
+            if (file.createNewFile()) {
+                System.out.println("File created: " + file.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+            FileWriter fileWriter = new FileWriter(file);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+
+            printWriter.println(tamanhoTab);
+            System.out.println(tamanhoTab);
+            printWriter.println(turno+";"+nrTurnos);
+            System.out.println(turno+";"+nrTurnos);
+            for(int i=0;i<tamanhoTab;i++){
+                if(abismos.get(i)!=null) {
+                    System.out.println(i + ";" + abismos.get(i).titulo);
+                    printWriter.println(i + ";" + abismos.get(i).titulo);
+                }
+            }
+            StringBuilder linguagens= new StringBuilder();
+            StringBuilder ferramentas= new StringBuilder();
+            StringBuilder casas= new StringBuilder();
+
+            for(int i=0;i<players.size();i++){
+                for(int j=0;j<players.get(i).linguagens.size();j++){
+                    if (j == 0) {
+                        linguagens.append(players.get(i).linguagens.get(j));
+                    } else {
+                        linguagens.append(",").append(players.get(i).linguagens.get(j));
+                    }
+                }
+                for(int j=0;j<players.get(i).ferramentas.size();j++){
+                    if (i == 0) {
+                        ferramentas.append(players.get(i).ferramentas.get(j));
+                    } else {
+                        ferramentas.append(",").append(players.get(i).ferramentas.get(j));
+                    }
+                }
+                for(int j=0;j<players.get(i).casas.size();j++){
+                    if (i == 0) {
+                        casas.append(players.get(i).casas.get(j));
+                    } else {
+                        casas.append(",").append(players.get(i).casas.get(j));
+                    }
+                }
+                printWriter.println(players.get(i).getName()+";"+linguagens+";"+players.get(i).getId()+";"+players.get(i).getColor()+";"+players.get(i).getPosicao()+";"
+                +players.get(i).getDefeat()+";"+players.get(i).getAbismo()+ferramentas+";"+casas);
+                System.out.println(players.get(i).getName()+";"+linguagens+";"+players.get(i).getId()+";"+players.get(i).getColor()+";"+players.get(i).getPosicao()+";"
+                +players.get(i).getDefeat()+";"+players.get(i).getAbismo()+ferramentas+";"+casas);
+            }
+            printWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+
         return true;
     }
 
     public boolean loadGame(File file){
-                return true;
-    }
+        abismos.clear();
+        players.clear();
+        tamanhoTab=0;
+        turno=0;
+        nrTurnos=0;
+        Scanner myReader = null;
+        int linha=0,playerTurno=0;
+        try {
+            myReader = new Scanner(file);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String[] linhas= data.split(";");
 
+                switch (linha) {
+                    case 0 -> tamanhoTab = Integer.parseInt(linhas[0]);
+                    case 1 -> {turno = Integer.parseInt(linhas[0]);
+                        nrTurnos = Integer.parseInt(linhas[1]);
+                    }
+                    default -> {
+                        if(linhas.length==2){
+                            Trap abismo= criaAbismo(linhas[1]);
+                            abismos.put(Integer.parseInt(linhas[0]),abismo);
+                        }else{
+                            players.put(playerTurno,new Programmer(linhas[0],linhas[1],linhas[2],linhas[3],linhas[4],linhas[5],linhas[6]));
+                            playerTurno++;
+                        }
+                    }
+                }
+                linha++;
+            }
+            myReader.close();
+        } catch (java.io.FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+public Trap criaAbismo(String nome){
+        return new Heranca();
+}
 
 
 }

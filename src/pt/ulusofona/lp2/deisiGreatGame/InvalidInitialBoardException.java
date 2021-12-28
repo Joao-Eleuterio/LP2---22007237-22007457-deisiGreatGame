@@ -1,12 +1,12 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class InvalidInitialBoardException extends Exception {
+public class InvalidInitialBoardException extends java.lang.Exception {
     String message;
 
     InvalidInitialBoardException(String message) {
         this.message = message;
     }
-    String  getMessage(){ return message;}
+    public String  getMessage(){ return message;}
 
     Boolean isInvalidAbyss(){return true;}
 

@@ -1,11 +1,13 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class Programmer {
     String nome;
-    ArrayList<String> linguagens;
+    ArrayList<String> linguagens=new ArrayList<>();
     int id;
     ProgrammerColor cor;
     int posicao;
@@ -22,6 +24,20 @@ public class Programmer {
         this.cor = cor;
         this.posicao = 1;
         this.defeat = false;
+    }
+    public Programmer(String nome,String linguagens,String id,String cor,String pos,String defeat,String casas){
+        this.nome=nome;
+        String[] linguagensProg = linguagens.split(",");
+        this.linguagens.addAll(List.of(linguagensProg));
+        this.id=Integer.parseInt(id);
+        this.cor=ProgrammerColor.valueOf(cor.toUpperCase());
+        this.posicao=Integer.parseInt(pos);
+        this.defeat= defeat.equals("true");
+        if(!casas.equals("null")){
+            String[] casasAndadas = casas.split(",");
+            this.casas.addAll(Collections.singleton(Integer.parseInt(Arrays.toString(casasAndadas))));
+        }
+
     }
 
     public Trap getAbismo() {
