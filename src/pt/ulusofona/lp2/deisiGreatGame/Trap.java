@@ -5,7 +5,6 @@ import java.util.HashMap;
 public abstract class Trap {
     int id;
     String titulo;
-    int abismoFerramenta;
     public String getTrapTitulo(){
         return getTitulo();
     }
@@ -15,30 +14,55 @@ public abstract class Trap {
     abstract public int getId();
     abstract public int abismoFerramenta();
     public static Trap addTrap(int idTrap, int id) {
-       switch (idTrap){
-           case 0: switch (id){
-               case 0: new ErroSintaxe();
-               case 1: new ErroLogica();
-               case 2: new Exception();
-               case 3: new FileNotFoundException();
-               case 4: new Crash();
-               case 5: new DuplicatedCode();
-               case 6: new EfeitosSecundarios();
-               case 7: new BlueScreenOfDeath();
-               case 8: new CicloInfinito();
-               case 9: new SegmentationFault();
-           }break;
-           case 1:  switch (id) {
-               case 0 -> new Heranca();
-               case 1 -> new ProgramacaoFuncional();
-               case 2 -> new JUnit();
-               case 3 -> new TratamentoExcepcoes();
-               case 4 -> new IDE();
-               case 5 -> new AjudaProfessor();
-           }break;
-       }
-        return null;
-    }
+            switch (idTrap) {
+                case 0:
+                    switch (id) {
+                        case 0:
+                            return new ErroSintaxe();
+                        case 1:
+                            return new ErroLogica();
+                        case 2:
+                            return new Exception();
+                        case 3:
+                            return new FileNotFoundException();
+                        case 4:
+                            return new Crash();
+                        case 5:
+                            return new DuplicatedCode();
+                        case 6:
+                            return new EfeitosSecundarios();
+                        case 7:
+                            return  new BlueScreenOfDeath();
+                        case 8:
+                            return new CicloInfinito();
+                        case 9:
+                            return new SegmentationFault();
+                    }
+                case 1:
+                    switch (id) {
+                        case 0 -> {
+                            return new Heranca();
+                        }
+                        case 1 -> {
+                            return new ProgramacaoFuncional();
+                        }
+                        case 2 -> {
+                            return new JUnit();
+                        }
+                        case 3 -> {
+                            return new TratamentoExcepcoes();
+                        }
+                        case 4 -> {
+                            return new IDE();
+                        }
+                        case 5 -> {
+                            return new AjudaProfessor();
+                        }
+                    }
+                default:return null;
+            }
+        }
+
 
     public abstract boolean consequencia(HashMap<Integer, Programmer> players, int nrSpaces, int turno);
     public abstract String getTitulo();

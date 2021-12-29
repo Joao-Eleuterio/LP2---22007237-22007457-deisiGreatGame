@@ -25,11 +25,13 @@ public class Programmer {
         this.posicao = 1;
         this.defeat = false;
     }
-    public Programmer(String nome,String linguagens,String id,String cor,String pos,String defeat,String casas){
+    public Programmer(String nome,String linguagens,String id,String cor,String pos,String defeat,String abismo,String ferramentas,String casas){
         this.nome=nome;
         if(!linguagens.equals("null")) {
             String[] linguagensProg = linguagens.split(",");
             this.linguagens.addAll(List.of(linguagensProg));
+        }else{
+            this.linguagens=null;
         }
         this.id=Integer.parseInt(id);
         if(ProgrammerColor.getColor(cor)!=null){
@@ -37,11 +39,30 @@ public class Programmer {
         }
         this.posicao=Integer.parseInt(pos);
         this.defeat= defeat.equals("true");
+
+        if(!abismo.equals("null")){
+            String[] abismoTrapStr = abismo.split(" ");
+            this.abismo= Trap.addTrap(Integer.parseInt(abismoTrapStr[0]), Integer.parseInt(abismoTrapStr[1]));
+        }else{
+            this.abismo=null;
+        }
+        if(!ferramentas.equals("null") && !ferramentas.equals("")){
+            String[] ferramentasTrapStr = ferramentas.split(",");
+            for (String s : ferramentasTrapStr) {
+                String[] ferramentaIds = s.split(" ");
+                this.ferramentas.add(Trap.addTrap(Integer.parseInt(ferramentaIds[0]), Integer.parseInt(ferramentaIds[1])));
+            }
+        }else{
+            this.ferramentas=null;
+        }
         if(!casas.equals("null")){
             String[] casasAndadas = casas.split(",");
-            this.casas.addAll(Collections.singleton(Integer.parseInt(Arrays.toString(casasAndadas))));
+            for (String casasAndada : casasAndadas) {
+                this.casas.add(Integer.valueOf(casasAndada));
+            }
+        }else{
+            this.casas=null;
         }
-
     }
     public Trap getAbismo() {
         return abismo;
@@ -108,11 +129,11 @@ public class Programmer {
         if (this.ferramentas.size() == 0) {
             txtFerramentas.append("No tools");
         } else {
-            for (int i = 0; i < this.ferramentas.size(); i++) {
+            for (int i = 0; this.ferramentas!=null && i < this.ferramentas.size(); i++) {
                 if (i == 0) {
                     txtFerramentas.append(this.ferramentas.get(i).titulo);
                 } else {
-                    txtFerramentas.append("; ").append(this.ferramentas.get(i).titulo);
+                    txtFerramentas.append("; ").append(this.ferramentas.get(i).getTitulo());
                 }
             }
         }

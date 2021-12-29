@@ -11,6 +11,6 @@ public abstract class Ferramenta extends Trap{
         player.get(turno).addFerramenta(this);
         return false;
     }
-    public int abismoFerramenta() {return abismoFerramenta;}
+    public int abismoFerramenta() {return 1;}
     public int getId(){return id;}
 }
