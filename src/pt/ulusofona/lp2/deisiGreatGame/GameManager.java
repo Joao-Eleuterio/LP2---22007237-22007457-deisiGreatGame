@@ -371,7 +371,6 @@ public class GameManager {
             for(int i=0;i<tamanhoTab;i++){
                 if(abismos.get(i)!=null) {
                     printWriter.println(i + ";" + abismos.get(i).abismoFerramenta() +";"+abismos.get(i).getId());
-
                 }
             }
 
@@ -381,28 +380,33 @@ public class GameManager {
                 StringBuilder casas= new StringBuilder();
                 StringBuilder abismo=new StringBuilder();
                 for(int j=0;players.get(i).linguagens!=null && j<players.get(i).linguagens.size();j++){
-                    if (j == 0) {
-                        linguagens.append(players.get(i).linguagens.get(j));
-                    } else {
-                        linguagens.append(",").append(players.get(i).linguagens.get(j));
+                    if(players.get(i).linguagens.get(j)!=null) {
+                        if (j == 0) {
+                            linguagens.append(players.get(i).linguagens.get(j));
+                        } else {
+                            linguagens.append(",").append(players.get(i).linguagens.get(j));
+                        }
                     }
                 }
                 for(int j=0;players.get(i).ferramentas!=null &&j<players.get(i).ferramentas.size();j++){
-                    if (j == 0) {
-                        ferramentas.append(players.get(i).ferramentas.get(j).abismoFerramenta()).append(" ").append(players.get(i).ferramentas.get(j).getId());
-                    } else {
-                        ferramentas.append(",").append(players.get(i).ferramentas.get(j).abismoFerramenta()).append(" ").append(players.get(i).ferramentas.get(j).getId());
+                    if(players.get(i).ferramentas.get(j)!=null) {
+                        if (j == 0) {
+                            ferramentas.append(players.get(i).ferramentas.get(j).abismoFerramenta()).append(" ").append(players.get(i).ferramentas.get(j).getId());
+                        } else {
+                            ferramentas.append(",").append(players.get(i).ferramentas.get(j).abismoFerramenta()).append(" ").append(players.get(i).ferramentas.get(j).getId());
+                        }
                     }
-                    System.out.println(players.get(i).ferramentas.get(j).abismoFerramenta()+" "+players.get(i).ferramentas.get(j).getId());
                 }
                 if(players.get(i).ferramentas==null || players.get(i).ferramentas.size()==0 ){
                     ferramentas= new StringBuilder("null");
                 }
                 for(int j=0;players.get(i).casas!=null &&j<players.get(i).casas.size();j++){
-                    if (j == 0) {
-                        casas.append(players.get(i).casas.get(j));
-                    } else {
-                        casas.append(",").append(players.get(i).casas.get(j));
+                    if(players.get(i).casas.get(j)!=null) {
+                        if (j == 0) {
+                            casas.append(players.get(i).casas.get(j));
+                        } else {
+                            casas.append(",").append(players.get(i).casas.get(j));
+                        }
                     }
                 }
 
@@ -411,15 +415,14 @@ public class GameManager {
                 }else{
                     abismo.append(players.get(i).getAbismo().getId()).append(" ").append(players.get(i).getAbismo().abismoFerramenta());
                 }
-                printWriter.println(players.get(i).getName()+";"+linguagens+";"+players.get(i).getId()+";"+players.get(i).getColor()+";"+players.get(i).getPosicao()+";"
-                +players.get(i).getDefeat()+";"+abismo+";"+ferramentas+";"+casas);
+                printWriter.println(players.get(i).getName()+";"+linguagens+";"+players.get(i).getId()+";"
+                        +players.get(i).getColor()+";"+players.get(i).getPosicao()+";"
+                        +players.get(i).getDefeat()+";"+abismo+";"+ferramentas+";"+casas);
             }
             printWriter.close();
         } catch (IOException e) {
-            e.printStackTrace();
             return false;
         }
-
         return true;
     }
 
@@ -429,34 +432,38 @@ public class GameManager {
         tamanhoTab=0;
         turno=0;
         nrTurnos=0;
-        Scanner myReader = null;
         int linha=0,playerTurno=0;
         try {
-            myReader = new Scanner(file);
+            Scanner myReader = new Scanner(file);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 String[] linhas= data.split(";");
 
                 switch (linha) {
-                    case 0 -> tamanhoTab = Integer.parseInt(linhas[0]);
-                    case 1 -> {turno = Integer.parseInt(linhas[0]);
-
-                        nrTurnos = Integer.parseInt(linhas[1]);
+                    case 0 -> {
+                        try{tamanhoTab = Integer.parseInt(linhas[0]);}catch (java.lang.Exception c){return false;}
                     }
+                    case 1 -> {
+                        try{   turno = Integer.parseInt(linhas[0]);    nrTurnos = Integer.parseInt(linhas[1]);}catch (java.lang.Exception c){return false;}}
                     default -> {
-                        if(linhas.length==3){
-                           escolheTrap(Integer.parseInt(linhas[1]),Integer.parseInt(linhas[2]),Integer.parseInt(linhas[0]));
-                        }else{
-                            players.put(playerTurno,new Programmer(linhas[0],linhas[1],linhas[2],linhas[3],linhas[4],linhas[5],linhas[6],linhas[7],linhas[8]));
-                            playerTurno++;
-                        }
+                            try {
+                                if (linhas.length == 3) {
+                                   try {
+                                       escolheTrap(Integer.parseInt(linhas[1]), Integer.parseInt(linhas[2]), Integer.parseInt(linhas[0]));
+                                   }catch (java.lang.Exception c){return false;}
+                                } else if (linhas.length == 9) {
+                                    players.put(playerTurno, new Programmer(linhas[0], linhas[1], linhas[2], linhas[3], linhas[4], linhas[5], linhas[6], linhas[7], linhas[8]));
+                                    playerTurno++;
+                                }
+                            }catch (java.lang.Exception c){
+                                return false;
+                            }
                     }
                 }
                 linha++;
             }
             myReader.close();
         } catch (java.io.FileNotFoundException e) {
-            e.printStackTrace();
             return false;
         }
         return true;
