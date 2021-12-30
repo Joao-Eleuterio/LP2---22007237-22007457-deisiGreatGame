@@ -378,8 +378,8 @@ public class GameManager {
             try {
                 printWriter.println(tamanhoTab);
                 printWriter.println(turno + ";" + nrTurnos);
-                for (int i = 0; i < tamanhoTab; i++) {
-                    if (abismos.get(i) != null) {
+                for (int i = 0;abismos!=null && i < tamanhoTab; i++) {
+                    if (abismos.containsKey(i) ) {
                         printWriter.println(i + ";" + abismos.get(i).abismoFerramenta() + ";" + abismos.get(i).getId());
                     }
                 }
