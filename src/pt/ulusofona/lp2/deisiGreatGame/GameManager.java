@@ -134,7 +134,7 @@ public class GameManager {
                     case 3 -> trap = new TratamentoExcepcoes();
                     case 4 -> trap = new IDE();
                     case 5 -> trap = new AjudaProfessor();
-                }
+                }break;
             default:return null;
         }
         abismos.put(pos, trap);
