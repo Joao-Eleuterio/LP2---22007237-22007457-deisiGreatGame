@@ -93,6 +93,9 @@ public class GameManager {
             System.out.println(e.getMessage());
         }
         for (String[] abyssesAndTool : abyssesAndTools) {
+            if(abyssesAndTool==null){
+                throw new InvalidInitialBoardException("abyssesAndTool null");
+            }
             if (abyssesAndTool[0].equals("0")) {
                 abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 9;
             } else {
@@ -137,6 +140,7 @@ public class GameManager {
 
         }
         abismos.put(pos, trap);
+        abismosPisados.put(trap.titulo,0 );
     }
 
     public String getImagePng(int position) {
@@ -224,8 +228,6 @@ public class GameManager {
             }
             if(abismos.containsKey(players.get(turno).getPosicao()) && abismosPisados.containsKey(abismos.get(players.get(turno).getPosicao()).titulo)){
                 abismosPisados.put(String.valueOf(abismos.get(players.get(turno).getPosicao()).titulo),(abismosPisados.get(abismos.get(players.get(turno).getPosicao()).titulo))+1);
-            }else if(abismos.containsKey(players.get(turno).getPosicao())){
-                abismosPisados.put(String.valueOf(abismos.get(players.get(turno).getPosicao()).titulo),1);
             }
             this.nrSpaces=nrSpaces;
         return true;

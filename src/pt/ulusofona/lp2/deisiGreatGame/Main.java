@@ -6,12 +6,12 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-   /*     GameManager manager = new GameManager();
+       GameManager manager = new GameManager();
 
         try {
             List<String> a=new ArrayList<>();
             a.add("Player");
-            a.add("");
+            a.add("João");
             manager.createInitialBoard(creat4Players(),50,abyssesAndTools());
             System.out.println(FunctionsKt.getPlayer(manager,a));
             List<String> b=new ArrayList<>();
@@ -26,19 +26,19 @@ public class Main {
             manager.moveCurrentPlayer(1);
             System.out.println(FunctionsKt.getPlayersByLanguage(manager,b));
             System.out.println(FunctionsKt.getPolyglots(manager,b));
+            System.out.println(FunctionsKt.getPolyglots(manager,b));
             List<String> c=new ArrayList<>();
             c.add("Player");
             c.add("1");
             System.out.println(FunctionsKt.getMostUsedPositions(manager,c));
-            System.out.println(FunctionsKt.getMostUsedAbysses(manager,b));
         } catch (InvalidInitialBoardException e) {
             e.printStackTrace();
         }
 
 
 
-*/
-        
+
+
     }
     public static String[][] creat4PlayersExtra() {
         String[][] jogadores = new String[4][4];
@@ -68,12 +68,12 @@ public class Main {
         String[][] jogadores = new String[4][4];
         jogadores[0][0] = "19";
         jogadores[0][1] = "João";
-        jogadores[0][2] = "Java;Python";
+        jogadores[0][2] = "C;Java";
         jogadores[0][3] = "Purple";
 
         jogadores[1][0] = "10";
         jogadores[1][1] = "Ana";
-        jogadores[1][2] = "C;Java";
+        jogadores[1][2] = null;
         jogadores[1][3] = "Green";
 
         jogadores[2][0] = "2";

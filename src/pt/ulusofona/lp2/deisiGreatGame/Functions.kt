@@ -61,7 +61,6 @@ fun getPlayersByLanguage(manager: GameManager, args: List<String>): String? {
     return manager.players.filter { it.temEstaLinguagem(args[1]) }.joinToString(",") { it.name }
 }
 
-
 /*
  * GET POLYGLOTS
  * Obtém a lista com todos os programadores associados a mais do que uma linguagem de programação,
@@ -72,9 +71,8 @@ fun getPlayersByLanguage(manager: GameManager, args: List<String>): String? {
  * Caso hajam empates, a ordem é indiferente.
  */
 fun getPolyglots(manager: GameManager, args: List<String>): String? {
-    return manager.players.joinToString(" ") { it.name + ":" + it.linguagens.distinct().count()}.sortedByDescending().joinToSring(",")
+    return manager.players.map { it.name + ":" + it.linguagens.filterNotNull().count() }.joinToString(",")
 }
-
 
 /*
  * GET MOST_USED_POSITIONS <max_results>
@@ -90,7 +88,6 @@ fun getPolyglots(manager: GameManager, args: List<String>): String? {
 fun getMostUsedPositions(manager: GameManager, args: List<String>): String? {
     return manager.posicoesPisadas.map { it.key to it.value }.sortedByDescending { it.second }.take(Integer.parseInt(args[1])).joinToString("\n"){""+it.first+":"+it.second}
 }
-
 
 /*
  * GET MOST_USED_ABYSSES <max_results>
@@ -123,6 +120,7 @@ fun PostMove(manager: GameManager, args: List<String>): String? {
     manager.moveCurrentPlayer(Integer.parseInt(args[1]))
     return if (manager.reactToAbyssOrTool() == null) { "OK" } else { manager.reactToAbyssOrTool() }
 }
+
 /* POST ABYSS <abyssTypeId> <position>
  * Insere um abismo do tipo abyssTypeId na posição indicada.
  * Caso tenha sucesso, deverá retornar “OK”.
