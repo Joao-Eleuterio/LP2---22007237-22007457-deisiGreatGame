@@ -82,7 +82,7 @@ public class GameManager {
 
     public ArrayList<String> linguagens(String linguagens) {
         String[] linguagem = linguagens.split(";");
-        return new ArrayList<>(List.of(linguagem));
+        return  List.of(linguagem).get(0)==null || List.of(linguagem).get(0).equals("null") ? null : new ArrayList<>(List.of(linguagem));
     }
 
     //cria e faz tratamento de dados das traps
@@ -120,7 +120,11 @@ public class GameManager {
             if (strings[1] == null || strings[1].equals("") || !temCor(strings[3], a) || !temNovoId(strings[0], a) || !((playerInfo.length * 2) <= worldSize)) {
                 throw new InvalidInitialBoardException("erro");
             }
-            a.add(new Programmer(strings[1], linguagens(String.valueOf(strings[2])), Integer.parseInt(String.valueOf(strings[0])), ProgrammerColor.getColor(strings[3])));
+            ArrayList<String> linguagensDeProgramacao = linguagens(String.valueOf(strings[2]));
+            if(linguagensDeProgramacao==null || linguagensDeProgramacao.size() == 0){
+                throw new InvalidInitialBoardException("Sem linguagens de Programacao");
+            }
+            a.add(new Programmer(strings[1],linguagensDeProgramacao , Integer.parseInt(String.valueOf(strings[0])), ProgrammerColor.getColor(strings[3])));
         }
         a.sort(Comparator.comparingInt(Programmer::getId));
         players.addAll(a);

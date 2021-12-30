@@ -32,7 +32,7 @@ public class Main {
             c.add("1");
             System.out.println(FunctionsKt.getMostUsedPositions(manager,c));
         } catch (InvalidInitialBoardException e) {
-            e.printStackTrace();
+
         }
 
 
