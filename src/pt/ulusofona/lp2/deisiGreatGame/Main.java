@@ -9,7 +9,7 @@ public class Main {
        GameManager manager = new GameManager();
 
         try {
-            List<String> a=new ArrayList<>();
+            /*List<String> a=new ArrayList<>();
             a.add("Player");
             a.add("João");
             manager.createInitialBoard(creat4Players(),50,abyssesAndTools());
@@ -30,8 +30,9 @@ public class Main {
             List<String> c=new ArrayList<>();
             c.add("Player");
             c.add("1");
-            System.out.println(FunctionsKt.getMostUsedPositions(manager,c));
-        } catch (InvalidInitialBoardException e) {
+            System.out.println(FunctionsKt.getMostUsedPositions(manager,c));*/
+            System.out.println("a");
+        } catch (java.lang.Exception ignored) {
 
         }
 

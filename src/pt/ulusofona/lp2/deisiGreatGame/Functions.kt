@@ -71,7 +71,7 @@ fun getPlayersByLanguage(manager: GameManager, args: List<String>): String? {
  * Caso hajam empates, a ordem é indiferente.
  */
 fun getPolyglots(manager: GameManager, args: List<String>): String? {
-    return manager.players.map { it.name + ":" + it.linguagens.filterNotNull().count() }.joinToString(",")
+    return manager.players.filter{it.linguagens.size>1}.map { it.name + ":" + it.linguagens.filterNotNull().count() }.sortedDescending().joinToString(",")
 }
 
 /*
