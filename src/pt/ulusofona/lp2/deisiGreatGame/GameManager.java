@@ -109,7 +109,7 @@ public class GameManager {
         throw new InvalidInitialBoardException("players invalidos");
     }
 
-    public void escolheTrap(int idTrap, int id, int pos) {
+    public String escolheTrap(int idTrap, int id, int pos) {
         Trap trap = null;
         switch (idTrap) {
             case 0:
@@ -135,10 +135,11 @@ public class GameManager {
                     case 4 -> trap = new IDE();
                     case 5 -> trap = new AjudaProfessor();
                 }
-
+            default:return null;
         }
         abismos.put(pos, trap);
         abismosPisados.put(trap.titulo,0 );
+        return "";
     }
 
     public String getImagePng(int position) {
@@ -418,11 +419,11 @@ public class GameManager {
                 while (myReader.hasNextLine()) {
                     String data = myReader.nextLine();
                     String[] linhas = data.split(";");
-
                     switch (linha) {
                         case 0 -> {
                             try {
                                 tamanhoTab = Integer.parseInt(linhas[0]);
+                                linha++;continue;
                             } catch (java.lang.Exception c) {
                                 return false;
                             }
@@ -431,6 +432,7 @@ public class GameManager {
                             try {
                                 turno = Integer.parseInt(linhas[0]);
                                 nrTurnos = Integer.parseInt(linhas[1]);
+                                linha++;continue;
                             } catch (java.lang.Exception c) {
                                 return false;
                             }
@@ -439,12 +441,15 @@ public class GameManager {
                             try {
                                 if (linhas.length == 3) {
                                     try {
-                                        escolheTrap(Integer.parseInt(linhas[1]), Integer.parseInt(linhas[2]), Integer.parseInt(linhas[0]));
+                                       if(escolheTrap(Integer.parseInt(linhas[1]), Integer.parseInt(linhas[2]), Integer.parseInt(linhas[0]))==null){
+                                           return false;
+                                       }
                                     } catch (java.lang.Exception c) {
                                         return false;
                                     }
                                 } else if (linhas.length == 9) {
-                                    players.add(playerTurno, new Programmer(linhas[0], linhas[1], linhas[2], linhas[3], linhas[4], linhas[5], linhas[6], linhas[7], linhas[8]));
+
+                                    players.add(new Programmer(linhas[0], linhas[1], linhas[2], linhas[3], linhas[4], linhas[5], linhas[6], linhas[7], linhas[8]));
                                     playerTurno++;
                                 }
                             } catch (java.lang.Exception c) {
@@ -457,10 +462,10 @@ public class GameManager {
             }catch (java.lang.Exception c){
                 return false;
             }myReader.close();
+            return true;
         } catch (java.io.FileNotFoundException e) {
             return false;
         }
-        return true;
     }
 
     public boolean addAbismo(int idTrap,int pos){

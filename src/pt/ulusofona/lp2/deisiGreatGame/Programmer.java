@@ -26,7 +26,7 @@ public class Programmer {
         this.defeat = false;
     }
 
-    public Programmer(String nome, String linguagens, String id, String cor, String pos, String defeat, String abismo, String ferramentas, String casas) {
+    public Programmer(String nome, String linguagens, String id, String cor, String pos, String defeat, String abismo, String ferramentas, String casas) throws java.lang.Exception {
         this.nome = nome;
         if (!linguagens.equals("null")) {
             String[] linguagensProg = linguagens.split(",");
