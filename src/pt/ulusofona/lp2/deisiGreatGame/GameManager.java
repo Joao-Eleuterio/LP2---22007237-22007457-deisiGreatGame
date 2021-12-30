@@ -24,7 +24,8 @@ public class GameManager {
 
     //cria e faz o tratamento de dados dos players
     public void createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException {
-        players.clear();
+        createInitialBoard(playerInfo,worldSize,null);
+        /*players.clear();
         nrTurnos = 0;
         turno = 0;
         vencedor = null;
@@ -50,10 +51,10 @@ public class GameManager {
         if(players.size()>=2 && players.size()<5){
             return;
         }
-        throw new InvalidInitialBoardException("players invalidos");
+        throw new InvalidInitialBoardException("players invalidos");*/
     }
 
-    
+
     public boolean temCor(String cor, ArrayList<Programmer> programadores) {
         switch (cor) {
             case "Purple", "Green", "Brown", "Blue" -> {
@@ -86,30 +87,48 @@ public class GameManager {
 
     //cria e faz tratamento de dados das traps
     public void createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools)throws InvalidInitialBoardException {
-
         boolean abismo, dentroTab;
-        try {
-            createInitialBoard(playerInfo, worldSize);
-        } catch (InvalidInitialBoardException e) {
-            System.out.println(e.getMessage());
+        players.clear();
+        nrTurnos = 0;
+        turno = 0;
+        vencedor = null;
+        abismos.clear();
+        if (worldSize >= playerInfo.length * 2) {
+            this.tamanhoTab = worldSize;
         }
-        for (String[] abyssesAndTool : abyssesAndTools) {
-            if(abyssesAndTool==null){
-                throw new InvalidInitialBoardException("abyssesAndTool null");
+        if (playerInfo == null) {
+            throw new InvalidInitialBoardException("playerInfo é null");
+        }
+        if(abyssesAndTools!=null){
+            for (String[] abyssesAndTool : abyssesAndTools) {
+                if (abyssesAndTool[0].equals("0")) {
+                    abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 9;
+                } else {
+                    abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 5;
+                }
+                dentroTab = Integer.parseInt(abyssesAndTool[2]) > 0 && Integer.parseInt(abyssesAndTool[2]) <= tamanhoTab;
+                if (!((abyssesAndTool[0].equals("0") || abyssesAndTool[0].equals("1")) && abismo && dentroTab)) {
+                    throw new InvalidInitialBoardException("erro");
+                } else {
+                    escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]));
+                }
             }
-            if (abyssesAndTool[0].equals("0")) {
-                abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 9;
-            } else {
-                abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 5;
-            }
-            dentroTab = Integer.parseInt(abyssesAndTool[2]) > 0 && Integer.parseInt(abyssesAndTool[2]) <= tamanhoTab;
-            if (!((abyssesAndTool[0].equals("0") || abyssesAndTool[0].equals("1")) && abismo && dentroTab)) {
+        }
+        ArrayList<Programmer> a = new ArrayList<>();
+        for (String[] strings : playerInfo) {
+            if (strings[1] == null || strings[1].equals("") || !temCor(strings[3], a) || !temNovoId(strings[0], a) || !((playerInfo.length * 2) <= worldSize)) {
                 throw new InvalidInitialBoardException("erro");
-            } else {
-                escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]));
             }
+            a.add(new Programmer(strings[1], linguagens(String.valueOf(strings[2])), Integer.parseInt(String.valueOf(strings[0])), ProgrammerColor.getColor(strings[3])));
         }
+        a.sort(Comparator.comparingInt(Programmer::getId));
+        players.addAll(a);
 
+        //se tiver os players
+        if(players.size()>=2 && players.size()<5){
+            return;
+        }
+        throw new InvalidInitialBoardException("players invalidos");
     }
 
     public void escolheTrap(int idTrap, int id, int pos) {
