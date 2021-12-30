@@ -93,11 +93,12 @@ public class GameManager {
         turno = 0;
         vencedor = null;
         abismos.clear();
-        if (worldSize >= playerInfo.length * 2) {
-            this.tamanhoTab = worldSize;
-        }
+
         if (playerInfo == null) {
             throw new InvalidInitialBoardException("playerInfo é null");
+        }
+        if (worldSize >= playerInfo.length * 2) {
+            this.tamanhoTab = worldSize;
         }
         if(abyssesAndTools!=null){
             for (String[] abyssesAndTool : abyssesAndTools) {
