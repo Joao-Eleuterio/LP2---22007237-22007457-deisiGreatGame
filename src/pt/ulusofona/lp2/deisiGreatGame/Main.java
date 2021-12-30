@@ -32,7 +32,8 @@ public class Main {
             c.add("1");
             System.out.println(FunctionsKt.getMostUsedPositions(manager,c));*/
             System.out.println("a");
-        } catch (java.lang.Exception ignored) {
+        } catch (java.lang.Exception e) {
+            System.out.println( e.getMessage());
 
         }
 
