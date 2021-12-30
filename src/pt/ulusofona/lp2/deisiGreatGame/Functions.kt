@@ -74,6 +74,7 @@ fun getPolyglots(manager: GameManager, args: List<String>): String? {
     return manager.players.filter{it.linguagens.size>1}.map { it.name + ":" + it.linguagens.filterNotNull().count() }.sorted().joinToString(",")
 }
 
+
 /*
  * GET MOST_USED_POSITIONS <max_results>
  * Obtém as posições do tabuleiro que mais jogadores “pisaram”, ordenadas da mais “pisada” para a menos “pisada”.
