@@ -137,11 +137,9 @@ public class Programmer {
                 }
             }
         }
-        String txtEstado = "";
+        String txtEstado = "Em Jogo";
         if (getDefeat()) {
             txtEstado = "Derrotado";
-        } else {
-            txtEstado = "Em Jogo";
         }
         return this.id + " | " + this.nome + " | " + this.posicao + " | " + txtFerramentas + " | " + txtLinguagens + " | " + txtEstado;
     }

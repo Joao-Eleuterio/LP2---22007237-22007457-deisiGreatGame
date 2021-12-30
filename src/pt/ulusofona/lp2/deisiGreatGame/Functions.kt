@@ -1,33 +1,35 @@
 package pt.ulusofona.lp2.deisiGreatGame
 
-enum class  CommandType {
-    GET,POST;
-
+enum class CommandType {
+    GET, POST;
 }
-fun router( ): (CommandType) -> (GameManager, List<String>) -> String? {
+
+fun router(): (CommandType) -> (GameManager, List<String>) -> String? {
     return { commandType -> comando(commandType) }
 }
 
-fun comando(commandType : CommandType): (GameManager,List<String>) -> String? {
+fun comando(commandType: CommandType): (GameManager, List<String>) -> String? {
 
-    when(commandType) {
-        CommandType.GET-> return { manager, args -> commandTypeGet(manager, args) }
+    when (commandType) {
+        CommandType.GET -> return { manager, args -> commandTypeGet(manager, args) }
         CommandType.POST -> return { manager, args -> commandTypePost(manager, args) }
     }
 
 }
-fun commandTypePost(manager: GameManager, args: List<String>) : String? {
-    when(args[0]){
+
+fun commandTypePost(manager: GameManager, args: List<String>): String? {
+    when (args[0]) {
         "MOVE" -> return PostMove(manager, args)
         "ABYSS" -> return PostAbyss(manager, args)
     }
     return null
 }
-fun commandTypeGet(manager: GameManager, args: List<String>) : String? {
-    when(args[0]){
+
+fun commandTypeGet(manager: GameManager, args: List<String>): String? {
+    when (args[0]) {
         "PLAYER" -> return getPlayer(manager, args)
         "PLAYERS_BY_LANGUAGE" -> return getPlayersByLanguage(manager, args)
-        "POLYGLOTS" -> return getPolyglots(manager,args)
+        "POLYGLOTS" -> return getPolyglots(manager, args)
         "MOST_USED_POSITIONS" -> return getMostUsedPositions(manager, args)
         "MOST_USED_ABYSSES" -> return getMostUsedAbysses(manager, args)
     }
@@ -42,10 +44,10 @@ fun commandTypeGet(manager: GameManager, args: List<String>) : String? {
  * 3 | Ada Lovelace | 1 | No tools | Ada | Em Jogo
  * Caso o jogador não exista, deve retornar “Inexistent player”
  */
-fun getPlayer(manager: GameManager, args: List<String>): String{//TODO "Inexistent player"
-    return manager.players.filter { it.name.equals(args[1]) }.toString()
+fun getPlayer(manager: GameManager, args: List<String>): String {
+    return if (manager.players.filter { it.nome == args[1] }.joinToString { it.toString() }.isEmpty()) { "Inexistent player"
+    } else { manager.players.filter { it.nome == args[1] }.joinToString { it.toString() } }
 }
-
 
 /*
  * GET PLAYERS_BY_LANGUAGE <language>
@@ -56,9 +58,8 @@ fun getPlayer(manager: GameManager, args: List<String>): String{//TODO "Inexiste
  * Caso não exista nenhum jogador associado a essa linguagem, deve escrever None
  */
 fun getPlayersByLanguage(manager: GameManager, args: List<String>): String? {
-    return manager.players.filter { it.temEstaLinguagem(args[1]) }.map { it.name }.joinToString (",")
+    return manager.players.filter { it.temEstaLinguagem(args[1]) }.joinToString(",") { it.name }
 }
-
 
 
 /*
@@ -70,8 +71,8 @@ fun getPlayersByLanguage(manager: GameManager, args: List<String>): String? {
  * Joshua Bloch:3 Brunito:4
  * Caso hajam empates, a ordem é indiferente.
  */
-fun getPolyglots(manager: GameManager, args: List<String>): String?{
-    return manager.players.map { it.name+":"+it.linguagens.distinct().count() }.joinToString (" ")
+fun getPolyglots(manager: GameManager, args: List<String>): String? {
+    return manager.players.joinToString(" ") { it.name + ":" + it.linguagens.distinct().count() }
 }
 
 
@@ -86,9 +87,10 @@ fun getPolyglots(manager: GameManager, args: List<String>): String?{
  * Também não entram posições que os jogadores tenham pisado como consequência de um abismo.
  * Por exemplo, se o jogador se movimentar para a casa 5 onde está um abismo que o faz recuar 1 casa, apenas a casa 5 conta como “pisadela”.
  */
-fun getMostUsedPositions(manager: GameManager, args: List<String>): String? {//TODO falta ordenar e a parte da quantidade
-   return manager.posicoesPisadas.map { ""+it.key+":"+it.value}.joinToString("\n")
+fun getMostUsedPositions(manager: GameManager, args: List<String>): String? {
+    return manager.posicoesPisadas.map { it.key to it.value }.sortedByDescending { it.second }.take(Integer.parseInt(args[1])).joinToString("\n"){""+it.first+":"+it.second}
 }
+
 
 /*
  * GET MOST_USED_ABYSSES <max_results>
@@ -102,9 +104,10 @@ fun getMostUsedPositions(manager: GameManager, args: List<String>): String? {//T
  * Se houverem várias abismos do mesmo tipo, deve ser retornado apenas aquele que tem mais “quedas”.
  * Só contam os abismos sobre o qual o jogador caiu diretamente e não como consequência de outro abismo
  */
-fun getMostUsedAbysses(manager: GameManager, args: List<String>): String? {//TODO falta ordenar e a parte da quantidade
-    return manager.abismosPisados.map { ""+it.key+":"+it.value}.joinToString("\n")
+fun getMostUsedAbysses(manager: GameManager, args: List<String>): String? {
+    return manager.abismosPisados.map { it.key to it.value  }.sortedByDescending { it.second }.take(Integer.parseInt(args[1])).joinToString("\n"){""+it.first+":"+it.second}
 }
+
 /* POST MOVE <numero de posições>
  * Move o jogador atual tantas posições quantas o parâmetro.
  * Caso a posição onde o jogador vai parar não tenha nenhum abismo nem ferramenta, deverá retornar “OK” Exemplo:
@@ -118,7 +121,7 @@ fun getMostUsedAbysses(manager: GameManager, args: List<String>): String? {//TOD
  */
 fun PostMove(manager: GameManager, args: List<String>): String? {
     manager.moveCurrentPlayer(Integer.parseInt(args[1]))
-    return if(manager.reactToAbyssOrTool()==null){ "OK"}else{ manager.reactToAbyssOrTool()}
+    return if (manager.reactToAbyssOrTool() == null) { "OK" } else { manager.reactToAbyssOrTool() }
 }
 /* POST ABYSS <abyssTypeId> <position>
  * Insere um abismo do tipo abyssTypeId na posição indicada.
@@ -129,5 +132,5 @@ fun PostMove(manager: GameManager, args: List<String>): String? {
  */
 
 fun PostAbyss(manager: GameManager, args: List<String>): String? {
-    return if(manager.addAbismo(Integer.parseInt(args[1]),Integer.parseInt(args[2]))){ "OK" }else{ "Position is occupied" }
+    return if (manager.addAbismo(Integer.parseInt(args[1]), Integer.parseInt(args[2]))) { "OK" } else { "Position is occupied" }
 }

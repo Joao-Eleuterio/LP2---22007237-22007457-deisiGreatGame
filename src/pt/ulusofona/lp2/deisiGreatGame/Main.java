@@ -6,12 +6,12 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        GameManager manager = new GameManager();
+   /*     GameManager manager = new GameManager();
 
         try {
             List<String> a=new ArrayList<>();
             a.add("Player");
-            a.add("João");
+            a.add("");
             manager.createInitialBoard(creat4Players(),50,abyssesAndTools());
             System.out.println(FunctionsKt.getPlayer(manager,a));
             List<String> b=new ArrayList<>();
@@ -26,7 +26,10 @@ public class Main {
             manager.moveCurrentPlayer(1);
             System.out.println(FunctionsKt.getPlayersByLanguage(manager,b));
             System.out.println(FunctionsKt.getPolyglots(manager,b));
-            System.out.println(FunctionsKt.getMostUsedPositions(manager,b));
+            List<String> c=new ArrayList<>();
+            c.add("Player");
+            c.add("1");
+            System.out.println(FunctionsKt.getMostUsedPositions(manager,c));
             System.out.println(FunctionsKt.getMostUsedAbysses(manager,b));
         } catch (InvalidInitialBoardException e) {
             e.printStackTrace();
@@ -34,7 +37,7 @@ public class Main {
 
 
 
-
+*/
     }
     public static String[][] creat4PlayersExtra() {
         String[][] jogadores = new String[4][4];
