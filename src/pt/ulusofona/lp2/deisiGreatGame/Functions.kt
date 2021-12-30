@@ -102,7 +102,7 @@ fun getMostUsedPositions(manager: GameManager, args: List<String>): String? {
  * Só contam os abismos sobre o qual o jogador caiu diretamente e não como consequência de outro abismo
  */
 fun getMostUsedAbysses(manager: GameManager, args: List<String>): String? {
-    return manager.abismosPisados.map { it.key to it.value  }.sortedByDescending { it.second }.take(Integer.parseInt(args[1])).joinToString("\n"){""+it.first+":"+it.second}
+    return manager.abismosPisados.map { it.key to it.value  }.sortedBy { it.second }.take(Integer.parseInt(args[1])).joinToString("\n"){""+it.first+":"+it.second}
 }
 
 /* POST MOVE <numero de posições>
