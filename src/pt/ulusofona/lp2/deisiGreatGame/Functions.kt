@@ -72,7 +72,7 @@ fun getPlayersByLanguage(manager: GameManager, args: List<String>): String? {
  */
 fun getPolyglots(manager: GameManager, args: List<String>): String? {
     return manager.players.filter { it.linguagens.size > 1 }.sortedBy { it.linguagens.size }
-        .joinToString(" ") { it.name + ":" + it.linguagens.filterNotNull().count() }
+        .joinToString("\n") { it.name + ":" + it.linguagens.filterNotNull().count() }
 }
 
 
