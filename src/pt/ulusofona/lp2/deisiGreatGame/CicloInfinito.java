@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CicloInfinito extends Abismo{
@@ -10,13 +11,13 @@ public class CicloInfinito extends Abismo{
     }
 
     @Override
-    public boolean consequencia(HashMap<Integer, Programmer> players, int nrSpaces, int turno) {
+    public boolean consequencia(ArrayList< Programmer> players, int nrSpaces, int turno) {
         boolean entrou=false;
         if(!players.get(turno).removeFerramenta(new ProgramacaoFuncional())){
-            for (int i = 0; i < players.size(); i++) {
-                if (players.get(i).getPosicao() == players.get(turno).getPosicao() && players.get(i).getId() != players.get(turno).getId()) {
-                    players.get(i).removeAbismo();
-                    entrou=true;
+            for (Programmer player : players) {
+                if (player.getPosicao() == players.get(turno).getPosicao() && player.getId() != players.get(turno).getId()) {
+                    player.removeAbismo();
+                    entrou = true;
                 }
             }
             players.get(turno).addAbismo(this);

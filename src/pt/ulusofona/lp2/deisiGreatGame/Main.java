@@ -1,27 +1,33 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         GameManager manager = new GameManager();
 
         try {
+            List<String> a=new ArrayList<>();
+            a.add("Player");
+            a.add("João");
             manager.createInitialBoard(creat4Players(),50,abyssesAndTools());
-            File fp = new File("filename.txt");
-            manager.saveGame(fp);
-            manager.createInitialBoard(creat4PlayersExtra(),30,abyssesAndTools());
-            File fp1 = new File("filename.txt");
-            manager.loadGame(fp1);
-            manager.createInitialBoard(creat4Players(),30,abyssesAndTools());
-            manager.saveGame(fp1);
-            manager.moveCurrentPlayer(1);
+            System.out.println(FunctionsKt.getPlayer(manager,a));
+            List<String> b=new ArrayList<>();
+            b.add("Player");
+            b.add("Java");
+            manager.moveCurrentPlayer(2);
             manager.nextTurn();
-            manager.moveCurrentPlayer(2);manager.nextTurn();
-            manager.moveCurrentPlayer(3);manager.nextTurn();
-            manager.moveCurrentPlayer(5);manager.nextTurn();
-            manager.moveCurrentPlayer(4);manager.nextTurn();
-            manager.saveGame(fp1);
+            manager.moveCurrentPlayer(2);
+            manager.nextTurn();
+            manager.moveCurrentPlayer(5);
+            manager.nextTurn();
+            manager.moveCurrentPlayer(1);
+            System.out.println(FunctionsKt.getPlayersByLanguage(manager,b));
+            System.out.println(FunctionsKt.getPolyglots(manager,b));
+            System.out.println(FunctionsKt.getMostUsedPositions(manager,b));
+            System.out.println(FunctionsKt.getMostUsedAbysses(manager,b));
         } catch (InvalidInitialBoardException e) {
             e.printStackTrace();
         }
@@ -73,7 +79,7 @@ public class Main {
 
         jogadores[3][0] = "99";
         jogadores[3][1] = "Carlos";
-        jogadores[3][2] = "C";
+        jogadores[3][2] = "C;Java;Python";
         jogadores[3][3] = "Brown";
 
         return jogadores;

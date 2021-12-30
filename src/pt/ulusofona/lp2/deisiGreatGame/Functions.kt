@@ -1,17 +1,37 @@
 package pt.ulusofona.lp2.deisiGreatGame
 
-
 enum class  CommandType {
     GET,POST;
 
 }
-fun getPlayer(manager: GameManager, args: List<String>): String?{
-    return null;
+fun router( ): (CommandType) -> (GameManager, List<String>) -> String? {
+    return { commandType -> comando(commandType) }
 }
 
-fun router( ):((CommandType) -> (GameManager, List<String>) -> String)? {
-    return null;
-    //return funcao comando
+fun comando(commandType : CommandType): (GameManager,List<String>) -> String? {
+
+    when(commandType) {
+        CommandType.GET-> return { manager, args -> commandTypeGet(manager, args) }
+        CommandType.POST -> return { manager, args -> commandTypePost(manager, args) }
+    }
+
+}
+fun commandTypePost(manager: GameManager, args: List<String>) : String? {
+    when(args[0]){
+        "MOVE" -> return PostMove(manager, args)
+        "ABYSS" -> return PostAbyss(manager, args)
+    }
+    return null
+}
+fun commandTypeGet(manager: GameManager, args: List<String>) : String? {
+    when(args[0]){
+        "PLAYER" -> return getPlayer(manager, args)
+        "PLAYERS_BY_LANGUAGE" -> return getPlayersByLanguage(manager, args)
+        "POLYGLOTS" -> return getPolyglots(manager,args)
+        "MOST_USED_POSITIONS" -> return getMostUsedPositions(manager, args)
+        "MOST_USED_ABYSSES" -> return getMostUsedAbysses(manager, args)
+    }
+    return null
 }
 
 /*
@@ -22,6 +42,10 @@ fun router( ):((CommandType) -> (GameManager, List<String>) -> String)? {
  * 3 | Ada Lovelace | 1 | No tools | Ada | Em Jogo
  * Caso o jogador não exista, deve retornar “Inexistent player”
  */
+fun getPlayer(manager: GameManager, args: List<String>): String{//TODO "Inexistent player"
+    return manager.players.filter { it.name.equals(args[1]) }.toString()
+}
+
 
 /*
  * GET PLAYERS_BY_LANGUAGE <language>
@@ -31,6 +55,11 @@ fun router( ):((CommandType) -> (GameManager, List<String>) -> String)? {
  * Pedro,Bruno
  * Caso não exista nenhum jogador associado a essa linguagem, deve escrever None
  */
+fun getPlayersByLanguage(manager: GameManager, args: List<String>): String? {
+    return manager.players.filter { it.temEstaLinguagem(args[1]) }.map { it.name }.joinToString (",")
+}
+
+
 
 /*
  * GET POLYGLOTS
@@ -41,6 +70,10 @@ fun router( ):((CommandType) -> (GameManager, List<String>) -> String)? {
  * Joshua Bloch:3 Brunito:4
  * Caso hajam empates, a ordem é indiferente.
  */
+fun getPolyglots(manager: GameManager, args: List<String>): String?{
+    return manager.players.map { it.name+":"+it.linguagens.distinct().count() }.joinToString (" ")
+}
+
 
 /*
  * GET MOST_USED_POSITIONS <max_results>
@@ -53,7 +86,9 @@ fun router( ):((CommandType) -> (GameManager, List<String>) -> String)? {
  * Também não entram posições que os jogadores tenham pisado como consequência de um abismo.
  * Por exemplo, se o jogador se movimentar para a casa 5 onde está um abismo que o faz recuar 1 casa, apenas a casa 5 conta como “pisadela”.
  */
-
+fun getMostUsedPositions(manager: GameManager, args: List<String>): String? {//TODO falta ordenar e a parte da quantidade
+   return manager.posicoesPisadas.map { ""+it.key+":"+it.value}.joinToString("\n")
+}
 
 /*
  * GET MOST_USED_ABYSSES <max_results>
@@ -66,10 +101,10 @@ fun router( ):((CommandType) -> (GameManager, List<String>) -> String)? {
  * Para efeitos de testes, não haverão empates.
  * Se houverem várias abismos do mesmo tipo, deve ser retornado apenas aquele que tem mais “quedas”.
  * Só contam os abismos sobre o qual o jogador caiu diretamente e não como consequência de outro abismo
- * (ex: se o jogador cai num abismo e recua para outro abismo, só conta o primeiro).
- * Para efeitos de teste, os jogadores não terão ferramentas, por isso sofrem sempre a consequência do abismo.
  */
-
+fun getMostUsedAbysses(manager: GameManager, args: List<String>): String? {//TODO falta ordenar e a parte da quantidade
+    return manager.abismosPisados.map { ""+it.key+":"+it.value}.joinToString("\n")
+}
 /* POST MOVE <numero de posições>
  * Move o jogador atual tantas posições quantas o parâmetro.
  * Caso a posição onde o jogador vai parar não tenha nenhum abismo nem ferramenta, deverá retornar “OK” Exemplo:
@@ -81,11 +116,18 @@ fun router( ):((CommandType) -> (GameManager, List<String>) -> String)? {
  * Caiu num ciclo infinito!
  * Assuma que o <número de posições> é sempre um inteiro entre 1 e 6.
  */
-
+fun PostMove(manager: GameManager, args: List<String>): String? {
+    manager.moveCurrentPlayer(Integer.parseInt(args[1]))
+    return if(manager.reactToAbyssOrTool()==null){ "OK"}else{ manager.reactToAbyssOrTool()}
+}
 /* POST ABYSS <abyssTypeId> <position>
  * Insere um abismo do tipo abyssTypeId na posição indicada.
  * Caso tenha sucesso, deverá retornar “OK”.
  * Caso a posição já esteja ocupada por um abismo ou ferramenta, deverá retornar “Position is occupied”.
  * Apenas serão testados estes 2 casos.
- * Podem p .
+ * Podem portanto assumir que o abyssTypeId é sempre válido e que a posição está dentro do tabuleiro.
  */
+
+fun PostAbyss(manager: GameManager, args: List<String>): String? {
+    return if(manager.addAbismo(Integer.parseInt(args[1]),Integer.parseInt(args[2]))){ "OK" }else{ "Position is occupied" }
+}

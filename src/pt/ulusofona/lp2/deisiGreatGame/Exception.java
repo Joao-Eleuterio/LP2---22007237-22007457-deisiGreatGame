@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Exception extends Abismo{
@@ -23,7 +24,7 @@ public class Exception extends Abismo{
     }
 
     @Override
-    public boolean consequencia(HashMap<Integer, Programmer> player, int nrSpaces, int turno) {
+    public boolean consequencia(ArrayList<Programmer> player, int nrSpaces, int turno) {
         return consequencia(player.get(turno),nrSpaces);
     }
 

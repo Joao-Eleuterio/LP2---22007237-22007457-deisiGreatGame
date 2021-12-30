@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SegmentationFault extends Abismo{
@@ -10,16 +11,16 @@ public class SegmentationFault extends Abismo{
     }
 
     @Override
-    public boolean consequencia(HashMap<Integer, Programmer> players, int nrSpaces, int turno) {
+    public boolean consequencia(ArrayList<Programmer> players, int nrSpaces, int turno) {
         int posicaoAbismo = players.get(turno).getPosicao();
         for (int i = 0, j = 0; i < players.size(); i++) {
             if (players.get(i).getPosicao() == posicaoAbismo ) {
                 j++;
             }
             if (j >= 2) {
-                for (int h = 0; h < players.size(); h++) {
-                    if (players.get(h).getPosicao() == posicaoAbismo) {
-                        players.get(h).posicao -= 3;
+                for (Programmer player : players) {
+                    if (player.getPosicao() == posicaoAbismo) {
+                        player.posicao -= 3;
                     }
                 }
                 return true;

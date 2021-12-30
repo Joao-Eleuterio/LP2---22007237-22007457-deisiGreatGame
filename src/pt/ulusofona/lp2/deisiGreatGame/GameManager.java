@@ -14,10 +14,11 @@ public class GameManager {
     int tamanhoTab;
     int nrTurnos = 1;
     Programmer vencedor;
-    HashMap<Integer, Programmer> players = new HashMap<>();
+    List<Programmer> players = new ArrayList<>();
     HashMap<Integer, Trap> abismos = new HashMap<>();
     int nrSpaces = 0;
-
+    HashMap<Integer,Integer> posicoesPisadas= new HashMap<>();
+    HashMap<String,Integer> abismosPisados= new HashMap<>();
     public GameManager() {
     }
 
@@ -43,9 +44,7 @@ public class GameManager {
             a.add(new Programmer(strings[1], linguagens(String.valueOf(strings[2])), Integer.parseInt(String.valueOf(strings[0])), ProgrammerColor.getColor(strings[3])));
         }
         a.sort(Comparator.comparingInt(Programmer::getId));
-        for (int i = 0; i < a.size(); i++) {
-            players.put(i, a.get(i));
-        }
+        players.addAll(a);
 
         //se tiver os players
         if(players.size()>=2 && players.size()<5){
@@ -57,7 +56,7 @@ public class GameManager {
     public boolean temCor(String cor, ArrayList<Programmer> programadores) {
         switch (cor) {
             case "Purple", "Green", "Brown", "Blue" -> {
-                for (pt.ulusofona.lp2.deisiGreatGame.Programmer programmer : programadores) {
+                for (Programmer programmer : programadores) {
                     if (cor.equals(programmer.cor.nome)) {
                         return false;
                     }
@@ -71,7 +70,7 @@ public class GameManager {
     }
 
     public boolean temNovoId(String id, ArrayList<Programmer> programadores) {
-        for (pt.ulusofona.lp2.deisiGreatGame.Programmer programmer : programadores) {
+        for (Programmer programmer : programadores) {
             if (Integer.parseInt(id) == programmer.id) {
                 return false;
             }
@@ -218,6 +217,16 @@ public class GameManager {
             } else {
                 players.get(turno).setPosicao(tamanhoTab + (tamanhoTab - players.get(turno).getPosicao() - nrSpaces));
             }
+            if(posicoesPisadas.containsKey(players.get(turno).getPosicao())){
+                posicoesPisadas.put(players.get(turno).getPosicao(),(posicoesPisadas.get(players.get(turno).getPosicao())+1));
+            }else{
+                posicoesPisadas.put(players.get(turno).getPosicao(),1);
+            }
+            if(abismos.containsKey(players.get(turno).getPosicao()) && abismosPisados.containsKey(abismos.get(players.get(turno).getPosicao()).titulo)){
+                abismosPisados.put(String.valueOf(abismos.get(players.get(turno).getPosicao()).titulo),(abismosPisados.get(abismos.get(players.get(turno).getPosicao()).titulo))+1);
+            }else if(abismos.containsKey(players.get(turno).getPosicao())){
+                abismosPisados.put(String.valueOf(abismos.get(players.get(turno).getPosicao()).titulo),1);
+            }
             this.nrSpaces=nrSpaces;
         return true;
     }
@@ -272,7 +281,7 @@ public class GameManager {
             if (players == null) {
                 return null;
             }
-            Collection<Programmer> values = players.values();
+            Collection<Programmer> values = players;
             ArrayList<Programmer> organizado = new ArrayList<>(values);
 
             organizado.sort((p1, p2) -> {
@@ -349,7 +358,7 @@ public class GameManager {
             Trap trap= abismos.get(players.get(turno).getPosicao());
             String txt = "Caiu " + trap.titulo + "! " + trap.getConsequencia();
             players.get(turno).addAbismo(abismos.get(players.get(turno).getPosicao()));
-            trap.consequencia(players,nrSpaces,turno);
+            trap.consequencia((ArrayList<Programmer>) players,nrSpaces,turno);
             nextTurn();
             return txt;
         }
@@ -362,7 +371,7 @@ public class GameManager {
         //worldSize
         //turno em que esta -/- turnos
         //abyssesAndTools
-        //playerInfo     //player    ->  nome / posicao / ferramentas / abismo
+        //playerInfo     //player    ->  nome / posicao / ferramentas / abismo /...
         try {
             FileWriter fileWriter = new FileWriter(file);
             PrintWriter printWriter = new PrintWriter(fileWriter);
@@ -452,7 +461,7 @@ public class GameManager {
                                        escolheTrap(Integer.parseInt(linhas[1]), Integer.parseInt(linhas[2]), Integer.parseInt(linhas[0]));
                                    }catch (java.lang.Exception c){return false;}
                                 } else if (linhas.length == 9) {
-                                    players.put(playerTurno, new Programmer(linhas[0], linhas[1], linhas[2], linhas[3], linhas[4], linhas[5], linhas[6], linhas[7], linhas[8]));
+                                    players.add(playerTurno, new Programmer(linhas[0], linhas[1], linhas[2], linhas[3], linhas[4], linhas[5], linhas[6], linhas[7], linhas[8]));
                                     playerTurno++;
                                 }
                             }catch (java.lang.Exception c){
@@ -469,7 +478,13 @@ public class GameManager {
         return true;
     }
 
-
+    public boolean addAbismo(int idTrap,int pos){
+        if(abismos.containsKey(pos)){
+            return false;}else{
+           escolheTrap(0,idTrap,pos);
+           return true;
+        }
+    }
 
 
 }

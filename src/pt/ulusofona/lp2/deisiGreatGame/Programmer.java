@@ -177,4 +177,13 @@ public class Programmer {
         return casas;
     }
 
+
+    boolean temEstaLinguagem(String linguagem){
+        for (int i = 0; linguagens!=null && i < linguagens.size(); i++) {
+            if(linguagens.get(i).equals(linguagem)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -1,7 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.List;
 public abstract class Trap {
     int id;
     String titulo;
@@ -64,7 +65,7 @@ public abstract class Trap {
         }
 
 
-    public abstract boolean consequencia(HashMap<Integer, Programmer> players, int nrSpaces, int turno);
+    public abstract boolean consequencia(ArrayList<Programmer> players, int nrSpaces, int turno);
     public abstract String getTitulo();
     public abstract String getImage();
     public abstract String getConsequencia();
