@@ -53,6 +53,7 @@ public class GameManager {
         throw new InvalidInitialBoardException("players invalidos");
     }
 
+    
     public boolean temCor(String cor, ArrayList<Programmer> programadores) {
         switch (cor) {
             case "Purple", "Green", "Brown", "Blue" -> {
