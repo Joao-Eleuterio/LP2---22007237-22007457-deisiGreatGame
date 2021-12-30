@@ -126,10 +126,10 @@ public class Programmer {
             }
         }
         StringBuilder txtFerramentas = new StringBuilder();
-        if (this.ferramentas.size() == 0) {
+        if (this.ferramentas.size() == 0 ) {
             txtFerramentas.append("No tools");
         } else {
-            for (int i = 0; this.ferramentas!=null && i < this.ferramentas.size(); i++) {
+            for (int i = 0; i < this.ferramentas.size(); i++) {
                 if (i == 0) {
                     txtFerramentas.append(this.ferramentas.get(i).titulo);
                 } else {
