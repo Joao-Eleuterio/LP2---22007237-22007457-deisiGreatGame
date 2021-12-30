@@ -383,60 +383,26 @@ public class GameManager {
                         printWriter.println(i + ";" + abismos.get(i).abismoFerramenta() + ";" + abismos.get(i).getId());
                     }
                 }
-
                 for (int i = 0; players != null && i < players.size(); i++) {
-                    StringBuilder linguagens = new StringBuilder();
-                    StringBuilder ferramentas = new StringBuilder();
-                    StringBuilder casas = new StringBuilder();
-                    StringBuilder abismo = new StringBuilder();
-                    for (int j = 0; players.get(i).linguagens != null && j < players.get(i).linguagens.size(); j++) {
-                        if (players.get(i).linguagens.get(j) != null) {
-                            if (j == 0) {
-                                linguagens.append(players.get(i).linguagens.get(j));
-                            } else {
-                                linguagens.append(",").append(players.get(i).linguagens.get(j));
-                            }
-                        }
-                    }
-                    for (int j = 0; players.get(i).ferramentas != null && j < players.get(i).ferramentas.size(); j++) {
-                        if (players.get(i).ferramentas.get(j) != null) {
-                            if (j == 0) {
-                                ferramentas.append(players.get(i).ferramentas.get(j).abismoFerramenta()).append(" ").append(players.get(i).ferramentas.get(j).getId());
-                            } else {
-                                ferramentas.append(",").append(players.get(i).ferramentas.get(j).abismoFerramenta()).append(" ").append(players.get(i).ferramentas.get(j).getId());
-                            }
-                        }
-                    }
-                    if (players.get(i).ferramentas == null || players.get(i).ferramentas.size() == 0) {
-                        ferramentas = new StringBuilder("null");
-                    }
-                    for (int j = 0; players.get(i).casas != null && j < players.get(i).casas.size(); j++) {
-                        if (players.get(i).casas.get(j) != null) {
-                            if (j == 0) {
-                                casas.append(players.get(i).casas.get(j));
-                            } else {
-                                casas.append(",").append(players.get(i).casas.get(j));
-                            }
-                        }
-                    }
 
+                    StringBuilder abismo = new StringBuilder();
                     if (players.get(i).getAbismo() == null) {
                         abismo = new StringBuilder("null");
                     } else {
                         abismo.append(players.get(i).getAbismo().getId()).append(" ").append(players.get(i).getAbismo().abismoFerramenta());
                     }
-                    printWriter.println(players.get(i).getName() + ";" + linguagens + ";" + players.get(i).getId() + ";"
+                    printWriter.println(players.get(i).getName() + ";" + players.get(i).getLinguagens() + ";" + players.get(i).getId() + ";"
                             + players.get(i).getColor() + ";" + players.get(i).getPosicao() + ";"
-                            + players.get(i).getDefeat() + ";" + abismo + ";" + ferramentas + ";" + casas);
+                            + players.get(i).getDefeat() + ";" + abismo + ";" + players.get(i).getFerramentas() + ";" + players.get(i).getCasa());
                 }
             }catch (java.lang.Exception c){
                 return false;
             }
             printWriter.close();
+            return true;
         } catch (IOException e) {
             return false;
         }
-        return true;
     }
 
     public boolean loadGame(File file){
