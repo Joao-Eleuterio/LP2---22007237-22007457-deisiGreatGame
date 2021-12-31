@@ -2,6 +2,8 @@ package pt.ulusofona.lp2.deisiGreatGame;
 
 import org.junit.Test;
 
+import java.io.File;
+
 import static org.junit.Assert.*;
 
 public class TestCreateInitialBoard {
@@ -184,8 +186,13 @@ public class TestCreateInitialBoard {
     public void test13CreateInitialBoard() {
         GameManager manager = new GameManager();
         String[][] jogadores = creat4Players();
+        String[][] jogadores1 = creat3Players();
         try {
             manager.createInitialBoard(jogadores, 30);
+            File fp = new File("file.txt");
+            manager.saveGame(fp);
+            manager.createInitialBoard(jogadores1, 10);
+            manager.loadGame(fp);
         } catch (InvalidInitialBoardException e) {
             System.out.println(e.getMessage());
         }

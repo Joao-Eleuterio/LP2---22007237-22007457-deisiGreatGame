@@ -215,6 +215,9 @@ public class Programmer {
                 }
             }
         }
+        if (this.linguagens == null || this.linguagens.size() == 0) {
+            linguagens = new StringBuilder("null");
+        }
         return linguagens;
     }
 
@@ -228,6 +231,9 @@ public class Programmer {
                     casa.append(",").append(this.casas.get(j));
                 }
             }
+        }
+        if (this.casas == null || this.casas.size() == 0) {
+            casa = new StringBuilder("null");
         }
         return casa;
     }

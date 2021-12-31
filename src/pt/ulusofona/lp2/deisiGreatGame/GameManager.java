@@ -179,9 +179,9 @@ public class GameManager {
         if (position > tamanhoTab) {
             return null;
         } else {
-            for (int i = 0; i < players.size(); i++) {
-                if (players.get(i).getPosicao() == position) {
-                    programmers.add(players.get(i));
+            for (Programmer player : players) {
+                if (player.getPosicao() == position) {
+                    programmers.add(player);
                     ocupado = true;
                 }
             }
