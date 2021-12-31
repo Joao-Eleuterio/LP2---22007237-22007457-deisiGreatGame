@@ -189,10 +189,7 @@ public class TestCreateInitialBoard {
         String[][] jogadores1 = creat3Players();
         try {
             manager.createInitialBoard(jogadores, 30);
-            File fp = new File("file.txt");
-            manager.saveGame(fp);
-            manager.createInitialBoard(jogadores1, 10);
-            manager.loadGame(fp);
+
         } catch (InvalidInitialBoardException e) {
             System.out.println(e.getMessage());
         }

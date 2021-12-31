@@ -32,7 +32,7 @@ public class Programmer {
             String[] linguagensProg = linguagens.split(",");
             this.linguagens.addAll(List.of(linguagensProg));
         } else {
-            this.linguagens = null;
+            this.linguagens = new ArrayList<>();
         }
         this.id = Integer.parseInt(id);
         if (ProgrammerColor.getColor(cor) != null) {
@@ -54,7 +54,7 @@ public class Programmer {
                 this.ferramentas.add(Trap.addTrap(Integer.parseInt(ferramentaIds[0]), Integer.parseInt(ferramentaIds[1])));
             }
         } else {
-            this.ferramentas = null;
+            this.ferramentas = new ArrayList<>();
         }
         if (!casas.equals("null")) {
             String[] casasAndadas = casas.split(",");
@@ -62,7 +62,7 @@ public class Programmer {
                 this.casas.add(Integer.valueOf(casasAndada));
             }
         } else {
-            this.casas = null;
+            this.casas = new ArrayList<>();
         }
     }
 
