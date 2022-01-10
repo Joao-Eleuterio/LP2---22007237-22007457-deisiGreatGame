@@ -33,5 +33,5 @@ public class ErroLogica extends Abismo {
     public String getImage() {return "urso50x50.png";}
 
     @Override
-    public String getConsequencia() {return "Viste um urso mas ainda bem que estava a dormir e voltas-te algumas casas para tras";}
+    public String getConsequencia() {return "Viste um urso mas ainda bem que estava a dormir e voltaste algumas casas para tras";}
 }
