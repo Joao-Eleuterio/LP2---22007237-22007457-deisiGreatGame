@@ -14,6 +14,6 @@ public class Heranca extends Ferramenta{
         return "Corda50x50.png";
     }
     public String  getConsequencia(){
-        return "Ganhas-te uma corda deve dar jeito";
+        return "Ganhaste uma corda deve dar jeito";
     }
 }
