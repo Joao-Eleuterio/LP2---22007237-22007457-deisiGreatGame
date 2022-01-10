@@ -35,6 +35,6 @@ public class Crash extends Abismo{
 
     @Override
     public String getConsequencia() {
-        return "Perdeste-te e voltas-te ao inicio";
+        return "Perdeste-te e voltaste ao inicio";
     }
 }
