@@ -44,6 +44,6 @@ public class EfeitosSecundarios extends Abismo {
 
     @Override
     public String getConsequencia() {
-        return "Encontras-te um beco sem saída volta para duas casas anteriores";
+        return "Encontraste um beco sem saída volta para duas casas anteriores";
     }
 }
