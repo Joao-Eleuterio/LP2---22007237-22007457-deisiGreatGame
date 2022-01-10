@@ -40,7 +40,7 @@ public class SegmentationFault extends Abismo{
 
     @Override
     public String getConsequencia() {
-        return "Numa ponte de corda só pode ir um de cada vez por isso caiu voltem para tras descobrir um caminho novo";
+        return "Numa ponte de corda só pode ir um de cada vez, por isso caiu, voltem para tras para descobrir um caminho novo";
     }
 
 
