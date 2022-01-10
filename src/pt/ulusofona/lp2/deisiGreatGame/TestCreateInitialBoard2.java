@@ -64,7 +64,7 @@ public class TestCreateInitialBoard2 {
             System.out.println(e.getMessage());
         }
         assertTrue(manager.moveCurrentPlayer(1));
-        String esperada1 = "Ganhas-te uma corda deve dar jeito";
+        String esperada1 = "Encontraste uma corda. Guarda-a e usa-a quando precisares!";
         assertEquals(esperada1,manager.reactToAbyssOrTool());
 
 
@@ -82,7 +82,7 @@ public class TestCreateInitialBoard2 {
             System.out.println(e.getMessage());
         }
         assertTrue(manager.moveCurrentPlayer(1));
-        String esperada1 = "Ganhas-te uma corda deve dar jeito";
+        String esperada1 = "Encontraste uma corda. Guarda-a e usa-a quando precisares!";
         assertEquals(esperada1,manager.reactToAbyssOrTool());
 
 
