@@ -39,8 +39,8 @@ public class TestAbismoFerramenta {
         assertEquals("id errado",0,sintaxe.id);
         assertEquals("titulo errado","Erro de sintaxe",sintaxe.titulo);
         assertEquals("titulo errado","Erro de sintaxe",sintaxe.getTitulo());
-        assertEquals("imagem errada","erro_sintaxe2.png",sintaxe.getImage());
-        assertEquals("consequencia errada","Recua 1 casa",sintaxe.getConsequencia());
+        assertEquals("imagem errada","Morcego50x50.png",sintaxe.getImage());
+        assertEquals("consequencia errada","Assustaste-te com um morcego e voltas-te 1 casa para tras",sintaxe.getConsequencia());
 
         ArrayList<String> linguagens= new ArrayList<>();
         linguagens.add("Python");
@@ -60,8 +60,8 @@ public class TestAbismoFerramenta {
         assertEquals("id errado",1,logica.id);
         assertEquals("titulo errado","Erro de lógica",logica.titulo);
         assertEquals("titulo errado","Erro de lógica",logica.getTitulo());
-        assertEquals("imagem errada","logic.png",logica.getImage());
-        assertEquals("consequencia errada","Recua metade do nr do dado",logica.getConsequencia());
+        assertEquals("imagem errada","urso50x50.png",logica.getImage());
+        assertEquals("consequencia errada","Viste um urso mas ainda bem que estava a dormir e voltas-te algumas casas para tras",logica.getConsequencia());
 
         ArrayList<String> linguagens= new ArrayList<>();
         linguagens.add("Python");
@@ -83,8 +83,8 @@ public class TestAbismoFerramenta {
         assertEquals("id errado",2,abismo.id);
         assertEquals("titulo errado","Exception",abismo.titulo);
         assertEquals("titulo errado","Exception",abismo.getTitulo());
-        assertEquals("imagem errada","exception.png",abismo.getImage());
-        assertEquals("consequencia errada","Recua 2 casas",abismo.getConsequencia());
+        assertEquals("imagem errada","SemBateria50x50.png",abismo.getImage());
+        assertEquals("consequencia errada","Ficas-te sem bateria na tua lanterna e não tens a tocha",abismo.getConsequencia());
 
         ArrayList<String> linguagens= new ArrayList<>();
         linguagens.add("Python");
@@ -106,8 +106,8 @@ public class TestAbismoFerramenta {
         assertEquals("id errado",3,abismo.id);
         assertEquals("titulo errado","File Not Found Exception",abismo.titulo);
         assertEquals("titulo errado","File Not Found Exception",abismo.getTitulo());
-        assertEquals("imagem errada","file_not_found_exception2.png",abismo.getImage());
-        assertEquals("consequencia errada","Recua 3 casas",abismo.getConsequencia());
+        assertEquals("imagem errada","Aranha50x50.png",abismo.getImage());
+        assertEquals("consequencia errada","Viste um ninho de aranhas volta 3 casas para tras",abismo.getConsequencia());
 
         ArrayList<String> linguagens= new ArrayList<>();
         linguagens.add("Python");
@@ -129,8 +129,8 @@ public class TestAbismoFerramenta {
         assertEquals("id errado",4,abismo.id);
         assertEquals("titulo errado","Crash (aka Rebentanço)",abismo.titulo);
         assertEquals("titulo errado","Crash (aka Rebentanço)",abismo.getTitulo());
-        assertEquals("imagem errada","crash2.png",abismo.getImage());
-        assertEquals("consequencia errada","Volta a 1º casa",abismo.getConsequencia());
+        assertEquals("imagem errada","Perdido50x50.png",abismo.getImage());
+        assertEquals("consequencia errada","Perdeste-te e voltas-te ao inicio",abismo.getConsequencia());
 
         ArrayList<String> linguagens= new ArrayList<>();
         linguagens.add("Python");
@@ -147,8 +147,8 @@ public class TestAbismoFerramenta {
         assertEquals("id errado",5,abismo.id);
         assertEquals("titulo errado","Duplicated Code",abismo.titulo);
         assertEquals("titulo errado","Duplicated Code",abismo.getTitulo());
-        assertEquals("imagem errada","duplicate_code2.png",abismo.getImage());
-        assertEquals("consequencia errada","Recua na casa anterior",abismo.getConsequencia());
+        assertEquals("imagem errada","Buraco50x50.png",abismo.getImage());
+        assertEquals("consequencia errada","Cais-te num buraco e voltas-te a mesma posicao",abismo.getConsequencia());
 
         ArrayList<String> linguagens= new ArrayList<>();
         linguagens.add("Python");
@@ -167,8 +167,8 @@ public class TestAbismoFerramenta {
         assertEquals("id errado",6,abismo.id);
         assertEquals("titulo errado","Efeitos secundários",abismo.titulo);
         assertEquals("titulo errado","Efeitos secundários",abismo.getTitulo());
-        assertEquals("imagem errada","side-effects2.png",abismo.getImage());
-        assertEquals("consequencia errada","Recua 2 casas anteriores",abismo.getConsequencia());
+        assertEquals("imagem errada","Beco50x50.png",abismo.getImage());
+        assertEquals("consequencia errada","Encontras-te um beco sem saída volta para duas casas anteriores",abismo.getConsequencia());
 
         ArrayList<String> linguagens= new ArrayList<>();
         linguagens.add("Python");
@@ -186,8 +186,8 @@ public class TestAbismoFerramenta {
         assertEquals("id errado",7,abismo.id);
         assertEquals("titulo errado","Blue Screen of Death",abismo.titulo);
         assertEquals("titulo errado","Blue Screen of Death",abismo.getTitulo());
-        assertEquals("imagem errada","bsod.png",abismo.getImage());
-        assertEquals("consequencia errada","Perdeu :(",abismo.getConsequencia());
+        assertEquals("imagem errada","Cobra50x50.png",abismo.getImage());
+        assertEquals("consequencia errada","Uma cobra atacou-te e acabas-te por morrer",abismo.getConsequencia());
 
         ArrayList<String> linguagens= new ArrayList<>();
         linguagens.add("Python");
@@ -203,8 +203,8 @@ public class TestAbismoFerramenta {
         assertEquals("id errado",8,abismo.id);
         assertEquals("titulo errado","Ciclo infinito",abismo.titulo);
         assertEquals("titulo errado","Ciclo infinito",abismo.getTitulo());
-        assertEquals("imagem errada","infinite-loop.png",abismo.getImage());
-        assertEquals("consequencia errada","Vai ficar aqui ate um jogador vier nesta casa",abismo.getConsequencia());
+        assertEquals("imagem errada","Passagens50x50.png",abismo.getImage());
+        assertEquals("consequencia errada","Tens 3 caminhos diferentes e não tens um mapa espera por um colega",abismo.getConsequencia());
 
         ArrayList<String> linguagens= new ArrayList<>();
         linguagens.add("Python");
@@ -222,8 +222,8 @@ public class TestAbismoFerramenta {
         assertEquals("id errado",9,abismo.id);
         assertEquals("titulo errado","Segmentation Fault",abismo.titulo);
         assertEquals("titulo errado","Segmentation Fault",abismo.getTitulo());
-        assertEquals("imagem errada","core_dump2.png",abismo.getImage());
-        assertEquals("consequencia errada","Quando tiverem 2+ jogadores na casa todos recuam 3 casas",abismo.getConsequencia());
+        assertEquals("imagem errada","Ponte50x50.png",abismo.getImage());
+        assertEquals("consequencia errada","Numa ponte de corda só pode ir um de cada vez por isso caiu voltem para tras descobrir um caminho novo",abismo.getConsequencia());
 
         ArrayList<String> linguagens= new ArrayList<>();
         linguagens.add("Python");
@@ -240,8 +240,8 @@ public class TestAbismoFerramenta {
         assertEquals("id errado",0,abismo.id);
         assertEquals("titulo errado","Herança",abismo.titulo);
         assertEquals("titulo errado","Herança",abismo.getTitulo());
-        assertEquals("imagem errada","herança.png",abismo.getImage());
-        assertEquals("consequencia errada","Anula os feitos de codigo duplicado",abismo.getConsequencia());
+        assertEquals("imagem errada","Corda50x50.png",abismo.getImage());
+        assertEquals("consequencia errada","Ganhas-te uma corda deve dar jeito",abismo.getConsequencia());
     }
     @Test
     public void test01_ProgramacaoFuncional(){
@@ -249,8 +249,8 @@ public class TestAbismoFerramenta {
         assertEquals("id errado",1,abismo.id);
         assertEquals("titulo errado","Programação Funcional",abismo.titulo);
         assertEquals("titulo errado","Programação Funcional",abismo.getTitulo());
-        assertEquals("imagem errada","functional.png",abismo.getImage());
-        assertEquals("consequencia errada","Anula Duplicated Code, efeitos secundários",abismo.getConsequencia());
+        assertEquals("imagem errada","Mapa50x50.png",abismo.getImage());
+        assertEquals("consequencia errada","Um mapa antigo da gruta dá bastante jeito para não te perderes",abismo.getConsequencia());
     }
     @Test
     public void test02_JUnit(){
@@ -258,8 +258,8 @@ public class TestAbismoFerramenta {
         assertEquals("id errado",2,abismo.id);
         assertEquals("titulo errado","Testes unitários",abismo.titulo);
         assertEquals("titulo errado","Testes unitários",abismo.getTitulo());
-        assertEquals("imagem errada","junit2.png",abismo.getImage());
-        assertEquals("consequencia errada","anula qualquer coisa",abismo.getConsequencia());
+        assertEquals("imagem errada","Sapato50x50.png",abismo.getImage());
+        assertEquals("consequencia errada","Uhh uns sapatos leves e não fazes barulho a andar",abismo.getConsequencia());
     }
     @Test
     public void test03_TratamentoExcepcoes(){
@@ -267,8 +267,8 @@ public class TestAbismoFerramenta {
         assertEquals("id errado",3,abismo.id);
         assertEquals("titulo errado","Tratamento de Excepções",abismo.titulo);
         assertEquals("titulo errado","Tratamento de Excepções",abismo.getTitulo());
-        assertEquals("imagem errada","catch.png",abismo.getImage());
-        assertEquals("consequencia errada","qualquer coisa",abismo.getConsequencia());
+        assertEquals("imagem errada","Tocha50x50.png",abismo.getImage());
+        assertEquals("consequencia errada","Hm!? Uma tocha? É melhor guardar",abismo.getConsequencia());
     }
     @Test
     public void test04_IDE(){
@@ -276,8 +276,8 @@ public class TestAbismoFerramenta {
         assertEquals("id errado",4,abismo.id);
         assertEquals("titulo errado","IDE",abismo.titulo);
         assertEquals("titulo errado","IDE",abismo.getTitulo());
-        assertEquals("imagem errada","intellij2.png",abismo.getImage());
-        assertEquals("consequencia errada","Evita qualquer coisa",abismo.getConsequencia());
+        assertEquals("imagem errada","Veneno50x50.png",abismo.getImage());
+        assertEquals("consequencia errada","Veneno para animais vai ser bom se me quiserem atacar",abismo.getConsequencia());
     }
     @Test
     public void test05_AjudaProfessor(){
@@ -285,8 +285,8 @@ public class TestAbismoFerramenta {
         assertEquals("id errado",5,abismo.id);
         assertEquals("titulo errado","Ajuda do Professor",abismo.titulo);
         assertEquals("titulo errado","Ajuda do Professor",abismo.getTitulo());
-        assertEquals("imagem errada","ajudaProf2.png",abismo.getImage());
-        assertEquals("consequencia errada","Qualquer coisa",abismo.getConsequencia());
+        assertEquals("imagem errada","pilha50x50.png",abismo.getImage());
+        assertEquals("consequencia errada","Um pack de pilhas é bom para não ficar sem bateria",abismo.getConsequencia());
     }
     
 }

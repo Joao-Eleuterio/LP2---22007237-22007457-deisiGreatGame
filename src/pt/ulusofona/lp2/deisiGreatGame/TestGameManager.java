@@ -78,9 +78,10 @@ public class TestGameManager {
         }catch (java.lang.Exception c){
             c.printStackTrace();
         }
-        assertNull("fora do tabuleiro", manager.getImagePng(50));
-        assertNull("fora do tabuleiro", manager.getImagePng(0));
-        assertNull("fora do tabuleiro", manager.getImagePng(15));
+        assertNull("fora do tabuleiro",manager.getImagePng(50));
+        assertNull("fora do tabuleiro",manager.getImagePng(0));
+        assertEquals("fora do tabuleiro","preto50x50.png",manager.getImagePng(15));
+
     }
 
 

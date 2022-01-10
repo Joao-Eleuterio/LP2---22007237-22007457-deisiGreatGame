@@ -64,7 +64,7 @@ public class TestCreateInitialBoard2 {
             System.out.println(e.getMessage());
         }
         assertTrue(manager.moveCurrentPlayer(1));
-        String esperada1 = "Caiu Herança! Anula os feitos de codigo duplicado";
+        String esperada1 = "Ganhas-te uma corda deve dar jeito";
         assertEquals(esperada1,manager.reactToAbyssOrTool());
 
 
@@ -82,7 +82,7 @@ public class TestCreateInitialBoard2 {
             System.out.println(e.getMessage());
         }
         assertTrue(manager.moveCurrentPlayer(1));
-        String esperada1 = "Caiu Herança! Anula os feitos de codigo duplicado";
+        String esperada1 = "Ganhas-te uma corda deve dar jeito";
         assertEquals(esperada1,manager.reactToAbyssOrTool());
 
 
