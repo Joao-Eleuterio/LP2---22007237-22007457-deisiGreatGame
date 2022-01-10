@@ -1,0 +1,6 @@
+30
+0;0
+Ines;Python;2;Blue;1;false;null;null;null
+Ana;C,Java;10;Green;1;false;null;null;null
+João;Java,Python;19;Purple;1;false;null;null;null
+Carlos;C;99;Brown;1;false;null;null;null
