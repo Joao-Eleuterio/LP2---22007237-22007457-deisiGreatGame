@@ -13,6 +13,6 @@ public class AjudaProfessor extends Ferramenta{
         return "pilha50x50.png";
     }
     public String getConsequencia() {
-        return "Um pack de pilhas é bom para não ficar sem bateria";
+        return "Um pack de pilhas é bom para não ficares sem bateria na tua lanterna.";
     }
 }

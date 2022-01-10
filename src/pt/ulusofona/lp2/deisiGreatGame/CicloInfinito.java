@@ -34,7 +34,7 @@ public class CicloInfinito extends Abismo{
         return "Passagens50x50.png";
     }
     public String getConsequencia() {
-        return "Tens 3 caminhos diferentes e não tens um mapa espera por um colega";
+        return "Tens 3 caminhos diferentes e não tens um mapa. Espera por um colega.";
     }
 
     @Override

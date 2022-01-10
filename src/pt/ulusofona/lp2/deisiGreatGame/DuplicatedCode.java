@@ -44,6 +44,6 @@ public class DuplicatedCode extends Abismo {
 
     @Override
     public String getConsequencia() {
-        return "Cais-te num buraco e voltaste a mesma posicao";
+        return "Caís-te num buraco e voltaste à mesma posição.";
     }
 }

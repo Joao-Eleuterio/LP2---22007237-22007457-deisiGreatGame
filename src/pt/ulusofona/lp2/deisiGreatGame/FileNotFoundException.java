@@ -39,6 +39,6 @@ public class FileNotFoundException extends Abismo {
 
     @Override
     public String getConsequencia() {
-        return "Viste um ninho de aranhas volta 3 casas para tras";
+        return "Viste um ninho de aranhas venenosas, volta 3 casas para trás para ficares em segurança.";
     }
 }

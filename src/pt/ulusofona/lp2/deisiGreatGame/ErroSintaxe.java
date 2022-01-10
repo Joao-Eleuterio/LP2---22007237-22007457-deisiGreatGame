@@ -36,6 +36,6 @@ public class ErroSintaxe extends Abismo {
 
     @Override
     public String getConsequencia() {
-        return "Assustaste-te com um morcego e voltaste 1 casa para tras";
+        return "Assustaste-te com um morcego. Voltaste 1 casa para trás";
     }
 }

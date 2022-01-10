@@ -13,6 +13,6 @@ public class TratamentoExcepcoes extends Ferramenta{
         return "Tocha50x50.png";
     }
     public String getConsequencia() {
-        return "Hm!? Uma tocha? É melhor guardar";
+        return "Hm!? Uma tocha? É melhor guardares.";
     }
 }

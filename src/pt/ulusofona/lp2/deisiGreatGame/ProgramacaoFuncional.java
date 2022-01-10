@@ -16,6 +16,6 @@ public class ProgramacaoFuncional extends Ferramenta{
     }
 
     public String  getConsequencia(){
-        return "Um mapa antigo da gruta dá bastante jeito para não te perderes";
+        return "Usa este mapa antigo da gruta. Dá bastante jeito para não te perderes.";
     }
 }

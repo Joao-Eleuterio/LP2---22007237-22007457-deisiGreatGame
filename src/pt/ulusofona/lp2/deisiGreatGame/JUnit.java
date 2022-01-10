@@ -13,6 +13,6 @@ public class JUnit extends Ferramenta{
         return "Sapato50x50.png";
     }
     public String getConsequencia() {
-        return "Uhh uns sapatos leves e não fazem barulho a andar";
+        return "Encontraste uns sapatos leves que não fazem barulho a andar. Mantém-te discreto!";
     }
 }

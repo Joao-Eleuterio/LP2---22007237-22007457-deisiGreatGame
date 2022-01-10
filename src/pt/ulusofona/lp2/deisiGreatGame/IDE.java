@@ -17,6 +17,6 @@ public class IDE extends Ferramenta{
 
     @Override
     public String getConsequencia() {
-        return "Veneno para animais vai ser bom se me quiserem atacar";
+        return "Encontraste veneno para animais. Vai ser bom para te protegeres de possíveis ataques.";
     }
 }

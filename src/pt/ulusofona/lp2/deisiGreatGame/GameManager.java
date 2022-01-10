@@ -311,7 +311,7 @@ public class GameManager {
         JPanel a = new JPanel();
         ImageIcon background=new ImageIcon("src\\images\\Creditos300x300.png");
         Image img=background.getImage();
-        Image temp=img.getScaledInstance(300,300,Image.SCALE_FAST);
+        Image temp=img.getScaledInstance(285,265,Image.SCALE_FAST);
         background=new ImageIcon(temp);
         JLabel back=new JLabel(background);
         back.setLayout(null);

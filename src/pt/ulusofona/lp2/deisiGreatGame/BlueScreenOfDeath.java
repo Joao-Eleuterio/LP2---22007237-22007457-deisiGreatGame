@@ -34,6 +34,6 @@ public class BlueScreenOfDeath extends Abismo {
 
     @Override
     public String getConsequencia() {
-        return "Uma cobra atacou-te e acabaste por morrer";
+        return "Uma cobra atacou-te. Morreste!";
     }
 }
