@@ -12,11 +12,11 @@ public class IDE extends Ferramenta{
     }
     @Override
     public String getImage() {
-        return "intellij2.png";
+        return "Veneno50x50.png";
     }
 
     @Override
     public String getConsequencia() {
-        return "Evita qualquer coisa";
+        return "Veneno para animais vai ser bom se me quiserem atacar";
     }
 }

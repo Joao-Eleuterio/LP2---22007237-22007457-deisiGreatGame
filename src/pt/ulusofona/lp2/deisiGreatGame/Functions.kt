@@ -75,7 +75,6 @@ fun getPolyglots(manager: GameManager, args: List<String>): String? {
         .joinToString("\n") { it.name + ":" + it.linguagens.filterNotNull().count() }
 }
 
-
 /*
  * GET MOST_USED_POSITIONS <max_results>
  * Obtém as posições do tabuleiro que mais jogadores “pisaram”, ordenadas da mais “pisada” para a menos “pisada”.
@@ -130,7 +129,6 @@ fun PostMove(manager: GameManager, args: List<String>): String? {
  * Apenas serão testados estes 2 casos.
  * Podem portanto assumir que o abyssTypeId é sempre válido e que a posição está dentro do tabuleiro.
  */
-
 fun PostAbyss(manager: GameManager, args: List<String>): String? {
     return if (manager.addAbismo(Integer.parseInt(args[1]), Integer.parseInt(args[2]))) { "OK" } else { "Position is occupied" }
 }

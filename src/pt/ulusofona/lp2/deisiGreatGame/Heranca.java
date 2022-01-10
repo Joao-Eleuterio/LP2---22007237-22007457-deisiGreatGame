@@ -11,9 +11,9 @@ public class Heranca extends Ferramenta{
         return this.titulo;
     }
     public String getImage(){
-        return "herança.png";
+        return "Corda50x50.png";
     }
     public String  getConsequencia(){
-        return "Anula os feitos de codigo duplicado";
+        return "Ganhas-te uma corda deve dar jeito";
     }
 }

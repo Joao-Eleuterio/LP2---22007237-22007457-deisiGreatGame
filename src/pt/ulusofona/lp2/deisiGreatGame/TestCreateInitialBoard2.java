@@ -53,16 +53,6 @@ public class TestCreateInitialBoard2 {
 
       return abysses;
     }
-
-
-
-    //normal
-    @Test
-    public void test01CreateInitialBoard() {
-        GameManager manager = new GameManager();
-            //assertTrue("Tem de conseguir criar", manager.createInitialBoard(creat4Players(), 10,abyssesAndTools()));
-    }
-
     //herença
     @Test
     public void test02CreateInitialBoard() {

@@ -39,11 +39,11 @@ public class DuplicatedCode extends Abismo {
 
     @Override
     public String getImage() {
-        return "duplicate_code2.png";
+        return "Buraco50x50.png";
     }
 
     @Override
     public String getConsequencia() {
-        return "Recua na casa anterior";
+        return "Cais-te num buraco e voltas-te a mesma posicao";
     }
 }

@@ -31,10 +31,10 @@ public class CicloInfinito extends Abismo{
         return this.titulo;
     }
     public String getImage() {
-        return "infinite-loop.png";
+        return "Passagens50x50.png";
     }
     public String getConsequencia() {
-        return "Vai ficar aqui ate um jogador vier nesta casa";
+        return "Tens 3 caminhos diferentes e não tens um mapa espera por um colega";
     }
 
     @Override

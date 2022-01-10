@@ -29,11 +29,11 @@ public class BlueScreenOfDeath extends Abismo {
 
     @Override
     public String getImage() {
-        return "bsod.png";
+        return "Cobra50x50.png";
     }
 
     @Override
     public String getConsequencia() {
-        return "Perdeu :(";
+        return "Uma cobra atacou-te e acabas-te por morrer";
     }
 }

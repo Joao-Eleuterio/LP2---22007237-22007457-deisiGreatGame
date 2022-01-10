@@ -34,11 +34,11 @@ public class Exception extends Abismo{
     }
     @Override
     public String getImage() {
-        return "exception.png";
+        return "SemBateria50x50.png";
     }
 
     @Override
     public String getConsequencia() {
-        return "Recua 2 casas";
+        return "Ficas-te sem bateria na tua lanterna e não tens a tocha";
     }
 }

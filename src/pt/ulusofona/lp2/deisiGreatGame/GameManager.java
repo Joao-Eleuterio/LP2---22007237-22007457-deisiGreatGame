@@ -19,6 +19,7 @@ public class GameManager {
     int nrSpaces = 0;
     HashMap<Integer,Integer> posicoesPisadas= new HashMap<>();
     HashMap<String,Integer> abismosPisados= new HashMap<>();
+
     public GameManager() {
     }
 
@@ -149,13 +150,14 @@ public class GameManager {
         }
         //retorna imagem 50x50 glory.png
         if (position == tamanhoTab) {
-            return "glory.png";
+            return "saida50x50.png";
         }
         if (abismos.containsKey(position)) {
             return abismos.get(position).getImage();
+        }else{
+            return "preto50x50.png";
         }
 
-        return null;
 
     }
 
@@ -220,6 +222,7 @@ public class GameManager {
             } else {
                 players.get(turno).setPosicao(tamanhoTab + (tamanhoTab - players.get(turno).getPosicao() - nrSpaces));
             }
+
             if(posicoesPisadas.containsKey(players.get(turno).getPosicao())){
                 posicoesPisadas.put(players.get(turno).getPosicao(),(posicoesPisadas.get(players.get(turno).getPosicao())+1));
             }else{
@@ -306,17 +309,14 @@ public class GameManager {
 
     public JPanel getAuthorsPanel() {
         JPanel a = new JPanel();
-        JTextArea text = new JTextArea();
-        text.setText("                           DeisiGreatGame\n\nProgramadores: João Eleutério\n                               Mário Silva" +
-                "\n\nProfessores:   Pedro Alves\n                          Lúcio Studer\n                           Bruno Cipriano\n\n\n\n\n" +
-                "\n\n\n\n                                                                    © 2021 DEISI");
-
-        text.setSize(100, 100);
-        text.setEnabled(false);
-        text.setBackground(a.getBackground());
-        text.setDisabledTextColor(Color.BLACK);
-        a.add(text);
-
+        ImageIcon background=new ImageIcon("src\\images\\Creditos300x300.png");
+        Image img=background.getImage();
+        Image temp=img.getScaledInstance(285,265,Image.SCALE_FAST);
+        background=new ImageIcon(temp);
+        JLabel back=new JLabel(background);
+        back.setLayout(null);
+        back.setBounds(0,0,250,250);
+        a.add(back);
         return a;
     }
 
@@ -357,7 +357,7 @@ public class GameManager {
     public String reactToAbyssOrTool() {
         if (abismos.containsKey(players.get(turno).getPosicao())) {
             Trap trap= abismos.get(players.get(turno).getPosicao());
-            String txt = "Caiu " + trap.titulo + "! " + trap.getConsequencia();
+            String txt =  trap.getConsequencia();
             players.get(turno).addAbismo(abismos.get(players.get(turno).getPosicao()));
             trap.consequencia((ArrayList<Programmer>) players,nrSpaces,turno);
             nextTurn();
@@ -366,7 +366,6 @@ public class GameManager {
         nextTurn();
         return null;
     }
-
 
     public boolean saveGame(File file) {
         //worldSize
@@ -475,8 +474,6 @@ public class GameManager {
            return true;
         }
     }
-
-
 }
 
 

@@ -31,11 +31,11 @@ public class ErroSintaxe extends Abismo {
 
     @Override
     public String getImage() {
-        return "erro_sintaxe2.png";
+        return "Morcego50x50.png";
     }
 
     @Override
     public String getConsequencia() {
-        return "Recua 1 casa";
+        return "Assustaste-te com um morcego e voltas-te 1 casa para tras";
     }
 }

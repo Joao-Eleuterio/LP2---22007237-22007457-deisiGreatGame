@@ -34,11 +34,11 @@ public class FileNotFoundException extends Abismo {
 
     @Override
     public String getImage() {
-        return "file_not_found_exception2.png";
+        return "Aranha50x50.png";
     }
 
     @Override
     public String getConsequencia() {
-        return "Recua 3 casas";
+        return "Viste um ninho de aranhas volta 3 casas para tras";
     }
 }

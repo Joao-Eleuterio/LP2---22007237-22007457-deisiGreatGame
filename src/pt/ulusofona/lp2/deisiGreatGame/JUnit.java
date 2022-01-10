@@ -10,9 +10,9 @@ public class JUnit extends Ferramenta{
         return this.titulo;
     }
     public String getImage() {
-        return "junit2.png";
+        return "Sapato50x50.png";
     }
     public String getConsequencia() {
-        return "anula qualquer coisa";
+        return "Uhh uns sapatos leves e não fazes barulho a andar";
     }
 }

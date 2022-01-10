@@ -35,12 +35,12 @@ public class SegmentationFault extends Abismo{
     }
     @Override
     public String getImage() {
-        return "core_dump2.png";
+        return "Ponte50x50.png";
     }
 
     @Override
     public String getConsequencia() {
-        return "Quando tiverem 2+ jogadores na casa todos recuam 3 casas";
+        return "Numa ponte de corda só pode ir um de cada vez por isso caiu voltem para tras descobrir um caminho novo";
     }
 
 

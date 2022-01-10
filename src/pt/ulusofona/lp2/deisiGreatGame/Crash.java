@@ -30,11 +30,11 @@ public class Crash extends Abismo{
     }
     @Override
     public String getImage() {
-        return "crash2.png";
+        return "Perdido50x50.png";
     }
 
     @Override
     public String getConsequencia() {
-        return "Volta a 1º casa";
+        return "Perdeste-te e voltas-te ao inicio";
     }
 }

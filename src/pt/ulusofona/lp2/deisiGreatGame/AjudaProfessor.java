@@ -10,9 +10,9 @@ public class AjudaProfessor extends Ferramenta{
         return this.titulo;
     }
     public String getImage() {
-        return "ajudaProf2.png";
+        return "pilha50x50.png";
     }
     public String getConsequencia() {
-        return "Qualquer coisa";
+        return "Um pack de pilhas é bom para não ficar sem bateria";
     }
 }

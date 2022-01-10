@@ -12,10 +12,10 @@ public class ProgramacaoFuncional extends Ferramenta{
     }
 
     public String getImage(){
-        return "functional.png";
+        return "Mapa50x50.png";
     }
 
     public String  getConsequencia(){
-        return "Anula Duplicated Code, efeitos secundários";
+        return "Um mapa antigo da gruta dá bastante jeito para não te perderes";
     }
 }

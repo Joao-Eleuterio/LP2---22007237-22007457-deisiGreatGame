@@ -30,8 +30,8 @@ public class ErroLogica extends Abismo {
     public String getTitulo() {return this.titulo;}
 
     @Override
-    public String getImage() {return "logic.png";}
+    public String getImage() {return "urso50x50.png";}
 
     @Override
-    public String getConsequencia() {return "Recua metade do nr do dado";}
+    public String getConsequencia() {return "Viste um urso mas ainda bem que estava a dormir e voltas-te algumas casas para tras";}
 }

@@ -50,9 +50,9 @@ public class TestAbismoFerramenta {
         assertFalse("tem ferramenta",sintaxe.consequencia(programmer,5));
         programmer.addFerramenta(new AjudaProfessor());
         assertFalse("tem ferramenta",sintaxe.consequencia(programmer,5));
-        HashMap<Integer,Programmer> programmerHashMap = new HashMap<>();
-        programmerHashMap.put(0,new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE));
-        //assertTrue("nao tem ferramenta",sintaxe.consequencia(programmerHashMap,2 ,0));
+        ArrayList<Programmer> programmerHashMap = new ArrayList<>();
+        programmerHashMap.add(new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE));
+        assertTrue("nao tem ferramenta",sintaxe.consequencia(programmerHashMap,2 ,0));
     }
     @Test
     public void test01_ErroLogica(){
@@ -73,9 +73,9 @@ public class TestAbismoFerramenta {
         programmer.addFerramenta(new AjudaProfessor());
         assertFalse("tem ferramenta",logica.consequencia(programmer,5));
 
-        HashMap<Integer,Programmer> programmerHashMap = new HashMap<>();
-        programmerHashMap.put(0,new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE));
-       // assertTrue("nao tem ferramenta",logica.consequencia(programmerHashMap,2,0));
+        ArrayList<Programmer> programmerHashMap = new ArrayList<>();
+        programmerHashMap.add(new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE));
+        assertTrue("nao tem ferramenta",logica.consequencia(programmerHashMap,2,0));
     }
     @Test
     public void test02_Exception(){
@@ -96,9 +96,9 @@ public class TestAbismoFerramenta {
         programmer.addFerramenta(new AjudaProfessor());
         assertFalse("tem ferramenta",abismo.consequencia(programmer,5));
 
-        HashMap<Integer,Programmer> programmerHashMap = new HashMap<>();
-        programmerHashMap.put(0,new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE));
-       // assertTrue("nao tem ferramenta",abismo.consequencia(programmerHashMap,2,0));
+        ArrayList<Programmer> programmerHashMap = new ArrayList<>();
+        programmerHashMap.add(new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE));
+        assertTrue("nao tem ferramenta",abismo.consequencia(programmerHashMap,2,0));
     }
     @Test
     public void test03_FileNotFoundException(){
@@ -119,9 +119,9 @@ public class TestAbismoFerramenta {
         programmer.addFerramenta(new AjudaProfessor());
         assertFalse("tem ferramenta",abismo.consequencia(programmer,5));
 
-        HashMap<Integer,Programmer> programmerHashMap = new HashMap<>();
-        programmerHashMap.put(0,new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE));
-       // assertTrue("nao tem ferramenta",abismo.consequencia(programmerHashMap,2,0));
+        ArrayList<Programmer> programmerHashMap = new ArrayList<>();
+        programmerHashMap.add(new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE));
+        assertTrue("nao tem ferramenta",abismo.consequencia(programmerHashMap,2,0));
     }
     @Test
     public void test04_Crash(){
@@ -137,9 +137,9 @@ public class TestAbismoFerramenta {
         Programmer programmer= new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE);
 
         assertTrue("nao tem ferramenta",abismo.consequencia(programmer,5));
-        HashMap<Integer,Programmer> programmerHashMap = new HashMap<>();
-        programmerHashMap.put(0,new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE));
-        //assertTrue("nao tem ferramenta",abismo.consequencia(programmerHashMap,2,0));
+        ArrayList<Programmer> programmerHashMap = new ArrayList<>();
+        programmerHashMap.add(new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE));
+        assertTrue("nao tem ferramenta",abismo.consequencia(programmerHashMap,2,0));
     }
     @Test
     public void test05_DuplicatedCode(){
@@ -157,9 +157,9 @@ public class TestAbismoFerramenta {
         programmer.addFerramenta(new Heranca());
         assertFalse("tem ferramenta",abismo.consequencia(programmer,5));
 
-        HashMap<Integer,Programmer> programmerHashMap = new HashMap<>();
-        programmerHashMap.put(0,new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE));
-      //  assertTrue("nao tem ferramenta",abismo.consequencia(programmerHashMap,2,0));
+        ArrayList<Programmer> programmerHashMap = new ArrayList<>();
+        programmerHashMap.add(new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE));
+        assertTrue("nao tem ferramenta",abismo.consequencia(programmerHashMap,2,0));
     }
     @Test
     public void test06_EfeitosSecundarios(){
@@ -176,10 +176,9 @@ public class TestAbismoFerramenta {
         assertTrue("nao tem ferramenta",abismo.consequencia(programmer,5));
         programmer.addFerramenta(new ProgramacaoFuncional());
         assertFalse("tem ferramenta",abismo.consequencia(programmer,5));
-
-        HashMap<Integer,Programmer> programmerHashMap = new HashMap<>();
-        programmerHashMap.put(0,new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE));
-      //  assertTrue("nao tem ferramenta",abismo.consequencia(programmerHashMap,2,0));
+        ArrayList<Programmer> programmerHashMap = new ArrayList<>();
+        programmerHashMap.add(new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE));
+        assertTrue("nao tem ferramenta",abismo.consequencia(programmerHashMap,2,0));
     }
     @Test
     public void test07_BlueScreenOfDeath(){
@@ -194,9 +193,9 @@ public class TestAbismoFerramenta {
         linguagens.add("Python");
         Programmer programmer= new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE);
         assertTrue("nao tem ferramenta",abismo.consequencia(programmer,5));
-        HashMap<Integer,Programmer> programmerHashMap = new HashMap<>();
-        programmerHashMap.put(0,new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE));
-       // assertTrue("nao tem ferramenta",abismo.consequencia(programmerHashMap,2,0));
+        ArrayList <Programmer> programmerHashMap = new ArrayList<>();
+        programmerHashMap.add(new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE));
+        assertTrue("nao tem ferramenta",abismo.consequencia(programmerHashMap,2,0));
     }
     @Test
     public void test08_CicloInfinito(){
@@ -209,13 +208,13 @@ public class TestAbismoFerramenta {
 
         ArrayList<String> linguagens= new ArrayList<>();
         linguagens.add("Python");
-        HashMap<Integer,Programmer> programmerHashMap = new HashMap<>();
+        ArrayList<Programmer>  programmerHashMap = new ArrayList<>();
         Programmer programmer= new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE);
-        programmerHashMap.put(0,programmer);
-       // assertFalse("nao tem ferramenta",abismo.consequencia(programmerHashMap,2,0));
+        programmerHashMap.add(programmer);
+        assertFalse("nao tem ferramenta",abismo.consequencia(programmerHashMap,2,0));
         programmer.ferramentas.add(new ProgramacaoFuncional());
-        programmerHashMap.put(0,programmer);
-       // assertTrue("tem ferramenta",abismo.consequencia(programmerHashMap,2,0));
+        programmerHashMap.add(programmer);
+        assertTrue("tem ferramenta",abismo.consequencia(programmerHashMap,2,0));
     }
     @Test
     public void test09_SegmentationFault(){
@@ -228,9 +227,10 @@ public class TestAbismoFerramenta {
 
         ArrayList<String> linguagens= new ArrayList<>();
         linguagens.add("Python");
-        HashMap<Integer,Programmer> programmerHashMap = new HashMap<>();
-        programmerHashMap.put(0,new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE));
-       // assertFalse("nao tem ferramenta",abismo.consequencia(programmerHashMap,2,0));
+        ArrayList<Programmer> programmerHashMap = new ArrayList<>();
+        programmerHashMap.add(new Programmer("Joao",linguagens,10,ProgrammerColor.PURPLE));
+        assertFalse("nao tem ferramenta",abismo.consequencia(programmerHashMap,2,0));
+
     }
 
 

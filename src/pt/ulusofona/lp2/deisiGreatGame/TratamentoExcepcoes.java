@@ -10,9 +10,9 @@ public class TratamentoExcepcoes extends Ferramenta{
         return this.titulo;
     }
     public String getImage() {
-        return "catch.png";
+        return "Tocha50x50.png";
     }
     public String getConsequencia() {
-        return "qualquer coisa";
+        return "Hm!? Uma tocha? É melhor guardar";
     }
 }

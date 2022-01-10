@@ -39,11 +39,11 @@ public class EfeitosSecundarios extends Abismo {
 
     @Override
     public String getImage() {
-        return "side-effects2.png";
+        return "Beco50x50.png";
     }
 
     @Override
     public String getConsequencia() {
-        return "Recua 2 casas anteriores";
+        return "Encontras-te um beco sem saída volta para duas casas anteriores";
     }
 }
