@@ -39,6 +39,6 @@ public class Exception extends Abismo{
 
     @Override
     public String getConsequencia() {
-        return "Ficas-te sem bateria na tua lanterna e não tens a tocha";
+        return "Ficaste sem bateria na tua lanterna e não tens a tocha";
     }
 }
