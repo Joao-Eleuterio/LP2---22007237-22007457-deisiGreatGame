@@ -111,10 +111,11 @@ public class Programmer {
     }
 
     void andar(int nrSpaces) {
-        addCasa(getPosicao());
+
         if (getPosicao() + nrSpaces > 0) {
             this.posicao += nrSpaces;
         }
+        addCasa(getPosicao());
     }
 
     public String toString() {

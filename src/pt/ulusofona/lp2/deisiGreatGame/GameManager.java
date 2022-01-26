@@ -77,7 +77,7 @@ public class GameManager {
         if(abyssesAndTools!=null){
             for (String[] abyssesAndTool : abyssesAndTools) {
                 if (abyssesAndTool[0].equals("0")) {
-                    abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 9;
+                    abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 10;
                 } else {
                     abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 5;
                 }
@@ -125,6 +125,7 @@ public class GameManager {
                     case 7 -> trap = new BlueScreenOfDeath();
                     case 8 -> trap = new CicloInfinito();
                     case 9 -> trap = new SegmentationFault();
+                    case 10 -> trap = new VamosFazerContas();
                 }
                 break;
             case 1:
@@ -247,24 +248,20 @@ public class GameManager {
     public boolean gameIsOver() {
         int emJogo = 0;
         Programmer winner = null;
-        for (int i = 0; i < players.size(); i++) {
-            if (!players.get(i).getDefeat()) {
+        for (Programmer player : players) {
+            if (!player.getDefeat()) {
                 emJogo++;
-                winner = players.get(i);
+                winner = player;
+            }
+            if (player.posicao == tamanhoTab) {
+                vencedor = player;
+                nextTurn();
+                return true;
             }
         }
         if (emJogo == 1) {
             vencedor = winner;
             return true;
-        }
-
-
-        for (int i = 0; i < players.size(); i++) {
-            if (players.get(i).posicao == tamanhoTab) {
-                vencedor = players.get(i);
-                nextTurn();
-                return true;
-            }
         }
         return false;
     }
@@ -301,6 +298,37 @@ public class GameManager {
             for (Programmer programmer : organizado) {
                 if (programmer.getPosicao() != tamanhoTab) {
                     strings.add(programmer.getName() + " " + programmer.getPosicao());
+                }
+            }
+        }else{
+            strings.add("O GRANDE JOGO DO DEISI");
+            strings.add("");
+            strings.add("NR. DE TURNOS");
+            strings.add("" + nrTurnos);
+            strings.add("");
+            strings.add("O jogo terminou empatado.");
+            strings.add("");
+            strings.add("Participantes:");
+            if (players == null) {
+                return null;
+            }
+            Collection<Programmer> values = players;
+            ArrayList<Programmer> organizado = new ArrayList<>(values);
+            String text="";
+            organizado.sort((p1, p2) -> {
+                if (p1.getPosicao() < p2.getPosicao()) {
+                    return -1;
+                } else if (p1.getPosicao() > p2.getPosicao()) {
+                    return 1;
+                } else {
+                    return p1.getName().compareTo(p2.getName());
+                }
+            });
+            organizado.sort(Comparator.comparingInt(Programmer::getPosicao).reversed());
+            for (Programmer programmer : organizado) {
+                if (programmer.getPosicao() != tamanhoTab) {
+                    if(programmer.abismo!=null && programmer.abismo.titulo.equals("Ciclo Infinito")){text="Ciclo Infinito"; }else{ text="BSOD";}
+                    strings.add(programmer.getName() + " : " + programmer.getPosicao()+" : "+text);
                 }
             }
         }

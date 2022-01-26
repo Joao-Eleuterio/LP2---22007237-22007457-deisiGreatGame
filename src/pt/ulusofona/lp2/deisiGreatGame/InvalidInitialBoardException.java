@@ -1,21 +1,45 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 public class InvalidInitialBoardException extends java.lang.Exception {
-    String message;
+    String mensagem;
+    int invalidAbyssOrTool;
+    int numeroAbyssOuTool;
 
-    InvalidInitialBoardException(String message) {
-        this.message = message;
+    InvalidInitialBoardException(String mensagem, int invalidAbyssOrTool, int numeroAbyssOuTool) {
+        this.mensagem = mensagem;
+        this.invalidAbyssOrTool = invalidAbyssOrTool;
+        this.numeroAbyssOuTool=numeroAbyssOuTool;
+
+        if(this.invalidAbyssOrTool == 1){
+            getTypeId();
+            isInvalidAbyss();
+        }else if (this.invalidAbyssOrTool == 2){
+            getTypeId();
+            isInvalidTool();
+        }
     }
-    public String  getMessage(){ return message;}
 
-    Boolean isInvalidAbyss(){return true;}
+    public InvalidInitialBoardException(String mensagem) {
+        this.mensagem = mensagem;
+    }
 
+    public String getMessage(){
+        return mensagem;
+    }
 
-    Boolean isInvalidTool(){
-      return true;
-   }
+    public boolean isInvalidAbyss(){
+        return true;
+    }
 
-    Integer getTypeId(){
-      return 0;
-   }
+    public boolean isInvalidTool(){
+        return true;
+    }
+
+    public String getTypeId(){
+        if (invalidAbyssOrTool == 1 || invalidAbyssOrTool == 2){
+            return String.valueOf(numeroAbyssOuTool);
+        }
+        return null;
+    }
 }
+
