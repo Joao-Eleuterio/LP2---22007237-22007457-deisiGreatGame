@@ -168,5 +168,5 @@ public class TestGameManager {
         System.out.println(a);
     }
 }
-//, Jazz Jack-a-Rabbit 11 Ciclo Infinito, Goiaba 9 Ciclo Infinito, Pato Donald 7 Blue Screen of Death, Bruninho 5 Blue Screen of Death
-//, Jazz Jack-a-Rabbit 11 Ciclo infinito, Goiaba 9 Ciclo infinito, Pato Donald 7 Blue Screen of Death, Bruninho 5 Blue Screen of Death
+//O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 7, , O jogo terminou empatado., , Participantes:, Jazz Jack-a-Rabbit 11 Ciclo Infinito, Goiaba 9 Ciclo Infinito, Pato Donald 7 Blue Screen of Death, Bruninho 5 Blue Screen of Death
+//O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 7, , O jogo terminou empatado., , Participantes:, Jazz Jack-a-Rabbit 11 Blue Screen of Death, Goiaba 9 Blue Screen of Death, Pato Donald 7 Blue Screen of Death, Bruninho 5 Blue Screen of Death

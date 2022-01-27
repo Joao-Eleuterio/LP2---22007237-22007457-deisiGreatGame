@@ -268,7 +268,6 @@ public class GameManager {
             vencedor = winner;
             return true;
         }
-
         return jogadoresAbismo == emJogo;//acaba se so tiver em jogo pessoas no cicloInfinito
     }
 
@@ -333,8 +332,9 @@ public class GameManager {
             organizado.sort(Comparator.comparingInt(Programmer::getPosicao).reversed());
             for (Programmer programmer : organizado) {
                 if (programmer.getPosicao() != tamanhoTab) {
-                    if(programmer.abismo!=null && programmer.abismo.titulo.equals("Ciclo Infinito")){text="Ciclo infinito"; }else{ text="Blue Screen of Death";}
+                    if(programmer.abismo!=null && programmer.abismo.titulo.equals("Ciclo infinito")){text="Ciclo Infinito"; }else{ text="Blue Screen of Death";}
                     strings.add(programmer.getName() + " " + programmer.getPosicao()+" "+text);
+                    text="";
                 }
             }
         }
