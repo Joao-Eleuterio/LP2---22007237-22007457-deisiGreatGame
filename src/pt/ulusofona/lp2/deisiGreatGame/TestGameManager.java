@@ -160,4 +160,13 @@ public class TestGameManager {
         }
 
     }
+
+    @Test
+    public void test07_GameManager() {
+        String b= ", Jazz Jack-a-Rabbit 11 Ciclo Infinito, Goiaba 9 Ciclo Infinito, Pato Donald 7 Blue Screen of Death, Bruninho 5 Blue Screen of Death";
+        boolean a=b.equals(", Jazz Jack-a-Rabbit 11 Ciclo infinito, Goiaba 9 Ciclo infinito, Pato Donald 7 Blue Screen of Death, Bruninho 5 Blue Screen of Death");
+        System.out.println(a);
+    }
 }
+//, Jazz Jack-a-Rabbit 11 Ciclo Infinito, Goiaba 9 Ciclo Infinito, Pato Donald 7 Blue Screen of Death, Bruninho 5 Blue Screen of Death
+//, Jazz Jack-a-Rabbit 11 Ciclo infinito, Goiaba 9 Ciclo infinito, Pato Donald 7 Blue Screen of Death, Bruninho 5 Blue Screen of Death
