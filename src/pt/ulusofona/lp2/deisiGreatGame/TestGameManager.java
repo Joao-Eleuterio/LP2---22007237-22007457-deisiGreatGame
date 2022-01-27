@@ -83,14 +83,15 @@ public class TestGameManager {
         assertEquals("fora do tabuleiro", "preto50x50.png", manager.getImagePng(15));
 
     }
+
     @Test
-    public void test04_GameManager(){
+    public void test04_GameManager() {
 
         GameManager manager = new GameManager();
         String[][] abismo = new String[1][3];
-        abismo[0][0]="0";
-        abismo[0][1]="10";
-        abismo[0][2]="11";
+        abismo[0][0] = "0";
+        abismo[0][1] = "10";
+        abismo[0][2] = "11";
         try {
             manager.createInitialBoard(creat4Players(), 30, abismo);
             manager.moveCurrentPlayer(4);
@@ -98,45 +99,46 @@ public class TestGameManager {
             manager.moveCurrentPlayer(3);
             manager.moveCurrentPlayer(1);
             manager.reactToAbyssOrTool();
-        }catch (java.lang.Exception c){
+        } catch (java.lang.Exception c) {
             c.printStackTrace();
         }
-        assertEquals("Nao arrendondaste",8,manager.players.get(0).getPosicao());
+        assertEquals("Nao arrendondaste", 8, manager.players.get(0).getPosicao());
     }
+
     @Test
-    public void test05_GameManager(){
+    public void test05_GameManager() {
 
         GameManager manager = new GameManager();
         String[][] abismo = new String[1][3];
-        abismo[0][0]="0";
-        abismo[0][1]="10";
-        abismo[0][2]="11";
+        abismo[0][0] = "0";
+        abismo[0][1] = "10";
+        abismo[0][2] = "11";
         try {
             manager.createInitialBoard(creat4Players(), 30, abismo);
             manager.moveCurrentPlayer(2);
             manager.moveCurrentPlayer(2);
             manager.moveCurrentPlayer(6);
             manager.reactToAbyssOrTool();
-        }catch (java.lang.Exception c){
+        } catch (java.lang.Exception c) {
             c.printStackTrace();
         }
-        assertEquals("Nao arrendondaste",4,manager.players.get(0).getPosicao());
+        assertEquals("Nao arrendondaste", 4, manager.players.get(0).getPosicao());
     }
 
     @Test
-    public void test06_GameManager(){
+    public void test06_GameManager() {
 
         GameManager manager = new GameManager();
         String[][] abismo = new String[3][3];
-        abismo[0][0]="0";
-        abismo[0][1]="7";
-        abismo[0][2]="11";
-        abismo[1][0]="0";
-        abismo[1][1]="8";
-        abismo[1][2]="3";
-        abismo[2][0]="0";
-        abismo[2][1]="8";
-        abismo[2][2]="4";
+        abismo[0][0] = "0";
+        abismo[0][1] = "7";
+        abismo[0][2] = "11";
+        abismo[1][0] = "0";
+        abismo[1][1] = "8";
+        abismo[1][2] = "3";
+        abismo[2][0] = "0";
+        abismo[2][1] = "8";
+        abismo[2][2] = "4";
 
         try {
             manager.createInitialBoard(creat4Players(), 30, abismo);
@@ -152,8 +154,8 @@ public class TestGameManager {
             manager.reactToAbyssOrTool();
             manager.moveCurrentPlayer(2);
             manager.reactToAbyssOrTool();
-            assertTrue("ninguem pode andar",manager.gameIsOver());
-        }catch (java.lang.Exception c){
+            assertTrue("ninguem pode andar", manager.gameIsOver());
+        } catch (java.lang.Exception c) {
             c.printStackTrace();
         }
 

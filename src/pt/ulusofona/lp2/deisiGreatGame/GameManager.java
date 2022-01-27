@@ -268,7 +268,7 @@ public class GameManager {
             vencedor = winner;
             return true;
         }
-        return jogadoresAbismo == emJogo;//acaba se
+        return jogadoresAbismo == emJogo;//acaba se so tiver em jogo pessoas no cicloInfinito
     }
 
     public List<String> getGameResults() {
@@ -317,6 +317,7 @@ public class GameManager {
             if (players == null) {
                 return null;
             }
+            nextTurn();
             Collection<Programmer> values = players;
             ArrayList<Programmer> organizado = new ArrayList<>(values);
             String text="";
