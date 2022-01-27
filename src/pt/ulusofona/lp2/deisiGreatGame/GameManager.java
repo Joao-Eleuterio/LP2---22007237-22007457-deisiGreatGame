@@ -310,7 +310,7 @@ public class GameManager {
             strings.add("O GRANDE JOGO DO DEISI");
             strings.add("");
             strings.add("NR. DE TURNOS");
-            strings.add("" + ++nrTurnos);
+            strings.add("" + (++nrTurnos));
             strings.add("");
             strings.add("O jogo terminou empatado.");
             strings.add("");
