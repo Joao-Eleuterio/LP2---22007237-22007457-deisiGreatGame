@@ -253,22 +253,22 @@ public class GameManager {
             if (!player.getDefeat()) {
                 emJogo++;
                 winner = player;
-                if(player.abismo!=null && player.abismo.titulo.equals("Ciclo Infinito")){
+                if(player.abismo!=null && player.abismo.titulo.equals("Ciclo infinito")){
                     jogadoresAbismo++;
                 }
             }
-            if (player.posicao == tamanhoTab) {
+            if (player.posicao == tamanhoTab) {//acaba se tiver um na casa final
                 vencedor = player;
                 nextTurn();
                 return true;
             }
 
         }
-        if (emJogo == 1) {
+        if (emJogo == 1) {//acaba se so houver um player em jogo
             vencedor = winner;
             return true;
         }
-        return jogadoresAbismo == emJogo;
+        return jogadoresAbismo == emJogo;//acaba se
     }
 
     public List<String> getGameResults() {
@@ -332,7 +332,7 @@ public class GameManager {
             organizado.sort(Comparator.comparingInt(Programmer::getPosicao).reversed());
             for (Programmer programmer : organizado) {
                 if (programmer.getPosicao() != tamanhoTab) {
-                    if(programmer.abismo!=null && programmer.abismo.titulo.equals("Ciclo Infinito")){text="Ciclo Infinito"; }else{ text="BSOD";}
+                    if(programmer.abismo!=null && programmer.abismo.titulo.equals("Ciclo infinito")){text="Ciclo infinito"; }else{ text="BSOD";}
                     strings.add(programmer.getName() + " : " + programmer.getPosicao()+" : "+text);
                 }
             }

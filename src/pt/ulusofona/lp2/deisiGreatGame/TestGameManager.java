@@ -123,4 +123,39 @@ public class TestGameManager {
         assertEquals("Nao arrendondaste",4,manager.players.get(0).getPosicao());
     }
 
+    @Test
+    public void test06_GameManager(){
+
+        GameManager manager = new GameManager();
+        String[][] abismo = new String[3][3];
+        abismo[0][0]="0";
+        abismo[0][1]="7";
+        abismo[0][2]="11";
+        abismo[1][0]="0";
+        abismo[1][1]="8";
+        abismo[1][2]="3";
+        abismo[2][0]="0";
+        abismo[2][1]="8";
+        abismo[2][2]="4";
+
+        try {
+            manager.createInitialBoard(creat4Players(), 30, abismo);
+            manager.moveCurrentPlayer(2);
+            manager.moveCurrentPlayer(2);
+            manager.moveCurrentPlayer(6);
+            manager.reactToAbyssOrTool();
+            manager.moveCurrentPlayer(2);
+            manager.moveCurrentPlayer(2);
+            manager.moveCurrentPlayer(6);
+            manager.reactToAbyssOrTool();
+            manager.moveCurrentPlayer(3);
+            manager.reactToAbyssOrTool();
+            manager.moveCurrentPlayer(2);
+            manager.reactToAbyssOrTool();
+            assertTrue("ninguem pode andar",manager.gameIsOver());
+        }catch (java.lang.Exception c){
+            c.printStackTrace();
+        }
+
+    }
 }
