@@ -38,6 +38,8 @@ public abstract class Trap {
                             return new CicloInfinito();
                         case 9:
                             return new SegmentationFault();
+                        case 10:
+                            return new VamosFazerContas();
                     }
                 case 1:
                     switch (id) {
