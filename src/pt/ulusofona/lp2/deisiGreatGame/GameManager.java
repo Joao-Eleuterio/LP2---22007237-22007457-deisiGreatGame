@@ -333,7 +333,7 @@ public class GameManager {
             for (Programmer programmer : organizado) {
                 if (programmer.getPosicao() != tamanhoTab) {
                     if(programmer.abismo!=null && programmer.abismo.titulo.equals("Ciclo infinito")){text="Ciclo infinito"; }else{ text="Blue Screen of Death";}
-                    strings.add(programmer.getName() + " : " + programmer.getPosicao()+" : "+text);
+                    strings.add(programmer.getName() + " " + programmer.getPosicao()+" "+text);
                 }
             }
         }
