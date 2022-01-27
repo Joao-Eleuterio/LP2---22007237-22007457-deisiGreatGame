@@ -259,7 +259,7 @@ public class GameManager {
                 return true;
             }
         }
-        if (emJogo == 1) {
+        if (emJogo <= 1) {
             vencedor = winner;
             return true;
         }

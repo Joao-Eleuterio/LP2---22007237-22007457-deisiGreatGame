@@ -51,6 +51,6 @@ que existirem.
 
     @Override
     public String getConsequencia() {
-        return null;
+        return "";
     }
 }
