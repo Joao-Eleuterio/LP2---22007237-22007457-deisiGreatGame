@@ -247,23 +247,28 @@ public class GameManager {
 
     public boolean gameIsOver() {
         int emJogo = 0;
+        int jogadoresAbismo=0;
         Programmer winner = null;
         for (Programmer player : players) {
             if (!player.getDefeat()) {
                 emJogo++;
                 winner = player;
+                if(player.abismo!=null && player.abismo.titulo.equals("Ciclo Infinito")){
+                    jogadoresAbismo++;
+                }
             }
             if (player.posicao == tamanhoTab) {
                 vencedor = player;
                 nextTurn();
                 return true;
             }
+
         }
-        if (emJogo <= 1) {
+        if (emJogo == 1) {
             vencedor = winner;
             return true;
         }
-        return false;
+        return jogadoresAbismo == emJogo;
     }
 
     public List<String> getGameResults() {

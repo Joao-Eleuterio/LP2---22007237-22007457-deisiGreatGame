@@ -17,13 +17,11 @@ public class DuplicatedCode extends Abismo {
             if (player.getCasas().size() <= 1) {
                 player.setPosicao(1);
             } else {
-                player.setPosicao(player.getCasas().get(player.getCasas().size() - 1));
+                player.setPosicao(player.getCasas().get(player.getCasas().size() - 2));
             }
             player.removeAbismo();
-
             return true;
         }
-
         return false;
     }
 
