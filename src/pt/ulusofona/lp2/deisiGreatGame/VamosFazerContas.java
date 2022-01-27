@@ -46,7 +46,7 @@ que existirem.
 
     @Override
     public String getImage() {
-        return "dice.png";
+        return "contas.png";
     }
 
     @Override
