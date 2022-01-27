@@ -268,6 +268,7 @@ public class GameManager {
             vencedor = winner;
             return true;
         }
+
         return jogadoresAbismo == emJogo;//acaba se so tiver em jogo pessoas no cicloInfinito
     }
 
@@ -309,7 +310,7 @@ public class GameManager {
             strings.add("O GRANDE JOGO DO DEISI");
             strings.add("");
             strings.add("NR. DE TURNOS");
-            strings.add("" + nrTurnos);
+            strings.add("" + ++nrTurnos);
             strings.add("");
             strings.add("O jogo terminou empatado.");
             strings.add("");
@@ -317,7 +318,6 @@ public class GameManager {
             if (players == null) {
                 return null;
             }
-            nextTurn();
             Collection<Programmer> values = players;
             ArrayList<Programmer> organizado = new ArrayList<>(values);
             String text="";
