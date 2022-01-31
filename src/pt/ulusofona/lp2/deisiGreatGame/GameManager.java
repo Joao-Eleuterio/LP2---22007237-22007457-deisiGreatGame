@@ -116,7 +116,7 @@ public class GameManager {
         Trap trap = null;
         switch (idTrap) {
             case 0:
-                switch (id) {
+                switch (id) { 
                     case 0 -> trap = new ErroSintaxe();
                     case 1 -> trap = new ErroLogica();
                     case 2 -> trap = new Exception();
