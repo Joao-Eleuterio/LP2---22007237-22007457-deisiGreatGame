@@ -82,7 +82,7 @@ public class GameManager {
                     abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 5;
                 }
                 dentroTab = Integer.parseInt(abyssesAndTool[2]) > 0 && Integer.parseInt(abyssesAndTool[2]) <= tamanhoTab;//se esta dentro do tabuleiro
-                if (abismo && dentroTab){
+                if (!(abismo && dentroTab)){
                     throw new InvalidInitialBoardException("erro");
                 } else {
                     if(escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]))==null){
