@@ -88,8 +88,6 @@ public class GameManager {
                     if(escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]))==null){
                         throw new InvalidInitialBoardException("nao existe");
                     }
-                    escolheTrap(0,10,5);
-                    escolheTrap(0,10,10);
                 }
             }
         }
