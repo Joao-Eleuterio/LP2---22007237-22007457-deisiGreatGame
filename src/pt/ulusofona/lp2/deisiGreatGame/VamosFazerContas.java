@@ -35,8 +35,8 @@ que existirem.
     //(5 + 7 + 10) / 3 = 22 / 3 = 7.33(333)
     //(3 + 5) / 2 = 4
     @Override
-    public boolean consequencia(ArrayList<Programmer> players, int nrSpaces, int turno) {
-        return consequencia(players.get(turno),nrSpaces);
+    public boolean consequencia(ArrayList<Programmer>  player, int nrSpaces, int turno) {
+        return consequencia(player.get(turno),nrSpaces);
     }
 
     @Override
@@ -51,6 +51,6 @@ que existirem.
 
     @Override
     public String getConsequencia() {
-        return "";
+        return "Caiste no Vamos Fazer Contas";
     }
 }

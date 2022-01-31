@@ -76,16 +76,20 @@ public class GameManager {
         }
         if(abyssesAndTools!=null){
             for (String[] abyssesAndTool : abyssesAndTools) {
-                if (abyssesAndTool[0].equals("0")) {
+                if (abyssesAndTool[0].equals("0")) {//abismo
                     abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 10;
-                } else {
+                } else {//ferramenta
                     abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 5;
                 }
                 dentroTab = Integer.parseInt(abyssesAndTool[2]) > 0 && Integer.parseInt(abyssesAndTool[2]) <= tamanhoTab;
                 if (!((abyssesAndTool[0].equals("0") || abyssesAndTool[0].equals("1")) && abismo && dentroTab)) {
                     throw new InvalidInitialBoardException("erro");
                 } else {
-                    escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]));
+                    if(escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]))==null){
+                        throw new InvalidInitialBoardException("nao existe");
+                    }
+                    escolheTrap(0,10,5);
+                    escolheTrap(0,10,10);
                 }
             }
         }
