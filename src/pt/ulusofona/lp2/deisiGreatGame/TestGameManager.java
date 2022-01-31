@@ -163,10 +163,24 @@ public class TestGameManager {
 
     @Test
     public void test07_GameManager() {
-        String b= ", Jazz Jack-a-Rabbit 11 Ciclo Infinito, Goiaba 9 Ciclo Infinito, Pato Donald 7 Blue Screen of Death, Bruninho 5 Blue Screen of Death";
-        boolean a=b.equals(", Jazz Jack-a-Rabbit 11 Ciclo infinito, Goiaba 9 Ciclo infinito, Pato Donald 7 Blue Screen of Death, Bruninho 5 Blue Screen of Death");
-        System.out.println(a);
+        GameManager manager = new GameManager();
+        String[][] abismo = new String[4][3];
+        abismo[0][0] = "0";
+        abismo[0][1] = "0";
+        abismo[0][2] = "11";
+        abismo[1][0] = "0";
+        abismo[1][1] = "8";
+        abismo[1][2] = "3";
+        abismo[2][0] = "0";
+        abismo[2][1] = "10";
+        abismo[2][2] = "4";
+        abismo[3][0] = "0";
+        abismo[3][1] = "";
+        abismo[3][2] = "4";
+        try {
+            manager.createInitialBoard(creat4Players(), 30, abismo);
+        } catch (java.lang.Exception c) {
+            c.printStackTrace();
+        }
     }
 }
-//O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 7, , O jogo terminou empatado., , Participantes:, Jazz Jack-a-Rabbit 11 Ciclo Infinito, Goiaba 9 Ciclo Infinito, Pato Donald 7 Blue Screen of Death, Bruninho 5 Blue Screen of Death
-//O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 7, , O jogo terminou empatado., , Participantes:, Jazz Jack-a-Rabbit 11 Blue Screen of Death, Goiaba 9 Blue Screen of Death, Pato Donald 7 Blue Screen of Death, Bruninho 5 Blue Screen of Death
