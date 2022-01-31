@@ -61,7 +61,7 @@ public class GameManager {
 
     //cria e faz tratamento de dados das traps
     public void createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools)throws InvalidInitialBoardException {
-        boolean abismo, dentroTab;
+        boolean abismo=false, dentroTab;
         players.clear();
         nrTurnos = 0;
         turno = 0;
@@ -81,8 +81,8 @@ public class GameManager {
                 } else {//ferramenta
                     abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 5;
                 }
-                dentroTab = Integer.parseInt(abyssesAndTool[2]) > 0 && Integer.parseInt(abyssesAndTool[2]) <= tamanhoTab;
-                if (!((abyssesAndTool[0].equals("0") || abyssesAndTool[0].equals("1")) && abismo && dentroTab)) {
+                dentroTab = Integer.parseInt(abyssesAndTool[2]) > 0 && Integer.parseInt(abyssesAndTool[2]) <= tamanhoTab;//se esta dentro do tabuleiro
+                if (abismo && dentroTab){
                     throw new InvalidInitialBoardException("erro");
                 } else {
                     if(escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2]))==null){
@@ -116,7 +116,7 @@ public class GameManager {
         Trap trap = null;
         switch (idTrap) {
             case 0:
-                switch (id) { 
+                switch (id) {
                     case 0 -> trap = new ErroSintaxe();
                     case 1 -> trap = new ErroLogica();
                     case 2 -> trap = new Exception();
