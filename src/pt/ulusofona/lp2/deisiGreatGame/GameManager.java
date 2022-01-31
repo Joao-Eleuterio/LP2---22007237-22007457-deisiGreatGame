@@ -91,7 +91,7 @@ public class GameManager {
                     } else {
                         if (escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2])) == null) {
                             throw new InvalidInitialBoardException("nao existe");
-                        }
+                        } 
                     }
                 }
             }
