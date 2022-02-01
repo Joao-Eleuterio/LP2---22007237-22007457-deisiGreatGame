@@ -25,9 +25,13 @@ public class GameManager {
 
     //cria e faz o tratamento de dados dos players
     public void createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException {
-        createInitialBoard(playerInfo, worldSize, null);
-    }
+        try{
+            createInitialBoard(playerInfo, worldSize, null);
+        }catch (java.lang.Exception c){
+            throw new InvalidInitialBoardException("erro no create");
+        }
 
+    }
 
     public boolean temCor(String cor, ArrayList<Programmer> programadores) {
         switch (cor) {
@@ -67,14 +71,14 @@ public class GameManager {
         turno = 0;
         vencedor = null;
         abismos.clear();
-
+        try {
         if (playerInfo == null) {
             throw new InvalidInitialBoardException("playerInfo é null");
         }
         if (worldSize >= playerInfo.length * 2) {
             this.tamanhoTab = worldSize;
         }
-        try {
+
             if (abyssesAndTools != null) {
                 for (String[] abyssesAndTool : abyssesAndTools) {
                     if (abyssesAndTool == null || abyssesAndTool[0] == null || abyssesAndTool[1] == null || abyssesAndTool[2] == null) {
@@ -109,14 +113,15 @@ public class GameManager {
 
             a.sort(Comparator.comparingInt(Programmer::getId));
             players.addAll(a);
-        } catch (java.lang.Exception c) {
-            throw new InvalidInitialBoardException("Erro");
-        }
+
         //se tiver os players
         if (players.size() >= 2 && players.size() < 5) {
             return;
         }
         throw new InvalidInitialBoardException("players invalidos");
+        } catch (java.lang.Exception c) {
+            throw new InvalidInitialBoardException("Erro");
+        }
     }
 
     public String escolheTrap(int idTrap, int id, int pos) {
