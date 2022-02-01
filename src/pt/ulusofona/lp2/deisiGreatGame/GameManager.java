@@ -124,7 +124,7 @@ public class GameManager {
         throw new InvalidInitialBoardException("players invalidos",-1,-1);
         } catch (InvalidInitialBoardException c) {
             if(c.getMessage()==null){
-                throw new InvalidInitialBoardException("Erro",-1,-1);
+                throw new InvalidInitialBoardException("Erro!",-1,-1);
             }else{
               throw c;
             }
