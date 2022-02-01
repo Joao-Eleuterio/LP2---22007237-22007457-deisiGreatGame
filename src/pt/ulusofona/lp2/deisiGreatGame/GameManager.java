@@ -28,7 +28,7 @@ public class GameManager {
         try{
             createInitialBoard(playerInfo, worldSize, null);
         }catch (java.lang.Exception c){
-            throw new InvalidInitialBoardException("erro no create");
+            throw new InvalidInitialBoardException("erro no create",-1,-1);
         }
 
     }
@@ -73,16 +73,18 @@ public class GameManager {
         abismos.clear();
         try {
         if (playerInfo == null) {
-            throw new InvalidInitialBoardException("playerInfo é null");
+            throw new InvalidInitialBoardException("playerInfo é null",-1,-1);
         }
         if (worldSize >= playerInfo.length * 2) {
             this.tamanhoTab = worldSize;
+        }else{
+            throw new InvalidInitialBoardException("tamanho é errado",-1,-1);
         }
 
             if (abyssesAndTools != null) {
                 for (String[] abyssesAndTool : abyssesAndTools) {
                     if (abyssesAndTool == null || abyssesAndTool[0] == null || abyssesAndTool[1] == null || abyssesAndTool[2] == null) {
-                        throw new InvalidInitialBoardException("erro");
+                        throw new InvalidInitialBoardException("erro",-1,-1);
                     }
                     if (abyssesAndTool[0].equals("0")) {//abismo
                         abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 10;
@@ -91,6 +93,7 @@ public class GameManager {
                     }
                     dentroTab = Integer.parseInt(abyssesAndTool[2]) > 0 && Integer.parseInt(abyssesAndTool[2]) <= tamanhoTab;//se esta dentro do tabuleiro
                     if (!abismo || !dentroTab) {
+
                         throw new InvalidInitialBoardException("erro",Integer.parseInt(abyssesAndTool[0]),Integer.parseInt(abyssesAndTool[1]));
                     } else {
                         if (escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2])) == null) {
@@ -102,11 +105,11 @@ public class GameManager {
             ArrayList<Programmer> a = new ArrayList<>();
             for (String[] strings : playerInfo) {
                 if (strings[1] == null || strings[1].equals("") || !temCor(strings[3], a) || !temNovoId(strings[0], a) || !((playerInfo.length * 2) <= worldSize)) {
-                    throw new InvalidInitialBoardException("erro");
+                    throw new InvalidInitialBoardException("erro",-1,-1);
                 }
                 ArrayList<String> linguagensDeProgramacao = linguagens(String.valueOf(strings[2]));
                 if (linguagensDeProgramacao == null || linguagensDeProgramacao.size() == 0) {
-                    throw new InvalidInitialBoardException("Sem linguagens de Programacao");
+                    throw new InvalidInitialBoardException("Sem linguagens de Programacao",-1,-1);
                 }
                 a.add(new Programmer(strings[1], linguagensDeProgramacao, Integer.parseInt(String.valueOf(strings[0])), ProgrammerColor.getColor(strings[3])));
             }
@@ -118,9 +121,9 @@ public class GameManager {
         if (players.size() >= 2 && players.size() < 5) {
             return;
         }
-        throw new InvalidInitialBoardException("players invalidos");
+        throw new InvalidInitialBoardException("players invalidos",-1,-1);
         } catch (java.lang.Exception c) {
-            throw new InvalidInitialBoardException("Erro");
+            throw new InvalidInitialBoardException("Erro",-1,-1);
         }
     }
 
