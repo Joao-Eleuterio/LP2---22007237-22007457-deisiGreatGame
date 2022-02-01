@@ -122,8 +122,13 @@ public class GameManager {
             return;
         }
         throw new InvalidInitialBoardException("players invalidos",-1,-1);
-        } catch (java.lang.Exception c) {
-            throw new InvalidInitialBoardException("Erro",-1,-1);
+        } catch (InvalidInitialBoardException c) {
+            if(c.getMessage()==null){
+                throw new InvalidInitialBoardException("Erro",-1,-1);
+            }else{
+              throw c;
+            }
+
         }
     }
 
