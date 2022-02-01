@@ -91,10 +91,10 @@ public class GameManager {
                     }
                     dentroTab = Integer.parseInt(abyssesAndTool[2]) > 0 && Integer.parseInt(abyssesAndTool[2]) <= tamanhoTab;//se esta dentro do tabuleiro
                     if (!abismo || !dentroTab) {
-                        throw new InvalidInitialBoardException("erro");
+                        throw new InvalidInitialBoardException("erro",Integer.parseInt(abyssesAndTool[0]),Integer.parseInt(abyssesAndTool[1]));
                     } else {
                         if (escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2])) == null) {
-                            throw new InvalidInitialBoardException("nao existe");
+                            throw new InvalidInitialBoardException("erro",Integer.parseInt(abyssesAndTool[0]),Integer.parseInt(abyssesAndTool[1]));
                         }
                     }
                 }
