@@ -88,12 +88,13 @@ public class GameManager {
                     }
                     if (abyssesAndTool[0].equals("0")) {//abismo
                         abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 10;
-                    } else {//ferramenta
+                    } else if(abyssesAndTool[0].equals("1")){//ferramenta
                         abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 5;
+                    }else{
+                        throw new InvalidInitialBoardException("Erro",-1,-1);
                     }
                     dentroTab = Integer.parseInt(abyssesAndTool[2]) > 0 && Integer.parseInt(abyssesAndTool[2]) <= tamanhoTab;//se esta dentro do tabuleiro
                     if (!abismo || !dentroTab) {
-
                         throw new InvalidInitialBoardException("erro",Integer.parseInt(abyssesAndTool[0]),Integer.parseInt(abyssesAndTool[1]));
                     } else {
                         if (escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2])) == null) {
