@@ -189,13 +189,10 @@ public class GameManager {
 
     public List<Programmer> getProgrammers(boolean includeDefeated) {
         ArrayList<Programmer> a = new ArrayList<>();
-        for (int i = 0; i < players.size(); i++) {
+        for (Programmer player : players) {
             //includeDefeated = true acumula | includeDefeated= false nao adiciona
-            if (players.get(i).getDefeat() && includeDefeated) {// os Fora de Jogo
-                a.add(players.get(i));
-            }
-            if (!players.get(i).getDefeat()) {// os Em Jogo
-                a.add(players.get(i));
+            if (!player.getDefeat() || includeDefeated) {// os Em Jogo  e Fora de Jogo
+                a.add(player);
             }
         }
         return a;
@@ -362,7 +359,7 @@ public class GameManager {
                     } else {
                         text = "Blue Screen of Death";
                     }
-                    strings.add(programmer.getName() + " " + programmer.getPosicao() + " " + text);
+                    strings.add(programmer.getName() + " : " + programmer.getPosicao() + " : " + text);
                     text = "";
                 }
             }
