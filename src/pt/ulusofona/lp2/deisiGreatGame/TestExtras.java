@@ -28,7 +28,7 @@ public class TestExtras {
         invalidInitialBoardExceptions.add(new InvalidInitialBoardException("",1,0));
         invalidInitialBoardExceptions.add(new InvalidInitialBoardException("",2,0));
         assertEquals("","ola",invalidInitialBoardExceptions.get(0).getMessage());
-        assertEquals("",Integer.MIN_VALUE,invalidInitialBoardExceptions.get(0).getTypeId());
+        assertEquals("",-1,invalidInitialBoardExceptions.get(0).getTypeId());
         GameManager manager = new GameManager();
         manager.createInitialBoard(creat2Players(),10,null);
     }

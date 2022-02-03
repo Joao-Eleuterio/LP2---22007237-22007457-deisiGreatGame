@@ -30,7 +30,7 @@ public class InvalidInitialBoardException extends java.lang.Exception {
         if (erro == 0 || erro == 1){
             return id;
         }
-        return Integer.MIN_VALUE;
+        return -1;
     }
 }
 
