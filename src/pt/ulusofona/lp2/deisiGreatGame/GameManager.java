@@ -68,7 +68,7 @@ public class GameManager {
         abismos.clear();
 
         if (playerInfo == null) {
-            throw new InvalidInitialBoardException("playerInfo é null");
+            throw new InvalidInitialBoardException("playerInfo é null",-1,-1);
         }
         if (worldSize >= playerInfo.length * 2) {
             this.tamanhoTab = worldSize;
@@ -77,7 +77,7 @@ public class GameManager {
             if (abyssesAndTools != null) {
                 for (String[] abyssesAndTool : abyssesAndTools) {
                     if (abyssesAndTool == null || abyssesAndTool[0] == null || abyssesAndTool[1] == null || abyssesAndTool[2] == null) {
-                        throw new InvalidInitialBoardException("erro");
+                        throw new InvalidInitialBoardException("erro",-1,-1);
                     }
                     if (abyssesAndTool[0].equals("0")) {//abismo
                         abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 10;
@@ -86,10 +86,10 @@ public class GameManager {
                     }
                     dentroTab = Integer.parseInt(abyssesAndTool[2]) > 0 && Integer.parseInt(abyssesAndTool[2]) <= tamanhoTab;//se esta dentro do tabuleiro
                     if (!abismo || !dentroTab) {
-                        throw new InvalidInitialBoardException("erro");
+                        throw new InvalidInitialBoardException("erro",Integer.parseInt(abyssesAndTool[0]),Integer.parseInt(abyssesAndTool[1]));
                     } else {
                         if (escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2])) == null) {
-                            throw new InvalidInitialBoardException("nao existe");
+                            throw new InvalidInitialBoardException("nao existe",-1,-1);
                         }
                     }
                 }
@@ -97,11 +97,11 @@ public class GameManager {
             ArrayList<Programmer> a = new ArrayList<>();
             for (String[] strings : playerInfo) {
                 if (strings[1] == null || strings[1].equals("") || !temCor(strings[3], a) || !temNovoId(strings[0], a) || !((playerInfo.length * 2) <= worldSize)) {
-                    throw new InvalidInitialBoardException("erro");
+                    throw new InvalidInitialBoardException("erro",-1,-1);
                 }
                 ArrayList<String> linguagensDeProgramacao = linguagens(String.valueOf(strings[2]));
                 if (linguagensDeProgramacao == null || linguagensDeProgramacao.size() == 0) {
-                    throw new InvalidInitialBoardException("Sem linguagens de Programacao");
+                    throw new InvalidInitialBoardException("Sem linguagens de Programacao",-1,-1);
                 }
                 a.add(new Programmer(strings[1], linguagensDeProgramacao, Integer.parseInt(String.valueOf(strings[0])), ProgrammerColor.getColor(strings[3])));
             }
@@ -109,13 +109,13 @@ public class GameManager {
             a.sort(Comparator.comparingInt(Programmer::getId));
             players.addAll(a);
         } catch (java.lang.Exception c) {
-            throw new InvalidInitialBoardException("Erro");
+            throw new InvalidInitialBoardException("Erro",-1,-1);
         }
         //se tiver os players
         if (players.size() >= 2 && players.size() < 5) {
             return;
         }
-        throw new InvalidInitialBoardException("players invalidos");
+        throw new InvalidInitialBoardException("players invalidos",-1,-1);
     }
 
     public String escolheTrap(int idTrap, int id, int pos) {
@@ -338,14 +338,14 @@ public class GameManager {
             for (Programmer programmer : organizado) {
                 if (programmer.getPosicao() != tamanhoTab) {
                     if (programmer.abismo != null && programmer.abismo.titulo.equals("Ciclo infinito")) {
-                        text = "Ciclo Infinito";
-                    } else {text = "Blue Screen of Death";}
+                        text = "Ciclo Infinito";} else {text = "Blue Screen of Death";}
                     strings.add(programmer.getName() + " " + programmer.getPosicao() + " " + text);
                 }
             }
         }
         return strings;
     }
+
     public JPanel getAuthorsPanel() {
         JPanel a = new JPanel();
         ImageIcon background = new ImageIcon("src\\images\\Creditos300x300.png");
@@ -358,6 +358,7 @@ public class GameManager {
         a.add(back);
         return a;
     }
+
     public String getProgrammersInfo() {
         StringBuilder txt = new StringBuilder();
 
