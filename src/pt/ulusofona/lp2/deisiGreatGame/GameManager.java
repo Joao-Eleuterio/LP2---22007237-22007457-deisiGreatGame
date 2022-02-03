@@ -25,19 +25,14 @@ public class GameManager {
 
     //cria e faz o tratamento de dados dos players
     public void createInitialBoard(String[][] playerInfo, int worldSize) throws InvalidInitialBoardException {
-        try{
-            createInitialBoard(playerInfo, worldSize, null);
-        }catch (java.lang.Exception c){
-            throw new InvalidInitialBoardException("erro no create",-1,-1);
-        }
-
+        createInitialBoard(playerInfo, worldSize, null);
     }
 
     public boolean temCor(String cor, ArrayList<Programmer> programadores) {
         switch (cor) {
             case "Purple", "Green", "Brown", "Blue" -> {
                 for (Programmer programmer : programadores) {
-                    if (cor.equals(programmer.cor.nome)) {
+                    if (cor.equals(programmer.getColor().nome)) {
                         return false;
                     }
                 }
@@ -51,7 +46,7 @@ public class GameManager {
 
     public boolean temNovoId(String id, ArrayList<Programmer> programadores) {
         for (Programmer programmer : programadores) {
-            if (Integer.parseInt(id) == programmer.id) {
+            if (Integer.parseInt(id) == programmer.getId()) {
                 return false;
             }
         }
@@ -71,34 +66,30 @@ public class GameManager {
         turno = 0;
         vencedor = null;
         abismos.clear();
-        try {
+
         if (playerInfo == null) {
-            throw new InvalidInitialBoardException("playerInfo é null",-1,-1);
+            throw new InvalidInitialBoardException("playerInfo é null");
         }
         if (worldSize >= playerInfo.length * 2) {
             this.tamanhoTab = worldSize;
-        }else{
-            throw new InvalidInitialBoardException("tamanho é errado",-1,-1);
         }
-
+        try {
             if (abyssesAndTools != null) {
                 for (String[] abyssesAndTool : abyssesAndTools) {
                     if (abyssesAndTool == null || abyssesAndTool[0] == null || abyssesAndTool[1] == null || abyssesAndTool[2] == null) {
-                        throw new InvalidInitialBoardException("erro",-1,-1);
+                        throw new InvalidInitialBoardException("erro");
                     }
                     if (abyssesAndTool[0].equals("0")) {//abismo
                         abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 10;
-                    } else if(abyssesAndTool[0].equals("1")){//ferramenta
+                    } else {//ferramenta
                         abismo = Integer.parseInt(abyssesAndTool[1]) >= 0 && (Integer.parseInt(abyssesAndTool[1])) <= 5;
-                    }else{
-                        throw new InvalidInitialBoardException("Erro",-1,-1);
                     }
                     dentroTab = Integer.parseInt(abyssesAndTool[2]) > 0 && Integer.parseInt(abyssesAndTool[2]) <= tamanhoTab;//se esta dentro do tabuleiro
                     if (!abismo || !dentroTab) {
-                        throw new InvalidInitialBoardException("erro",Integer.parseInt(abyssesAndTool[0]),Integer.parseInt(abyssesAndTool[1]));
+                        throw new InvalidInitialBoardException("erro");
                     } else {
                         if (escolheTrap(Integer.parseInt(abyssesAndTool[0]), Integer.parseInt(abyssesAndTool[1]), Integer.parseInt(abyssesAndTool[2])) == null) {
-                            throw new InvalidInitialBoardException("erro",Integer.parseInt(abyssesAndTool[0]),Integer.parseInt(abyssesAndTool[1]));
+                            throw new InvalidInitialBoardException("nao existe");
                         }
                     }
                 }
@@ -106,31 +97,25 @@ public class GameManager {
             ArrayList<Programmer> a = new ArrayList<>();
             for (String[] strings : playerInfo) {
                 if (strings[1] == null || strings[1].equals("") || !temCor(strings[3], a) || !temNovoId(strings[0], a) || !((playerInfo.length * 2) <= worldSize)) {
-                    throw new InvalidInitialBoardException("erro",-1,-1);
+                    throw new InvalidInitialBoardException("erro");
                 }
                 ArrayList<String> linguagensDeProgramacao = linguagens(String.valueOf(strings[2]));
                 if (linguagensDeProgramacao == null || linguagensDeProgramacao.size() == 0) {
-                    throw new InvalidInitialBoardException("Sem linguagens de Programacao",-1,-1);
+                    throw new InvalidInitialBoardException("Sem linguagens de Programacao");
                 }
                 a.add(new Programmer(strings[1], linguagensDeProgramacao, Integer.parseInt(String.valueOf(strings[0])), ProgrammerColor.getColor(strings[3])));
             }
 
             a.sort(Comparator.comparingInt(Programmer::getId));
             players.addAll(a);
-
+        } catch (java.lang.Exception c) {
+            throw new InvalidInitialBoardException("Erro");
+        }
         //se tiver os players
         if (players.size() >= 2 && players.size() < 5) {
             return;
         }
-        throw new InvalidInitialBoardException("players invalidos",-1,-1);
-        } catch (InvalidInitialBoardException c) {
-            if(c.getMessage()==null){
-                throw new InvalidInitialBoardException("Erro!",-1,-1);
-            }else{
-              throw c;
-            }
-
-        }
+        throw new InvalidInitialBoardException("players invalidos");
     }
 
     public String escolheTrap(int idTrap, int id, int pos) {
@@ -191,7 +176,10 @@ public class GameManager {
         ArrayList<Programmer> a = new ArrayList<>();
         for (Programmer player : players) {
             //includeDefeated = true acumula | includeDefeated= false nao adiciona
-            if (!player.getDefeat() || includeDefeated) {// os Em Jogo  e Fora de Jogo
+            if (player.getDefeat() && includeDefeated) {// os Fora de Jogo
+                a.add(player);
+            }
+            if (!player.getDefeat()) {// os Em Jogo
                 a.add(player);
             }
         }
@@ -343,30 +331,21 @@ public class GameManager {
             ArrayList<Programmer> organizado = new ArrayList<>(values);
             String text = "";
             organizado.sort((p1, p2) -> {
-                if (p1.getPosicao() < p2.getPosicao()) {
-                    return -1;
-                } else if (p1.getPosicao() > p2.getPosicao()) {
-                    return 1;
-                } else {
-                    return p1.getName().compareTo(p2.getName());
-                }
-            });
+                if (p1.getPosicao() < p2.getPosicao()) {return -1;
+                } else if (p1.getPosicao() > p2.getPosicao()) {return 1;
+                } else {return p1.getName().compareTo(p2.getName());}});
             organizado.sort(Comparator.comparingInt(Programmer::getPosicao).reversed());
             for (Programmer programmer : organizado) {
                 if (programmer.getPosicao() != tamanhoTab) {
                     if (programmer.abismo != null && programmer.abismo.titulo.equals("Ciclo infinito")) {
                         text = "Ciclo Infinito";
-                    } else {
-                        text = "Blue Screen of Death";
-                    }
-                    strings.add(programmer.getName() + " : " + programmer.getPosicao() + " : " + text);
-                    text = "";
+                    } else {text = "Blue Screen of Death";}
+                    strings.add(programmer.getName() + " " + programmer.getPosicao() + " " + text);
                 }
             }
         }
         return strings;
     }
-
     public JPanel getAuthorsPanel() {
         JPanel a = new JPanel();
         ImageIcon background = new ImageIcon("src\\images\\Creditos300x300.png");
@@ -379,7 +358,6 @@ public class GameManager {
         a.add(back);
         return a;
     }
-
     public String getProgrammersInfo() {
         StringBuilder txt = new StringBuilder();
 
@@ -433,9 +411,13 @@ public class GameManager {
         //abyssesAndTools
         //playerInfo     //player    ->  nome / posicao / ferramentas / abismo /...
         try {
-            FileWriter fileWriter = new FileWriter(file);
+            String[] filename =file.getName().split("\\.");
+            if(filename.length<=1 || !filename[1].equals("txt")){
+                throw new IOException();
+            }
+            FileWriter fileWriter;
+            fileWriter = new FileWriter(file);
             PrintWriter printWriter = new PrintWriter(fileWriter);
-            try {
                 printWriter.println(tamanhoTab);
                 printWriter.println(turno + ";" + nrTurnos);
                 for (int i = 0; abismos != null && i < tamanhoTab; i++) {
@@ -444,7 +426,6 @@ public class GameManager {
                     }
                 }
                 for (int i = 0; players != null && i < players.size(); i++) {
-
                     StringBuilder abismo = new StringBuilder();
                     if (players.get(i).getAbismo() == null) {
                         abismo = new StringBuilder("null");
@@ -455,9 +436,6 @@ public class GameManager {
                             + players.get(i).getColor() + ";" + players.get(i).getPosicao() + ";"
                             + players.get(i).getDefeat() + ";" + abismo + ";" + players.get(i).getFerramentas() + ";" + players.get(i).getCasa());
                 }
-            } catch (java.lang.Exception c) {
-                return false;
-            }
             printWriter.close();
             return true;
         } catch (IOException e) {
@@ -466,7 +444,7 @@ public class GameManager {
     }
 
     public boolean loadGame(File file) {
-        int linha = 0, playerTurno = 0;
+        int linha = 0;
         try {
             Scanner myReader = new Scanner(file);
             try {
@@ -480,42 +458,24 @@ public class GameManager {
                     String[] linhas = data.split(";");
                     switch (linha) {
                         case 0 -> {
-                            try {
                                 tamanhoTab = Integer.parseInt(linhas[0]);
                                 linha++;
                                 continue;
-                            } catch (java.lang.Exception c) {
-                                return false;
-                            }
                         }
                         case 1 -> {
-                            try {
                                 turno = Integer.parseInt(linhas[0]);
                                 nrTurnos = Integer.parseInt(linhas[1]);
                                 linha++;
                                 continue;
-                            } catch (java.lang.Exception c) {
-                                return false;
-                            }
                         }
                         default -> {
-                            try {
                                 if (linhas.length == 3) {
-                                    try {
                                         if (escolheTrap(Integer.parseInt(linhas[1]), Integer.parseInt(linhas[2]), Integer.parseInt(linhas[0])) == null) {
-                                            return false;
+                                            throw new java.lang.Exception();
                                         }
-                                    } catch (java.lang.Exception c) {
-                                        return false;
-                                    }
                                 } else if (linhas.length == 9) {
-
                                     players.add(new Programmer(linhas[0], linhas[1], linhas[2], linhas[3], linhas[4], linhas[5], linhas[6], linhas[7], linhas[8]));
-                                    playerTurno++;
                                 }
-                            } catch (java.lang.Exception c) {
-                                return false;
-                            }
                         }
                     }
                     linha++;
@@ -529,7 +489,6 @@ public class GameManager {
             return false;
         }
     }
-
     public boolean addAbismo(int idTrap, int pos) {
         if (abismos.containsKey(pos)) {
             return false;

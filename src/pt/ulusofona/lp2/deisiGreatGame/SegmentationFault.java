@@ -26,7 +26,7 @@ public class SegmentationFault extends Abismo{
                 return true;
             }
         }
-        return false;
+        return consequencia(players.get(0),0);
     }
 
     @Override

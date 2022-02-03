@@ -9,11 +9,6 @@ public class VamosFazerContas extends Abismo{
         this.id = 10;
     }
 
-    /*um programador que caia nesta casa deve-se mover para a casa cuja
-posição seja a média das 3 posições anteriores, arredondada para cima.
-○ caso ainda não existam 3 posições anteriores, devem ser consideradas as
-que existirem.
-*/
     @Override
     public boolean consequencia(Programmer player, int nrSpaces) {
         double mediaPassos=0;
@@ -32,8 +27,7 @@ que existirem.
         }
         return true;
     }
-    //(5 + 7 + 10) / 3 = 22 / 3 = 7.33(333)
-    //(3 + 5) / 2 = 4
+
     @Override
     public boolean consequencia(ArrayList<Programmer>  player, int nrSpaces, int turno) {
         return consequencia(player.get(turno),nrSpaces);

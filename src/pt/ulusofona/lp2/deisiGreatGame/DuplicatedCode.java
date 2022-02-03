@@ -12,7 +12,6 @@ public class DuplicatedCode extends Abismo {
 
     @Override
     public boolean consequencia(Programmer player, int nrSpaces) {
-
         if (!(player.removeFerramenta(new Heranca()))) {
             if (player.getCasas().size() <= 1) {
                 player.setPosicao(1);

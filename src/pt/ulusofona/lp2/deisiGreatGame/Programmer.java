@@ -1,9 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+
 
 public class Programmer {
     String nome;
@@ -67,7 +65,7 @@ public class Programmer {
     }
 
     public Trap getAbismo() {
-        return abismo;
+        return this.abismo;
     }
 
     public void addAbismo(Trap abismo) {
@@ -79,7 +77,7 @@ public class Programmer {
     }
 
     public boolean getDefeat() {
-        return defeat;
+        return this.defeat;
     }
 
     public void perdeu() {
@@ -95,11 +93,11 @@ public class Programmer {
     }
 
     public void addCasa(int posicao) {
-        casas.add(posicao);
+        this.casas.add(posicao);
     }
 
     public ProgrammerColor getColor() {
-        return cor;
+        return this.cor;
     }
 
     public int getPosicao() {
@@ -134,7 +132,7 @@ public class Programmer {
         } else {
             for (int i = 0; i < this.ferramentas.size(); i++) {
                 if (i == 0) {
-                    txtFerramentas.append(this.ferramentas.get(i).titulo);
+                    txtFerramentas.append(this.ferramentas.get(i).getTitulo());
                 } else {
                     txtFerramentas.append("; ").append(this.ferramentas.get(i).getTitulo());
                 }
@@ -148,17 +146,17 @@ public class Programmer {
     }
 
     public boolean getCicloIfinito() {
-        return abismo != null && abismo.titulo.equals("Ciclo infinito");
+        return this.abismo != null && this.abismo.getTitulo().equals("Ciclo infinito");
     }
 
     public void addFerramenta(Trap ferramenta) {
-        ferramentas.add(ferramenta);
+        this.ferramentas.add(ferramenta);
     }
 
     boolean removeFerramenta(Trap ferramenta) {
-        for (int i = 0; i < ferramentas.size(); i++) {
-            if (ferramenta.titulo.equals(ferramentas.get(i).titulo)) {
-                ferramentas.remove(i);
+        for (int i = 0; i < this.ferramentas.size(); i++) {
+            if (ferramenta.getTitulo().equals(this.ferramentas.get(i).getTitulo())) {
+                this.ferramentas.remove(i);
                 return true;
             }
         }
@@ -166,22 +164,8 @@ public class Programmer {
     }
 
     boolean temFerramenta(Trap ferramenta) {
-        for (Trap value : ferramentas) {
-            if (ferramenta.titulo.equals(value.titulo)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    ArrayList<Integer> getCasas() {
-        return casas;
-    }
-
-
-    boolean temEstaLinguagem(String linguagem) {
-        for (int i = 0; linguagens != null && i < linguagens.size(); i++) {
-            if (linguagens.get(i).equals(linguagem)) {
+        for (Trap value : this.ferramentas) {
+            if (ferramenta.getTitulo().equals(value.getTitulo())) {
                 return true;
             }
         }
@@ -205,6 +189,15 @@ public class Programmer {
         return ferramentas;
     }
 
+    boolean temEstaLinguagem(String linguagem) {
+        for (int i = 0; this.linguagens != null && i < this.linguagens.size(); i++) {
+            if (this.linguagens.get(i)!=null && this.linguagens.get(i).equals(linguagem)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public StringBuilder getLinguagens() {
         StringBuilder linguagens = new StringBuilder();
         for (int j = 0; this.linguagens != null && j < this.linguagens.size(); j++) {
@@ -220,6 +213,10 @@ public class Programmer {
             linguagens = new StringBuilder("null");
         }
         return linguagens;
+    }
+
+    ArrayList<Integer> getCasas() {
+        return this.casas;
     }
 
     public StringBuilder getCasa() {

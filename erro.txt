@@ -1,6 +1,6 @@
 50
 0;0
-10;1;3
-20;0;5
+10;40;3
+20;0;
 Joao;Python,Java;1;Purple;1;false;1 0;null;null
 Ana;;3;Brown;1;false;null;null;null

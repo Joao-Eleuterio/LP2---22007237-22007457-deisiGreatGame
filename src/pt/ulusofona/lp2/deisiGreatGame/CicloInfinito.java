@@ -24,7 +24,7 @@ public class CicloInfinito extends Abismo{
             return entrou;
         }
         players.get(turno).removeAbismo();
-        return true;
+        return consequencia(players.get(turno),nrSpaces);
     }
 
     public String getTitulo() {
@@ -39,6 +39,6 @@ public class CicloInfinito extends Abismo{
 
     @Override
     public boolean consequencia(Programmer player, int nrSpaces) {
-        return false;
+        return true;
     }
 }
