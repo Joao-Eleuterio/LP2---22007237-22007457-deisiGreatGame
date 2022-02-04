@@ -261,10 +261,10 @@ public class TestGameManager {
         manager.createInitialBoard(jogadores,50,creatAbism());
         manager.players.get(0).perdeu();
         manager.players.get(1).perdeu();
-        assertEquals("","[O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 1, , O jogo terminou empatado., , Participantes:, Ana 1 Blue Screen of Death, Joao 1 Blue Screen of Death]",manager.getGameResults().toString());
+        assertEquals("","[O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 1, , O jogo terminou empatado., , Participantes:, Ana : 1 : Blue Screen of Death, Joao : 1 : Blue Screen of Death]",manager.getGameResults().toString());
         manager.players.get(1).defeat=false;
         manager.players.get(1).addAbismo(new CicloInfinito());
-        assertEquals("","[O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 2, , O jogo terminou empatado., , Participantes:, Ana 1 Ciclo Infinito, Joao 1 Blue Screen of Death]",manager.getGameResults().toString());
+        assertEquals("","[O GRANDE JOGO DO DEISI, , NR. DE TURNOS, 2, , O jogo terminou empatado., , Participantes:, Ana : 1 : Ciclo Infinito, Joao : 1 : Blue Screen of Death]",manager.getGameResults().toString());
         manager.players=null;
         assertNull("",manager.getGameResults());
     }
